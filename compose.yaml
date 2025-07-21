@@ -22,6 +22,8 @@ services:
       - DB_DATABASE=${DB_DATABASE:-laravel}
       - DB_USERNAME=${DB_USERNAME:-phper}
       - DB_PASSWORD=${DB_PASSWORD:-secret}
+    networks:
+      - app_net
 
   web:
     build:
@@ -36,6 +38,8 @@ services:
       - type: bind
         source: ./src
         target: /workspace
+    networks:
+      - app_net
 
   db:
     build:
@@ -57,6 +61,8 @@ services:
       - MYSQL_USER=${DB_USERNAME:-phper}
       - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
+    networks:
+      - app_net
 
   mailpit:
     image: axllent/mailpit
@@ -65,3 +71,66 @@ services:
         published: ${MAILPIT_PUBLISHED_PORT:-8025}
         protocol: tcp
         mode: host
+    networks:
+      - app_net
+
+  memcached:
+    build:
+      context: .
+      dockerfile: ./infra/docker/memcached/Dockerfile
+    ports:
+      - "11211:11211"
+    networks:
+      - app_net
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    ports:
+      - 4040:4040
+    volumes:
+      - ./infra/docker/ngrok/ngrok.yml:/etc/ngrok.yml
+    networks:
+      - app_net
+
+  chromium:
+    image: zenika/alpine-chrome
+    command:
+      [
+        chromium-browser,
+        "--headless",
+        "--disable-gpu",
+        "--remote-debugging-address=0.0.0.0",
+        "--remote-debugging-port=9222",
+      ]
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "9222:9222"
+    networks:
+      app_net:
+        ipv4_address: 172.22.0.100
+
+  selenium:
+    image: "selenium/standalone-chromium"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - "/dev/shm:/dev/shm"
+    ports:
+      - "4444:4444" # WebDriver 用
+      - "7900:7900" # VNC でブラウザ操作を見たい場合
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.22.0.1/24"
