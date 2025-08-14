@@ -1,14 +1,14 @@
-## 共通設定
+## General Settings
 
--   日本語で回答してください
--   簡潔で分かりやすい説明を心がけてください
+-   Please respond in Japanese
+-   Keep explanations concise and easy to understand
 
-## コードレビュー専用指示
+## Code Review Instructions
 
-### レビューの基本方針
+### Basic Review Policy
 
-以下のプレフィックスを使用してレビューコメントを分類してください：
+Use the following prefixes to categorize review comments:
 
--   `[must]` - 必須修正項目（セキュリティ、バグ、重大な設計問題）
--   `[recommend]` - 推奨修正項目（パフォーマンス、可読性の大幅改善）
--   `[nits]` - 軽微な指摘（コードスタイル、タイポ等）
+-   `[must]` - Mandatory changes (security issues, bugs, critical design problems)
+-   `[recommend]` - Recommended changes (performance improvements, major readability enhancements)
+-   `[nits]` - Minor comments (code style, typos, etc.)
