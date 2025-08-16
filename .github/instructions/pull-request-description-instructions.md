@@ -39,6 +39,8 @@
 
 ## **4.以下のコメントアウトを必ず Pull Request の説明文の末尾にそのまま追記してください**
 
+## 以下の全てのテキストは必ずコメントアウトしてください
+
 <!-- GitHub Copilot は必ず日本語でレビューして欲しい
 GitHub Copilot must be reviewed in Japanese.
 以下は Laravel のベストプラクティスです。
