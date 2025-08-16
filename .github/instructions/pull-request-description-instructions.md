@@ -44,271 +44,30 @@ Laravel のソースをレビューするときだけ、以下の規則を適用
 ### **単一責任の原則**
 
 クラスとメソッドは 1 つの責任だけを持つべきです。
-Bad:
-
-```php
-public function getFullNameAttribute(): string
-{
-    if (auth()->user() && auth()->user()->hasRole('client') && auth()->user()->isVerified()) {
-        return 'Mr. ' . $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
-    } else {
-        return $this->first_name[0] . '. ' . $this->last_name;
-    }
-}
-```
-
-Good:
-
-```php
-public function getFullNameAttribute(): string
-{
-    return $this->isVerifiedClient() ? $this->getFullNameLong() : $this->getFullNameShort();
-}
-public function isVerifiedClient(): bool
-{
-    return auth()->user() && auth()->user()->hasRole('client') && auth()->user()->isVerified();
-}
-public function getFullNameLong(): string
-{
-    return 'Mr. ' . $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
-}
-public function getFullNameShort(): string
-{
-    return $this->first_name[0] . '. ' . $this->last_name;
-}
-```
 
 ### **ファットモデル、スキニーコントローラ**
 
 DB に関連するすべてのロジックは Eloquent モデルに入れるか、もしクエリビルダもしくは生の SQL クエリを使用する場合はレポジトリークラスに入れます。
-Bad:
-
-```php
-public function index()
-{
-    $clients = Client::verified()
-        ->with(['orders' => function ($q) {
-            $q->where('created_at', '>', Carbon::today()->subWeek());
-        }])
-        ->get();
-    return view('index', ['clients' => $clients]);
-}
-```
-
-Good:
-
-```php
-public function index()
-{
-    return view('index', ['clients' => $this->client->getWithNewOrders()]);
-}
-class Client extends Model
-{
-    public function getWithNewOrders()
-    {
-        return $this->verified()
-            ->with(['orders' => function ($q) {
-                $q->where('created_at', '>', Carbon::today()->subWeek());
-            }])
-            ->get();
-    }
-}
-```
 
 ### **バリデーション**
 
 バリデーションはコントローラからリクエストクラスに移動させます。
-Bad:
-
-```php
-public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|unique:posts|max:255',
-        'body' => 'required',
-        'publish_at' => 'nullable|date',
-    ]);
-    ...
-}
-```
-
-Good:
-
-```php
-public function store(PostRequest $request)
-{
-    ...
-}
-class PostRequest extends Request
-{
-    public function rules()
-    {
-        return [
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
-            'publish_at' => 'nullable|date',
-        ];
-    }
-}
-```
 
 ### **ビジネスロジックはサービスクラスの中に書く**
 
 コントローラはただ 1 つの責任だけを持たないといけません、そのためビジネスロジックはコントローラからサービスクラスに移動させます。
-Bad:
-
-```php
-public function store(Request $request)
-{
-    if ($request->hasFile('image')) {
-        $request->file('image')->move(public_path('images') . 'temp');
-    }
-
-    ...
-}
-```
-
-Good:
-
-```php
-public function store(Request $request)
-{
-    $this->articleService->handleUploadedImage($request->file('image'));
-    ...
-}
-class ArticleService
-{
-    public function handleUploadedImage($image)
-    {
-        if (!is_null($image)) {
-            $image->move(public_path('images') . 'temp');
-        }
-    }
-}
-```
 
 ### **繰り返し書かない (DRY)**
 
 可能であればコードを再利用します。単一責任の原則は重複を避けることに役立ちます。また、Blade テンプレートを再利用したり、Eloquent のスコープなどを使用したりします。
-Bad:
-
-```php
-public function getActive()
-{
-    return $this->where('verified', 1)->whereNotNull('deleted_at')->get();
-}
-public function getArticles()
-{
-    return $this->whereHas('user', function ($q) {
-            $q->where('verified', 1)->whereNotNull('deleted_at');
-        })->get();
-}
-```
-
-Good:
-
-```php
-public function scopeActive($q)
-{
-    return $q->where('verified', 1)->whereNotNull('deleted_at');
-}
-public function getActive()
-{
-    return $this->active()->get();
-}
-public function getArticles()
-{
-    return $this->whereHas('user', function ($q) {
-            $q->active();
-        })->get();
-}
-```
 
 ### **クエリビルダや生の SQL クエリよりも Eloquent を優先して使い、配列よりもコレクションを優先する**
 
 Eloquent により読みやすくメンテナンスしやすいコードを書くことができます。また、Eloquent には論理削除、イベント、スコープなどの優れた組み込みツールがあります。
-Bad:
-
-```sql
-SELECT *
-FROM `articles`
-WHERE EXISTS (SELECT *
-              FROM `users`
-              WHERE `articles`.`user_id` = `users`.`id`
-              AND EXISTS (SELECT *
-                          FROM `profiles`
-                          WHERE `profiles`.`user_id` = `users`.`id`)
-              AND `users`.`deleted_at` IS NULL)
-AND `verified` = '1'
-AND `active` = '1'
-ORDER BY `created_at` DESC
-```
-
-Good:
-
-```php
-Article::has('user.profile')->verified()->latest()->get();
-```
-
-### **マスアサインメント**
-
-Bad:
-
-```php
-$article = new Article;
-$article->title = $request->title;
-$article->content = $request->content;
-$article->verified = $request->verified;
-// Add category to article
-$article->category_id = $category->id;
-$article->save();
-```
-
-Good:
-
-```php
-$category->article()->create($request->validated());
-```
 
 ### **Blade テンプレート内でクエリを実行しない。Eager Loding を使う(N + 1 問題)**
 
-Bad (100 ユーザに対して、101 回の DB クエリが実行される):
-
-```blade
-@foreach (User::all() as $user)
-    {{ $user->profile->name }}
-@endforeach
-```
-
-Good (100 ユーザに対して、2 回の DB クエリが実行される):
-
-```php
-$users = User::with('profile')->get();
-@foreach ($users as $user)
-    {{ $user->profile->name }}
-@endforeach
-```
-
 ### **コメントを書く。ただしコメントよりも説明的なメソッド名と変数名を付けるほうが良い**
-
-Bad:
-
-```php
-if (count((array) $builder->getQuery()->joins) > 0)
-```
-
-Better:
-
-```php
-// Determine if there are any joins.
-if (count((array) $builder->getQuery()->joins) > 0)
-```
-
-Good:
-
-```php
-if ($this->hasJoins())
-```
 
 ### **JS と CSS を Blade テンプレートの中に入れない、PHP クラスの中に HTML を入れない**
 
@@ -335,26 +94,6 @@ let article = $("#article").val();
 もっとも良い方法は、データを転送するため JS パッケージに特別な PHP を使用することです。
 
 ### **コード内の文字列の代わりに config ファイルと language のファイル、定数を使う**
-
-Bad:
-
-```php
-public function isNormal()
-{
-    return $article->type === 'normal';
-}
-return back()->with('message', 'Your article has been added!');
-```
-
-Good:
-
-```php
-public function isNormal()
-{
-    return $article->type === Article::TYPE_NORMAL;
-}
-return back()->with('message', __('app.article_added'));
-```
 
 ### **コミュニティに受け入れられた標準の Laravel ツールを使う**
 
@@ -418,21 +157,7 @@ Seeder | singular | UserSeeder | ~~UsersSeeder~~
 
 ### **できるだけ短く読みやすい構文で書く**
 
-Bad:
-
-```php
-$request->session()->get('cart');
-$request->input('name');
-```
-
-Good:
-
-```php
-session('cart');
-$request->name;
-```
-
-さらなる例:
+例:
 一般的な構文 | 短く読みやすい構文
 ------------ | -------------
 `Session::get('cart')` | `session('cart')`
@@ -455,41 +180,10 @@ $request->name;
 ### **new の代わりに IoC コンテナもしくはファサードを使う**
 
 new 構文はクラス間の密結合を生み出し、テストすることを難しくします。IoC コンテナまたはファサードを代わりに使います。
-Bad:
-
-```php
-$user = new User;
-$user->create($request->validated());
-```
-
-Good:
-
-```php
-public function __construct(User $user)
-{
-    $this->user = $user;
-}
-...
-$this->user->create($request->validated());
-```
 
 ### **`.env`ファイルのデータを直接参照しない**
 
 代わりに config ファイルへデータを渡します。そして、アプリケーション内でデータを参照する場合は`config()`ヘルパー関数を使います。
-Bad:
-
-```php
-$apiKey = env('API_KEY');
-```
-
-Good:
-
-```php
-// config/api.php
-'key' => env('API_KEY'),
-// データを使用する
-$apiKey = config('api.key');
-```
 
 ### **日付を標準フォーマットで保存する。アクセサとミューテータを使って日付フォーマットを変更する**
 
