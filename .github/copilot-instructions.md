@@ -1,3 +1,7 @@
+# I want GitHub Copilot to review in Japanese.
+
+# レビューは必ず日本語で回答してください。
+
 # Copilot PR Review Instructions
 
 PR レビュー時は以下の点に特に注意してコメント・提案してください。
