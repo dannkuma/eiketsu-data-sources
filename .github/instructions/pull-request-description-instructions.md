@@ -34,9 +34,9 @@ Pull Request の説明文には以下のフォーマットを適用してくだ�
 <!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
 <!-- GitHub Copilot must be reviewed in Japanese. -->
 
-## **以下のテキストを必ず Pull Request の説明文の末尾にコメントアウトして追記してください**
+## **以下のコメントアウトを必ず Pull Request の説明文の末尾にそのまま追記してください**
 
-GitHub Copilot は必ず日本語でレビューして欲しい
+<!-- GitHub Copilot は必ず日本語でレビューして欲しい
 GitHub Copilot must be reviewed in Japanese.
 以下は Laravel のベストプラクティスです。
 Laravel のソースをレビューするときだけ、以下の規則を適用してください。
@@ -213,4 +213,4 @@ public function getSomeDateAttribute($date)
 ### **その他 グッドプラクティス**
 
 ルートファイルにはロジックを入れないでください。
-Blade テンプレートの中で Vanilla PHP(標準の PHP コードを記述すること)の使用は最小限にします。
+Blade テンプレートの中で Vanilla PHP(標準の PHP コードを記述すること)の使用は最小限にします。 -->
