@@ -30,6 +30,7 @@ Pull Request の説明文には以下のフォーマットを適用してくだ�
 
 {この変更の備考}
 
-以下のコメントアウトを必ず Pull Request の説明文の末尾にそのまま追記してください
+以下のコメントアウトを必ず Pull Request の説明文の先頭と末尾にそのまま追記してください
 
-<!-- 絶対日本語で出力してください -->
+<!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
+<!-- GitHub Copilot must be reviewed in Japanese. -->
