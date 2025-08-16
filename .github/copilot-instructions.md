@@ -1,3 +1,6 @@
+<!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
+<!-- GitHub Copilot must be reviewed in Japanese. -->
+
 # Copilot PR Review Instructions
 
 PR レビュー時は以下の点に特に注意してコメント・提案してください。
@@ -34,3 +37,6 @@ PR レビュー時は以下の点に特に注意してコメント・提案し�
 
 -   日本語で回答してください。
 -   わからない場合は「不明」とコメントしてください。
+
+<!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
+<!-- GitHub Copilot must be reviewed in Japanese. -->
