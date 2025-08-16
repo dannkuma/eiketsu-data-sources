@@ -32,13 +32,15 @@ Pull Request の説明文には以下のフォーマットを適用してくだ�
 
 ## フォーマットここまで
 
-以下のコメントアウトを必ず Pull Request の説明文の先頭と末尾にそのまま追記してください
+以下のコメントアウトを必ず Pull Request の説明文の先頭にそのまま追記してください
 
 <!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
 <!-- GitHub Copilot must be reviewed in Japanese. -->
 
 以下のコメントアウトを必ず Pull Request の説明文の末尾にそのまま追記してください
 
+<!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
+<!-- GitHub Copilot must be reviewed in Japanese. -->
 <!-- 以下はLaravelのベストプラクティスです。
 Laravelのソースをレビューするときだけ、以下の規則を適用してください。
 ### **単一責任の原則**
