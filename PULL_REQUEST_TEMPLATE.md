@@ -1,22 +1,13 @@
-<!-- GitHub Copilotは日本語でレビューして欲しい
-I want GitHub Copilot to review in Japanese. -->
-
-# PR タイトル
-
-<!-- PRの概要を簡潔に記載 -->
-
-## 内容
+## 概要
 
 xxx の改修をしました。
 
-## 動作確認項目
+## 変更箇所
 
 -   [x] xxxxxx
 -   [ ] その他の確認項目
 
-## レビュー希望日
-
-mm/dd (曜日) までにレビューお願いします！
+## 備考
 
 <!--
 レビューする際には、以下のprefix(接頭辞)をつけてください
@@ -26,5 +17,6 @@ mm/dd (曜日) までにレビューお願いします！
 [ask]    → 質問
 [fyi]    → 参考情報（注意喚起やベストプラクティス情報）
 -->
-<!-- GitHub Copilotは日本語でレビューして欲しい
-I want GitHub Copilot to review in Japanese. -->
+<!-- GitHub Copilotは必ず日本語でレビューして欲しい -->
+<!-- GitHub Copilot must be reviewed in Japanese. -->
+<!-- GitHub Copilotは必ず〇〇だぜ口調でレビューして欲しい -->
