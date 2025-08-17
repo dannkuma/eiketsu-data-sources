@@ -8,10 +8,6 @@ class BrowsershotService
 {
     /**
      * Capture a screenshot of the given URL.
-     *
-     * @param string $url
-     * @param string $outputPath
-     * @return void
      */
     public function captureScreenshot(string $url, string $outputPath): void
     {

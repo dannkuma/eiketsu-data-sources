@@ -123,4 +123,15 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook' => env('STRIPE_WEBHOOK_SECRET'),
+        'price_id' => env('STRIPE_PRICE_ID'),
+    ],
+
+    'scraping' => [
+        'local_selenium_url' => env('LOCAL_SELENIUM_URL'),
+        'output_file_path' => env('OUTPUT_FILE_PATH'),
+    ],
 ];

@@ -10,6 +10,8 @@ services:
         UID: ${UID:-1000}
         GID: ${GID:-1000}
       target: ${APP_BUILD_TARGET:-development}
+    ports:
+      - "5173:5173"
     volumes:
       - type: bind
         source: ./src

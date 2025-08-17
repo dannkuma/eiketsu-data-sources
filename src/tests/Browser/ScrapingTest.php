@@ -2,14 +2,14 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Carbon\Carbon;
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
 use Symfony\Component\DomCrawler\Crawler;
+use Tests\DuskTestCase;
 
 class ScrapingTest extends DuskTestCase
 {
-    public function testExample(): void
+    public function test_example(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('https://eiketsu-taisen.net/datalist/?v=general&s=general&c=b2febe07b7a680b2426067ee6331f611')
@@ -22,7 +22,12 @@ class ScrapingTest extends DuskTestCase
                 return generalList ? generalList.outerHTML : 'Element not found';
             ")[0];
             $crawler = new Crawler($shadowHtml);
-            $filePath = storage_path('general_detail.html');  // 任意のパスを指定
+            $directory = storage_path(config('app.scraping.output_file_path', 'app/general_details'));
+            if (! file_exists($directory)) {
+                mkdir($directory, 0755, true);
+            }
+            $filename = 'general_detail_'.Carbon::now()->format('Ymd_His').'_'.uniqid().'.html';
+            $filePath = $directory.DIRECTORY_SEPARATOR.$filename;
             file_put_contents($filePath, $crawler->html());
             echo $crawler->html();
         });
