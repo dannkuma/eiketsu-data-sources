@@ -15,12 +15,7 @@ abstract class DuskTestCase extends BaseTestCase
      * Prepare for Dusk test execution.
      */
     #[BeforeClass]
-    public static function prepare(): void
-    {
-        if (! static::runningInSail()) {
-            static::startChromeDriver(['--port=9515']);
-        }
-    }
+    public static function prepare(): void {}
 
     /**
      * Create the RemoteWebDriver instance.
@@ -39,8 +34,7 @@ abstract class DuskTestCase extends BaseTestCase
         })->all());
 
         return RemoteWebDriver::create(
-            // $_ENV['DUSK_DRIVER_URL'] ?? env('DUSK_DRIVER_URL') ?? 'http://localhost:9515',
-            'http://selenium:4444/wd/hub', // Duskをseleniumに向ける
+            config('app.scraping.local_selenium_url'),
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY, $options
             )

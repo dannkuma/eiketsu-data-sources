@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use Laravel\Cashier\Cashier;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Billable;
-use App\Models\Order;
+use Laravel\Cashier\Cashier;
 
 class PaymentService
 {
@@ -17,7 +17,7 @@ class PaymentService
         return $user->checkout(
             [$stripe_price_id => $quantity],
             [
-                'success_url' => route('checkout.success'). '?session_id={CHECKOUT_SESSION_ID}',
+                'success_url' => route('checkout.success').'?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => route('checkout.cancel'),
                 'metadata' => [
                     'user_id' => $user->id,
@@ -32,8 +32,7 @@ class PaymentService
         $session_id = $request->get('session_id');
         $stripe_session = Cashier::stripe()->checkout->sessions->retrieve($session_id);
         $user_id = $stripe_session['metadata']['user_id'] ?? null;
-        if (!$user_id)
-        {
+        if (! $user_id) {
             return redirect()->route('stripe.checkout-cancel');
         }
         Order::create([

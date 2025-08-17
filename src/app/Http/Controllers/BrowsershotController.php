@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\BrowsershotService;
+use Illuminate\Http\Request;
 
 class BrowsershotController extends Controller
 {
     protected $BrowsershotService;
+
     public function __construct(BrowsershotService $browsershotService)
     {
         $this->BrowsershotService = $browsershotService;

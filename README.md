@@ -79,9 +79,9 @@ http://localhost
 
 ## Tips
 
-- Read this [Taskfile](https://github.com/ucan-lab/docker-laravel/blob/main/Taskfile.yml).
-- Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
-- Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
+-   Read this [Taskfile](https://github.com/ucan-lab/docker-laravel/blob/main/Taskfile.yml).
+-   Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
+-   Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
 
 ## Container structures
 
@@ -93,21 +93,35 @@ http://localhost
 
 ### app container
 
-- Base image
-  - [php](https://hub.docker.com/_/php):8.3-fpm-bullseye
-  - [composer](https://hub.docker.com/_/composer):2.7
+-   Base image
+    -   [php](https://hub.docker.com/_/php):8.3-fpm-bullseye
+    -   [composer](https://hub.docker.com/_/composer):2.7
 
 ### web container
 
-- Base image
-  - [nginx](https://hub.docker.com/_/nginx):1.26
+-   Base image
+    -   [nginx](https://hub.docker.com/_/nginx):1.26
 
 ### db container
 
-- Base image
-  - [mysql](https://hub.docker.com/_/mysql):8.4
+-   Base image
+    -   [mysql](https://hub.docker.com/_/mysql):8.4
 
 ### mailpit container
 
-- Base image
-  - [axllent/mailpit](https://hub.docker.com/r/axllent/mailpit)
+-   Base image
+    -   [axllent/mailpit](https://hub.docker.com/r/axllent/mailpit)
+
+### Pint の実行
+
+-   `docker compose exec app ./vendor/bin/pint`を実行
+-   Pint を実行できない場合は`docker compose exec app composer install `を実行
+
+### 開発用サーバの起動(tailwind の反映)
+
+-   `docker compose exec -d app npm run dev `を実行
+
+### スクレイピングの実行
+
+-   `docker compose exec app composer show | grep dusk`で dusk のインストールを確認
+-   `docker compose exec app php artisan dusk tests/Browser/ScrapingTest.php`を実行
