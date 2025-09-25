@@ -3,11 +3,13 @@
 1. ルートディレクトリで`export DOCKER_CONTENT_TRUST=1`を実行する
 2. ルートディレクトリで`docker compose build`を実行する
 3. ルートディレクトリで`docker compose up -d`を実行する
-4. ルートディレクトリで`docker compose exec app composer install`を実行する
-5. ルートディレクトリで`docker compose exec app php artisan key:generate`を実行する
-6. ルートディレクトリで`docker compose exec app php artisan storage:link`を実行する
-7. ルートディレクトリで`docker compose exec app chmod -R 777 storage bootstrap/cache`を実行する
-8. ルートディレクトリで`docker compose exec app php artisan migrate`を実行する
+4. ルートディレクトリで`.env.example をコピーして .env`を作成する
+5. ルートディレクトリで`docker compose exec app composer install`を実行する
+6. ルートディレクトリで`docker compose exec app npm install`を実行する
+7. ルートディレクトリで`docker compose exec app php artisan key:generate`を実行する
+8. ルートディレクトリで`docker compose exec app php artisan storage:link`を実行する
+9. ルートディレクトリで`docker compose exec app chmod -R 777 storage bootstrap/cache`を実行する
+10. ルートディレクトリで`docker compose exec app php artisan migrate`を実行する
 
 ## プロジェクトの起動
 
