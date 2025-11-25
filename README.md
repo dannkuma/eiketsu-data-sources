@@ -1,113 +1,50 @@
-# docker-laravel 🐳
+## プロジェクト概要
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/35098175/145682384-0f531ede-96e0-44c3-a35e-32494bd9af42.png" alt="docker-laravel">
-</p>
-<p align="center">
-    <img src="https://github.com/ucan-lab/docker-laravel/actions/workflows/laravel-create-project.yaml/badge.svg" alt="Test laravel-create-project.yml">
-    <img src="https://github.com/ucan-lab/docker-laravel/actions/workflows/laravel-git-clone.yaml/badge.svg" alt="Test laravel-git-clone.yml">
-    <img src="https://img.shields.io/github/license/ucan-lab/docker-laravel" alt="License">
-</p>
+英傑大戦のデッキシミュレーターサイトの再構築プロジェクトです。
+要件定義から始めており、現在は詳細設計フェーズとなります。
+本プロジェクトのモチベーションや設計等は[設計資料](#設計資料)をご覧ください。
+まだインフラ環境の整備を進めたのみの状態ではありますが、ローカルで実行する場合は
+[初回実行](#初回実行)を参照してください。
 
-## Introduction
+<a id="設計資料"></a>
 
-Build a simple laravel development environment with Docker Compose. Support with Windows(WSL2), macOS(Intel and Apple Silicon) and Linux.
+## 設計資料
 
-## Usage
+以下のリンクを参照
+[シミュレーターサイト再構築](https://sprout-lord-594.notion.site/1596b65e71a080af9f5df11aa6b226f4)
 
-### Create an initial Laravel project
+<a id="初回実行"></a>
 
-1. Click [Use this template](https://github.com/ucan-lab/docker-laravel/generate)
-2. Git clone & change directory
-3. Execute the following command
+## 初回実行
 
-```bash
-$ task for-linux-env # Linux environment only
-$ task create-project
+-   前提条件 1：Github からローカル PC に PJ をダウンロードしていること
+-   前提条件 2：ローカル PC に Docker(v24.0.5)、Docker Compose(v2.20.2)がインストールされていること
 
-# or...
+1. ルートディレクトリで`export DOCKER_CONTENT_TRUST=1`を実行する
+2. ルートディレクトリで`docker compose build`を実行する
+3. ルートディレクトリで`docker compose up -d`を実行する
+4. ルートディレクトリで`.env.example をコピーして .env`を作成する
+5. ルートディレクトリで`docker compose exec app composer install`を実行する
+6. ルートディレクトリで`docker compose exec app npm install`を実行する
+7. ルートディレクトリで`docker compose exec app php artisan key:generate`を実行する
+8. ルートディレクトリで`docker compose exec app php artisan storage:link`を実行する
+9. ルートディレクトリで`docker compose exec app chmod -R 777 storage bootstrap/cache`を実行する
+10. ルートディレクトリで`docker compose exec app php artisan migrate`を実行する
 
-$ make for-linux-env # Linux environment only
-$ make create-project
+## プロジェクトの起動
 
-# or...
+-   `docker compose up`を実行
 
-$ echo "UID=$(id -u)" >> .env # Linux environment only
-$ echo "GID=$(id -g)" >> .env # Linux environment only
+## Pint の実行
 
-$ mkdir -p src
-$ docker compose build
-$ docker compose up -d
-$ docker compose exec app composer create-project --prefer-dist laravel/laravel .
-$ docker compose exec app php artisan key:generate
-$ docker compose exec app php artisan storage:link
-$ docker compose exec app chmod -R 777 storage bootstrap/cache
-$ docker compose exec app php artisan migrate
-```
+-   `docker compose exec app ./vendor/bin/pint`を実行
+-   Pint を実行できない場合は`docker compose exec app composer install `を実行
 
-http://localhost
+## 開発用サーバの起動(tailwind の反映)
 
-### Create an existing Laravel project
+-   `docker compose exec -d app npm run dev `を実行
 
-1. Git clone & change directory
-2. Execute the following command
+## スクレイピングの実行
 
-```bash
-$ task for-linux-env # Linux environment only
-$ task install
-
-# or...
-
-$ make for-linux-env # Linux environment only
-$ make install
-
-# or...
-
-$ echo "UID=$(id -u)" >> .env # Linux environment only
-$ echo "GID=$(id -g)" >> .env # Linux environment only
-
-$ docker compose build
-$ docker compose up -d
-$ docker compose exec app composer install
-$ docker compose exec app cp .env.example .env
-$ docker compose exec app php artisan key:generate
-$ docker compose exec app php artisan storage:link
-$ docker compose exec app chmod -R 777 storage bootstrap/cache
-```
-
-http://localhost
-
-## Tips
-
-- Read this [Taskfile](https://github.com/ucan-lab/docker-laravel/blob/main/Taskfile.yml).
-- Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
-- Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
-
-## Container structures
-
-```bash
-├── app
-├── web
-└── db
-```
-
-### app container
-
-- Base image
-  - [php](https://hub.docker.com/_/php):8.3-fpm-bullseye
-  - [composer](https://hub.docker.com/_/composer):2.7
-
-### web container
-
-- Base image
-  - [nginx](https://hub.docker.com/_/nginx):1.26
-
-### db container
-
-- Base image
-  - [mysql](https://hub.docker.com/_/mysql):8.4
-
-### mailpit container
-
-- Base image
-  - [axllent/mailpit](https://hub.docker.com/r/axllent/mailpit)
+-   `docker compose exec app composer show | grep dusk`で dusk のインストールを確認
+-   `docker compose exec app php artisan dusk tests/Browser/ScrapingTest.php`を実行
