@@ -73,6 +73,10 @@ services:
         published: ${MAILPIT_PUBLISHED_PORT:-8025}
         protocol: tcp
         mode: host
+      - target: 1025
+        published: ${MAILPIT_SMTP_PUBLISHED_PORT:-1025}
+        protocol: tcp
+        mode: host
     networks:
       - app_net
 
