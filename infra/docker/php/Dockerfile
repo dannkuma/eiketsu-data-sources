@@ -49,6 +49,7 @@ RUN <<EOF
   apt-get install -y nodejs
   corepack enable
   # install puppeteer
+  apt-get -y install \
   libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 \
   libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 \
   libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
