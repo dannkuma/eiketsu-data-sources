@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Enums\Generals\RequiredEnergies;
-use App\Models\RequiredEnergy;
+use App\Models\General\RequiredEnergy;
 
 class RequiredEnergySeeder extends Seeder
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use App\Enums\Generals\ReleaseSets;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ReleaseSet;
+use App\Models\General\ReleaseSet;
 
 class ReleaseSetSeeder extends Seeder
 {

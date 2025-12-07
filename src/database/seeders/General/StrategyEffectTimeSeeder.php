@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Enums\Generals\StrategyEffectTimes;
-use App\Models\StrategyEffectTime;
+use App\Models\General\StrategyEffectTime;
 
 class StrategyEffectTimeSeeder extends Seeder
 {

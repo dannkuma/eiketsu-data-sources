@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Rarity;
+use App\Models\General\Rarity;
 use App\Enums\Generals\Rarities;
 
 class RaritySeeder extends Seeder

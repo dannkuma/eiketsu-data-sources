@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Enums\Generals\StrategyCategories;
-use App\Models\StrategyCategory;
+use App\Models\General\StrategyCategory;
 
 class StrategyCategorySeeder extends Seeder
 {

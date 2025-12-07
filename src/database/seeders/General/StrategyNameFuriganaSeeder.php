@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class StrategyNameSeeder extends Seeder
+class StrategyNameFuriganaSeeder extends Seeder
 {
     /**
      * Run the database seeds.

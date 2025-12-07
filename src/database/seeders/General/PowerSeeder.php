@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Generals\Power;
+use App\Models\General\Power;
 use App\Enums\Generals\Powers;
 
 class PowerSeeder extends Seeder

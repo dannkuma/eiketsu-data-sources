@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\General;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Enums\Generals\Periods;
-use App\Models\Generals\Period;
+use App\Models\General\Period;
 
 class PeriodSeeder extends Seeder
 {
