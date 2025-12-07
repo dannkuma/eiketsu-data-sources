@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\StrategyCategories;
+use App\Enums\Generals\StrategyCategories;
 use App\Models\StrategyCategory;
 
 class StrategyCategorySeeder extends Seeder

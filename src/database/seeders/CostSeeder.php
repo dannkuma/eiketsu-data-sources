@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\Costs;
-use App\Models\Cost;
+use App\Enums\Generals\Costs;
+use App\Models\General\Cost;
 
 class CostSeeder extends Seeder
 {

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\RequiredEnergies;
+use App\Enums\Generals\RequiredEnergies;
 use App\Models\RequiredEnergy;
 
 class RequiredEnergySeeder extends Seeder

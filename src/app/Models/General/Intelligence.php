@@ -4,7 +4,7 @@ namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Intelligences;
+use App\Enums\Generals\Intelligences;
 
 class Intelligence extends Model
 {

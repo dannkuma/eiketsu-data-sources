@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\Periods;
-use App\Models\Period;
+use App\Enums\Generals\Periods;
+use App\Models\Generals\Period;
 
 class PeriodSeeder extends Seeder
 {

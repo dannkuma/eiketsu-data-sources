@@ -1,5 +1,5 @@
 <?php
-namespace App\Enums;
+namespace App\Enums\Generals;
 
 enum EffectRanges: string
 {

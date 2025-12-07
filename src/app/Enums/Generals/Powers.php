@@ -1,7 +1,7 @@
 <?php
-namespace App\Enums;
+namespace App\Enums\Generals;
 
-enum Intelligences: int
+enum Powers: int
 {
     case One   = 1;
     case Two   = 2;

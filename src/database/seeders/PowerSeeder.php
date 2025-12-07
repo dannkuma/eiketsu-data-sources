@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Power;
-use App\Enums\Powers;
+use App\Models\Generals\Power;
+use App\Enums\Generals\Powers;
 
 class PowerSeeder extends Seeder
 {

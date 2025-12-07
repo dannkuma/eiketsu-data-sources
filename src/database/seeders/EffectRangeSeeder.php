@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\EffectRange;
-use App\Enums\EffectRanges;
+use App\Models\General\EffectRange;
+use App\Enums\Generals\EffectRanges;
 
 class EffectRangeSeeder extends Seeder
 {

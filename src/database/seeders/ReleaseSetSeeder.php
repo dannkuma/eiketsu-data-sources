@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\ReleaseSets;
+use App\Enums\Generals\ReleaseSets;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\ReleaseSet;

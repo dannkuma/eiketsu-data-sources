@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Intelligence;
-use App\Enums\Intelligences;
+use App\Models\General\Intelligence;
+use App\Enums\Generals\Intelligences;
 
 class IntelligenceSeeder extends Seeder
 {

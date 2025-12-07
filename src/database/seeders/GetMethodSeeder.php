@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\GetMethods;
-use App\Models\GetMethod;
+use App\Enums\Generals\GetMethods;
+use App\Models\General\GetMethod;
 
 class GetMethodSeeder extends Seeder
 {

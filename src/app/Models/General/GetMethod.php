@@ -4,7 +4,7 @@ namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\GetMethods;
+use App\Enums\Generals\GetMethods;
 
 class GetMethod extends Model
 {

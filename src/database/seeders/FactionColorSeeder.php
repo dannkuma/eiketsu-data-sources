@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\FactionColors;
-use App\Models\FactionColor;
+use App\Enums\Generals\FactionColors;
+use App\Models\General\FactionColor;
 
 class FactionColorSeeder extends Seeder
 {

@@ -4,7 +4,7 @@ namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Enums\StrategyCategories;
+use App\Enums\Generals\StrategyCategories;
 
 class StrategyCategory extends Model
 {

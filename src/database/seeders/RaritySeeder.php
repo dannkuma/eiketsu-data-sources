@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Rarity;
-use App\Enums\Rarities;
+use App\Enums\Generals\Rarities;
 
 class RaritySeeder extends Seeder
 {

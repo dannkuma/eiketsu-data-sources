@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\CardTypes;
-use App\Models\CardType;
+use App\Enums\Generals\CardTypes;
+use App\Models\General\CardType;
 
 class CardTypeSeeder extends Seeder
 {

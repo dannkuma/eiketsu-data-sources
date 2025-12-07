@@ -4,7 +4,7 @@ namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Enums\SpecialSkills;
+use App\Enums\Generals\SpecialSkills;
 
 class SpecialSkill extends Model
 {

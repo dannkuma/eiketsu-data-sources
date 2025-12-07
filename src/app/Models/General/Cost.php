@@ -4,7 +4,7 @@ namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Costs;
+use App\Enums\Generals\Costs;
 
 class Cost extends Model
 {

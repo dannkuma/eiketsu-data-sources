@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\StrategyEffectTimes;
+use App\Enums\Generals\StrategyEffectTimes;
 use App\Models\StrategyEffectTime;
 
 class StrategyEffectTimeSeeder extends Seeder

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Enums\UnitTypes;
+use App\Enums\Generals\UnitTypes;
 use App\Models\UnitType;
 
 class UnitTypeSeeder extends Seeder
