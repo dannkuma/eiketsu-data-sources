@@ -1,26 +1,27 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Models\FactionColor;
-use App\Models\ReleaseSet;
-use App\Models\CardType;
-use App\Models\Period;
-use App\Models\UnitType;
-use App\Models\Cost;
-use App\Models\Power;
-use App\Models\Intelligence;
-use App\Models\StrategyName;
-use App\Models\StrategyNameFurigana;
-use App\Models\RequiredEnergy;
-use App\Models\StrategyEffectTime;
-use App\Models\StrategyOverview;
-use App\Models\Illustration;
-use App\Models\CharacterVoice;
-use App\Models\EffectRange;
+use App\Models\General\FactionColor;
+use App\Models\General\ReleaseSet;
+use App\Models\General\CardType;
+use App\Models\General\Period;
+use App\Models\General\UnitType;
+use App\Models\General\Cost;
+use App\Models\General\Power;
+use App\Models\General\Intelligence;
+use App\Models\General\StrategyName;
+use App\Models\General\StrategyNameFurigana;
+use App\Models\General\RequiredEnergy;
+use App\Models\General\StrategyEffectTime;
+use App\Models\General\StrategyOverview;
+use App\Models\General\Illustration;
+use App\Models\General\CharacterVoice;
+use App\Models\General\EffectRange;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class General extends Model

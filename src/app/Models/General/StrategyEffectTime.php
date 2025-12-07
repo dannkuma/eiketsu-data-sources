@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Periods;
+use App\Enums\StrategyEffectTimes;
 
-class Period extends Model
+class StrategyEffectTime extends Model
 {
-    protected $fillable = ['period'];
+    protected $fillable = ['strategy_effect_time'];
 
     protected $casts = [
-        'period' => Periods::class,
+        'strategy_effect_time' => StrategyEffectTimes::class,
     ];
 
     public function generals(): HasMany

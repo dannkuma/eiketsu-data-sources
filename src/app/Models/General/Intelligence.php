@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\RequiredEnergies;
+use App\Enums\Intelligences;
 
-class RequiredEnergy extends Model
+class Intelligence extends Model
 {
-    protected $fillable = ['required_energy'];
+    protected $fillable = ['intelligence'];
 
     protected $casts = [
-        'required_energy' => RequiredEnergies::class,
+        'intelligence' => Intelligences::class,
     ];
 
     public function generals(): HasMany

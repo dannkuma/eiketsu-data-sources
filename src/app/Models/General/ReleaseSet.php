@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Intelligences;
+use App\Enums\ReleaseSets;
 
-class Intelligence extends Model
+class ReleaseSet extends Model
 {
-    protected $fillable = ['intelligence'];
+    protected $fillable = ['release_set'];
 
     protected $casts = [
-        'intelligence' => Intelligences::class,
+        'release_set' => ReleaseSets::class,
     ];
 
     public function generals(): HasMany

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class CharacterVoice extends Model
+class StrategyNameFurigana extends Model
 {
-    protected $fillable = ['character_voice'];
+    protected $fillable = ['strategy_name_furigana'];
 
     public function generals(): HasMany
     {

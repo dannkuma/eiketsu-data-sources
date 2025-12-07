@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class GeneralProvidedEnd extends Model
+class GeneralProvidedStart extends Model
 {
-    protected $fillable = ['general_provided_end'];
+    protected $fillable = ['general_provided_start'];
 
     public function generalGetMethods(): HasMany
     {

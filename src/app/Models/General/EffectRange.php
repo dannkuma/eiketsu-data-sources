@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\UnitTypes;
+use App\Enums\EffectRanges;
 
-class UnitType extends Model
+class EffectRange extends Model
 {
-    protected $fillable = ['unit_type'];
+    protected $fillable = ['effect_range', 'path'];
 
     protected $casts = [
-        'unit_type' => UnitTypes::class,
+        'effect_range' => EffectRanges::class,
     ];
 
     public function generals(): HasMany

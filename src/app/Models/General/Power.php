@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\CardTypes;
+use App\Enums\Powers;
 
-class CardType extends Model
+class Power extends Model
 {
-    protected $fillable = ['card_type'];
+    protected $fillable = ['power'];
 
     protected $casts = [
-        'card_type' => CardTypes::class,
+        'power' => Powers::class,
     ];
 
     public function generals(): HasMany
