@@ -16,11 +16,6 @@ enum Powers: int
     case Eleven = 11;
     case Twelve = 12;
 
-    public function label(): string
-    {
-        return (string) $this->value;
-    }
-
     public static function values(): array
     {
         return array_column(self::cases(), 'value');

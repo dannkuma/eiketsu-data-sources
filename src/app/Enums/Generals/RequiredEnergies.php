@@ -14,11 +14,6 @@ enum RequiredEnergies: int
     case Nine  = 9;
     case Ten   = 10;
 
-    public function label(): string
-    {
-        return (string) $this->value;
-    }
-
     public static function values(): array
     {
         return array_column(self::cases(), 'value');

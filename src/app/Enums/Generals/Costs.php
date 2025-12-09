@@ -11,11 +11,6 @@ enum Costs: string
     case ThreePointFive  = '3.5';
     case Four            = '4.0';
 
-    public function label(): string
-    {
-        return $this->value;
-    }
-
     public static function values(): array
     {
         return array_column(self::cases(), 'value');
