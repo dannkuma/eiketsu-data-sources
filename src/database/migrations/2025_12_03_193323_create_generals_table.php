@@ -181,29 +181,29 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('favorites', function (Blueprint $table) {
-            $table->dropUnique('favorite_unique');
             $table->dropForeign(['user_id']);
             $table->dropForeign(['general_id']);
+            $table->dropUnique('favorite_unique');
         });
         Schema::dropIfExists('favorites');
         Schema::table('general_strategy_categories', function (Blueprint $table) {
-            $table->dropUnique('general_strategy_category_unique');
             $table->dropForeign(['general_id']);
             $table->dropForeign(['strategy_category_id']);
+            $table->dropUnique('general_strategy_category_unique');
         });
         Schema::dropIfExists('general_strategy_categories');
         Schema::table('general_special_skills', function (Blueprint $table) {
-            $table->dropUnique('general_special_skill_unique');
             $table->dropForeign(['general_id']);
             $table->dropForeign(['special_skill_id']);
+            $table->dropUnique('general_special_skill_unique');
         });
         Schema::dropIfExists('general_special_skills');
         Schema::table('general_get_methods', function (Blueprint $table) {
-            $table->dropUnique('general_get_method_unique');
             $table->dropForeign(['general_id']);
             $table->dropForeign(['get_method_id']);
             $table->dropForeign(['general_provided_start_id']);
             $table->dropForeign(['general_provided_end_id']);
+            $table->dropUnique('general_get_method_unique');
         });
         Schema::dropIfExists('general_get_methods');
         Schema::table('generals', function (Blueprint $table) {
@@ -243,9 +243,21 @@ return new class extends Migration
         Schema::dropIfExists('costs');
         Schema::dropIfExists('unit_types');
         Schema::dropIfExists('periods');
+        Schema::table('rarities', function (Blueprint $table) {
+            $table->dropUnique('rarities_rarity_unique');
+        });
+        Schema::dropIfExists('rarities');
+        Schema::table('card_types', function (Blueprint $table) {
+            $table->dropUnique('card_types_card_type_unique');
+        });
         Schema::dropIfExists('card_types');
+        Schema::table('release_sets', function (Blueprint $table) {
+            $table->dropUnique('release_sets_release_set_unique');
+        });
         Schema::dropIfExists('release_sets');
+        Schema::table('faction_colors', function (Blueprint $table) {
+            $table->dropUnique('faction_colors_faction_color_unique');
+        });
         Schema::dropIfExists('faction_colors');
-
     }
 };
