@@ -1,5 +1,5 @@
 <?php
-namespace App\Enums\Generals;
+namespace App\Enums;
 
 enum Rarities: string
 {
