@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\General\FactionColor;
 use App\Models\General\ReleaseSet;
 use App\Models\General\CardType;
+use App\Models\Rarity;
 use App\Models\General\Period;
 use App\Models\General\UnitType;
 use App\Models\General\Cost;
@@ -32,6 +33,7 @@ class General extends Model
         'faction_color_id',
         'release_set_id',
         'card_type_id',
+        'rarity_id',
         'period_id',
         'unit_type_id',
         'cost_id',
@@ -60,6 +62,11 @@ class General extends Model
     public function cardType(): BelongsTo
     {
         return $this->belongsTo(CardType::class);
+    }
+
+    public function rarity(): BelongsTo
+    {
+        return $this->belongsTo(Rarity::class);
     }
 
     public function period(): BelongsTo
