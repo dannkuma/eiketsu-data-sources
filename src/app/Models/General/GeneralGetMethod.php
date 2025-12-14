@@ -21,16 +21,16 @@ class GeneralGetMethod extends Model
 
     public function getMethod(): BelongsTo
     {
-        return $this->belongsTo(GetMethod::class, 'get_method');
+        return $this->belongsTo(GetMethod::class, 'get_method_id');
     }
 
     public function generalProvidedStart(): BelongsTo
     {
-        return $this->belongsTo(General::class, 'general_provided_start_id');
+        return $this->belongsTo(GeneralProvidedStart::class, 'general_provided_start_id');
     }
 
     public function generalProvidedEnd(): BelongsTo
     {
-        return $this->belongsTo(General::class, 'general_provided_end_id');
+        return $this->belongsTo(GeneralProvidedEnd::class, 'general_provided_end_id');
     }
 }

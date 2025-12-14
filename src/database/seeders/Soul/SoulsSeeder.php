@@ -10,7 +10,6 @@ class SoulsSeeder extends Seeder
      */
     public function run(): void
     {
-
         $this->call([
             SoulPurchaseAmountSeeder::class,
             SoulSaleAmountSeeder::class,

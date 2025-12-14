@@ -104,6 +104,7 @@ return new class extends Migration
             $table->dropForeign(['heirloom_soul_classification_id']);
             $table->dropForeign(['rarity_id']);
             $table->dropForeign(['soul_purchase_amount_id']);
+            $table->dropForeign(['soul_sale_amount_id']);
         });
         Schema::dropIfExists('souls');
         Schema::table('soul_effects', function (Blueprint $table) {

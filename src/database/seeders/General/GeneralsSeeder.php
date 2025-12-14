@@ -11,7 +11,6 @@ class GeneralsSeeder extends Seeder
      */
     public function run(): void
     {
-
         $this->call([
             FactionColorSeeder::class,
             ReleaseSetSeeder::class,

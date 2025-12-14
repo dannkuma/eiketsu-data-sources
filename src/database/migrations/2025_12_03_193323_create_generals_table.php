@@ -210,6 +210,7 @@ return new class extends Migration
             $table->dropForeign(['faction_color_id']);
             $table->dropForeign(['release_set_id']);
             $table->dropForeign(['card_type_id']);
+            $table->dropForeign(['rarity_id']);
             $table->dropForeign(['period_id']);
             $table->dropForeign(['unit_type_id']);
             $table->dropForeign(['cost_id']);

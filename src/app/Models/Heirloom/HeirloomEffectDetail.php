@@ -9,7 +9,7 @@ use App\Models\Heirloom\HeirloomEnhancementType;
 
 class HeirloomEffectDetail extends Model
 {
-    protected $fillable = ['heirloom_effect_id', 'heirloom_enhancement_type_id', 'value'];
+    protected $fillable = ['heirloom_effect_id', 'heirloom_enhancement_type_id'];
 
     public function heirloomEffect(): BelongsTo
     {
