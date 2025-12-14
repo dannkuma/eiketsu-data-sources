@@ -12,6 +12,6 @@ class HeirloomValueSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // TODO: スクレイピング後に追加
     }
 }

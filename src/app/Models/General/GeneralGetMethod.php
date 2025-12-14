@@ -9,7 +9,7 @@ class GeneralGetMethod extends Model
 {
     protected $fillable = [
         'general_id',
-        'get_method',
+        'get_method_id',
         'general_provided_start_id',
         'general_provided_end_id',
     ];
