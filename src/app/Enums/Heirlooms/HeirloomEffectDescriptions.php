@@ -1,7 +1,7 @@
 <?php
 namespace App\Enums\Heirlooms;
 
-enum HeirloomEffectDescriptions: int
+enum HeirloomEffectDescriptions: string
 {
     // TODO: スクレイピング後に追加
     case Revival         = 'revival';

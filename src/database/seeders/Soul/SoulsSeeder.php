@@ -2,11 +2,7 @@
 
 namespace Database\Seeders\Soul;
 
-use App\Models\Heirloom\HeirloomEnhancementType;
-use App\Models\Soul\SoulEffect;
 use Illuminate\Database\Seeder;
-use PhpParser\Node\Expr\AssignOp\Pow;
-
 class SoulsSeeder extends Seeder
 {
     /**

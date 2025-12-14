@@ -1,7 +1,7 @@
 <?php
 namespace App\Enums\Heirlooms;
 
-enum HeirloomEffectOperators: int
+enum HeirloomEffectOperators: string
 {
     case Plus         = 'plus';
     case Minus        = 'minus';

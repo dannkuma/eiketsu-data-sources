@@ -3,7 +3,6 @@
 namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
-use PhpParser\Node\Expr\AssignOp\Pow;
 
 class GeneralsSeeder extends Seeder
 {

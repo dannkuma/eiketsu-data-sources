@@ -33,7 +33,7 @@ return new class extends Migration
         });
         Schema::create('levels', function (Blueprint $table) {
             $table->id();
-            $table->string('level_name')->unique();
+            $table->integer('level')->unique();
             $table->timestamps();
         });
         Schema::create('heirloom_effect_descriptions', function (Blueprint $table) {
@@ -151,7 +151,8 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {   Schema::table('heirloom_effect_summary_mappings', function (Blueprint $table) {
+    {
+        Schema::table('heirloom_effect_summary_mappings', function (Blueprint $table) {
             $table->dropForeign('hesm_hes_foreign');
             $table->dropForeign('hesm_hed_foreign');
             $table->dropForeign('hesm_level_foreign');

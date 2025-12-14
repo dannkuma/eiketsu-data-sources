@@ -2,10 +2,8 @@
 
 namespace Database\Seeders\Heirloom;
 
-use App\Models\Heirloom\HeirloomEnhancementType;
 use Illuminate\Database\Seeder;
 use PhpParser\Node\Expr\AssignOp\Pow;
-
 class HeirloomsSeeder extends Seeder
 {
     /**
