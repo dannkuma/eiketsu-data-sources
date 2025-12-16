@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\General\GeneralsSeeder;
 use Database\Seeders\Heirloom\HeirloomsSeeder;
+use Database\Seeders\Soul\SoulsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             GeneralsSeeder::class,
             HeirloomsSeeder::class,
+            SoulsSeeder::class,
         ]);
     }
 }
