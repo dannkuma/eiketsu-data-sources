@@ -4,9 +4,9 @@ namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\General\StrategyName;
+use App\Models\General\Illustration;
 
-class StrategyNameSeeder extends Seeder
+class IllustrationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class StrategyNameSeeder extends Seeder
     public function run(): void
     {
         // TODO: スクレイピング後に追加
-        StrategyName::create(['strategy_name' => '天下布武']);
+        Illustration::create(['illustration' => '獅子猿']);
     }
 }

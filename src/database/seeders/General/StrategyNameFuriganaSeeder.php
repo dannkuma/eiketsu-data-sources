@@ -2,8 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use App\Models\General\StrategyNameFurigana;
 
 class StrategyNameFuriganaSeeder extends Seeder
 {
@@ -13,5 +14,6 @@ class StrategyNameFuriganaSeeder extends Seeder
     public function run(): void
     {
         // TODO: スクレイピング後に追加
+        StrategyNameFurigana::create(['strategy_name_furigana' => 'てんかふぶ']);
     }
 }

@@ -4,16 +4,15 @@ namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\General\StrategyName;
+use App\Models\General\CharacterVoice;
 
-class StrategyNameSeeder extends Seeder
+class CharacterVoiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // TODO: スクレイピング後に追加
-        StrategyName::create(['strategy_name' => '天下布武']);
+        CharacterVoice::create(['character_voice' => '子安武人']);
     }
 }
