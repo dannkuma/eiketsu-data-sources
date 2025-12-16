@@ -3,7 +3,6 @@
 namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\General\General;
 use App\Models\General\StrategyCategory;
 
@@ -14,14 +13,10 @@ class GeneralStrategyCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $generalId = General::where('name', '織田信長')->value('id');
-        DB::table('general_strategy_categories')->insert([
-            'general_id' => $generalId,
-            'strategy_category_id' => StrategyCategory::where('strategy_category', 'all-strengthen')->value('id'),
-        ]);
-        DB::table('general_strategy_categories')->insert([
-            'general_id' => $generalId,
-            'strategy_category_id' => StrategyCategory::where('strategy_category', 'heal')->value('id'),
+       $general = General::where('name', '織田信長')->first();
+        $general->strategyCategories()->attach([
+            StrategyCategory::where('strategy_category', 'all-strengthen')->value('id'),
+            StrategyCategory::where('strategy_category', 'heal')->value('id'),
         ]);
     }
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
 use App\Models\General\StrategyOverview;
-use Str;
 
 class StrategyOverviewSeeder extends Seeder
 {

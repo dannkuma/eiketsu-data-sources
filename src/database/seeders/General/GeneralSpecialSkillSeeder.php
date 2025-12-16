@@ -14,14 +14,11 @@ class GeneralSpecialSkillSeeder extends Seeder
      */
     public function run(): void
     {
-        $generalId = General::where('name', '織田信長')->value('id');
-        DB::table('general_special_skills')->insert([
-            'general_id' => $generalId,
-            'special_skill_id' => SpecialSkill::where('special_skill', 'snipe')->value('id'),
-        ]);
-        DB::table('general_special_skills')->insert([
-            'general_id' => $generalId,
-            'special_skill_id' => SpecialSkill::where('special_skill', 'exaltation')->value('id'),
-        ]);
+        $general = General::where('name', '織田信長')->first();
+        $specialSkillIds = [
+            SpecialSkill::where('special_skill', 'snipe')->value('id'),
+            SpecialSkill::where('special_skill', 'exaltation')->value('id'),
+        ];
+        $general->specialSkills()->attach($specialSkillIds);
     }
 }

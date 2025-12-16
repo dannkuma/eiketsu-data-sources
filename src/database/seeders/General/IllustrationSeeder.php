@@ -3,7 +3,6 @@
 namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\General\Illustration;
 
 class IllustrationSeeder extends Seeder

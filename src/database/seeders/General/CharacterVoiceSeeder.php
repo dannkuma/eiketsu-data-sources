@@ -3,7 +3,6 @@
 namespace Database\Seeders\General;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\General\CharacterVoice;
 
 class CharacterVoiceSeeder extends Seeder
