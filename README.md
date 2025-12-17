@@ -40,6 +40,10 @@
 -   `docker compose exec app ./vendor/bin/pint`を実行
 -   Pint を実行できない場合は`docker compose exec app composer install `を実行
 
+## commit時のPint自動実行
+ローカルマシンでcommitを実行するとPintが合わせて実行されます。
+Dockerコンテナ内でのpre-commitは想定していません。
+
 ## 開発用サーバの起動(tailwind の反映)
 
 -   `docker compose exec -d app npm run dev `を実行
