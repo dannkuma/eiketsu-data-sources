@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
-use App\Models\General\EffectRange;
 use App\Enums\Generals\EffectRanges;
+use App\Models\General\EffectRange;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class EffectRangeSeeder extends Seeder
@@ -17,7 +17,10 @@ class EffectRangeSeeder extends Seeder
         foreach (EffectRanges::cases() as $enum) {
             EffectRange::updateOrCreate(
                 ['effect_range' => $enum->value],
-                ['path' => Str::random(20)]
+                [
+                    'effect_range' => $enum->value,
+                    'path' => Str::random(20),
+                ]
             );
         }
     }

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Enums\Heirlooms;
 
 enum HeirloomEffectOperators: string
 {
-    case Plus         = 'plus';
-    case Minus        = 'minus';
+    case Plus = 'plus';
+    case Minus = 'minus';
 
     public function label(): string
     {

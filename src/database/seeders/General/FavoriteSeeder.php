@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\General\General;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class FavoriteSeeder extends Seeder
 {
@@ -16,7 +16,7 @@ class FavoriteSeeder extends Seeder
         $user = User::where('email', 'test@example.com')->first();
         $general = General::where('name', '織田信長')->first();
         if ($user && $general) {
-            $user->favorites()->attach($general->id);
+            $user->favorites()->syncWithoutDetaching($general->id);
         }
     }
 }

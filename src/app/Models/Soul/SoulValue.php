@@ -2,9 +2,9 @@
 
 namespace App\Models\Soul;
 
+use App\Enums\Souls\SoulValues;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Souls\SoulValues;
 
 class SoulValue extends Model
 {

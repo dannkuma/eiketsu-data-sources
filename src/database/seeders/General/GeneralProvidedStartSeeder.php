@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
 use App\Models\General\GeneralProvidedStart;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 
 class GeneralProvidedStartSeeder extends Seeder
@@ -13,6 +13,9 @@ class GeneralProvidedStartSeeder extends Seeder
      */
     public function run(): void
     {
-        GeneralProvidedStart::create(['general_provided_start' => Carbon::parse('2024-12-15')]);
+        GeneralProvidedStart::updateOrCreate(
+            ['general_provided_start' => Carbon::parse('2024-12-15')],
+            ['general_provided_start' => Carbon::parse('2024-12-15')]
+        );
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
 use App\Models\General\StrategyOverview;
+use Illuminate\Database\Seeder;
 
 class StrategyOverviewSeeder extends Seeder
 {
@@ -12,8 +12,9 @@ class StrategyOverviewSeeder extends Seeder
      */
     public function run(): void
     {
-        StrategyOverview::create([
-            'strategy_overview' => '蒼の味方の武力と知力が上がる。'
-        ]);
+        StrategyOverview::updateOrCreate(
+            ['strategy_overview' => '蒼の味方の武力と知力が上がる。'],
+            ['strategy_overview' => '蒼の味方の武力と知力が上がる。']
+        );
     }
 }

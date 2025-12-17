@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Enums\Rarities;
 use App\Models\General\General;
 use App\Models\Heirloom\RarityHeirloomPurchaseAmount;
 use App\Models\Heirloom\RarityLevelHeirloomSaleAmount;
 use App\Models\Heirloom\RarityLevelHeirloomUpgradingAmount;
-use App\Enums\Rarities;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Rarity extends Model
 {

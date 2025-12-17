@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
 use App\Models\General\Illustration;
+use Illuminate\Database\Seeder;
 
 class IllustrationSeeder extends Seeder
 {
@@ -13,6 +13,9 @@ class IllustrationSeeder extends Seeder
     public function run(): void
     {
         // TODO: スクレイピング後に追加
-        Illustration::create(['illustration' => '獅子猿']);
+        Illustration::updateOrCreate(
+            ['illustration' => '獅子猿'],
+            ['illustration' => '獅子猿']
+        );
     }
 }

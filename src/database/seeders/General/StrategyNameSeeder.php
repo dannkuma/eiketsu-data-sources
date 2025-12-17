@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
 use App\Models\General\StrategyName;
+use Illuminate\Database\Seeder;
 
 class StrategyNameSeeder extends Seeder
 {
@@ -13,6 +13,9 @@ class StrategyNameSeeder extends Seeder
     public function run(): void
     {
         // TODO: スクレイピング後に追加
-        StrategyName::create(['strategy_name' => '天下布武']);
+        StrategyName::updateOrCreate(
+            ['strategy_name' => '天下布武'],
+            ['strategy_name' => '天下布武']
+        );
     }
 }

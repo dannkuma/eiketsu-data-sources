@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Heirloom;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Heirloom\HeirloomEffectOperator;
 use App\Enums\Heirlooms\HeirloomEffectOperators;
+use App\Models\Heirloom\HeirloomEffectOperator;
+use Illuminate\Database\Seeder;
 
 class HeirloomEffectOperatorSeeder extends Seeder
 {

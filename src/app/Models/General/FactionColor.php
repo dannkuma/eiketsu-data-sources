@@ -2,9 +2,9 @@
 
 namespace App\Models\General;
 
+use App\Enums\Generals\FactionColors;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Generals\FactionColors;
 
 class FactionColor extends Model
 {

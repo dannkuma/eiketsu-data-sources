@@ -2,9 +2,9 @@
 
 namespace App\Models\General;
 
+use App\Enums\Generals\StrategyCategories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Enums\Generals\StrategyCategories;
 
 class StrategyCategory extends Model
 {

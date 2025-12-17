@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Models\Soul;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Soul\SoulEffect;
-use App\Enums\Souls\SoulEffectOperators;
 
+use App\Enums\Souls\SoulEffectOperators;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SoulEffectOperator extends Model
 {

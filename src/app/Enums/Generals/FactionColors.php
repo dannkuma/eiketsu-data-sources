@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Enums\Generals;
 
 enum FactionColors: string

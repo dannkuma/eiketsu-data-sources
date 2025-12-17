@@ -4,8 +4,6 @@ namespace App\Models\Soul;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Soul\SoulUser;
-use App\Models\Soul\SoulEffect;
 
 class SoulUserEffect extends Model
 {

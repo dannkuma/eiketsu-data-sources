@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
+use Database\Seeders\General\FavoriteSeeder;
 use Database\Seeders\General\GeneralsSeeder;
 use Database\Seeders\Heirloom\HeirloomsSeeder;
 use Database\Seeders\Soul\SoulsSeeder;
-use Database\Seeders\General\FavoriteSeeder;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {

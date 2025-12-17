@@ -14,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         // TODO: 本番では不要(ngrokリバースプロキシ用)
         $middleware->append(\App\Http\Middleware\TrustProxies::class);
-        
+
         // webhookのCSRFトークン検証をスキップ
         $middleware->validateCsrfTokens(except: [
             'stripe/*',

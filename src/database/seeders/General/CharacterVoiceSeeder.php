@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Seeder;
 use App\Models\General\CharacterVoice;
+use Illuminate\Database\Seeder;
 
 class CharacterVoiceSeeder extends Seeder
 {
@@ -12,6 +12,9 @@ class CharacterVoiceSeeder extends Seeder
      */
     public function run(): void
     {
-        CharacterVoice::create(['character_voice' => '子安武人']);
+        CharacterVoice::updateOrCreate(
+            ['character_voice' => '子安武人'],
+            ['character_voice' => '子安武人']
+        );
     }
 }

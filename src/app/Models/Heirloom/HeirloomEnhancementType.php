@@ -4,7 +4,7 @@ namespace App\Models\Heirloom;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Heirloom\Heirloom;
+
 // use App\Enums\Heirlooms\HeirloomEnhancementTypes; TODO: Enum追加後に有効化
 
 class HeirloomEnhancementType extends Model

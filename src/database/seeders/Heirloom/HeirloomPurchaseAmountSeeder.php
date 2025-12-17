@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Heirloom;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Heirloom\HeirloomPurchaseAmount;
 use App\Enums\Heirlooms\HeirloomPurchaseAmounts;
+use App\Models\Heirloom\HeirloomPurchaseAmount;
+use Illuminate\Database\Seeder;
 
 class HeirloomPurchaseAmountSeeder extends Seeder
 {
@@ -21,4 +20,3 @@ class HeirloomPurchaseAmountSeeder extends Seeder
         }
     }
 }
-

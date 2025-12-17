@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class HeirloomEffect extends Model
 {
-    protected $fillable = [ 'heirloom_effect_category_id','heirloom_effect_operator_id', 'heirloom_value_id', 'heirloom_effect_unit_id'];
+    protected $fillable = ['heirloom_effect_category_id', 'heirloom_effect_operator_id', 'heirloom_value_id', 'heirloom_effect_unit_id'];
 
     public function heirloomEffectCategory(): BelongsTo
     {
@@ -18,6 +18,7 @@ class HeirloomEffect extends Model
     {
         return $this->belongsTo(HeirloomEffectOperator::class);
     }
+
     public function heirloomValue(): BelongsTo
     {
         return $this->belongsTo(HeirloomValue::class);

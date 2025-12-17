@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Soul;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Soul\SoulEffectUnit;
 use App\Enums\Souls\SoulEffectUnits;
+use App\Models\Soul\SoulEffectUnit;
+use Illuminate\Database\Seeder;
 
 class SoulEffectUnitSeeder extends Seeder
 {

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\General\Power;
 use App\Enums\Generals\Powers;
+use App\Models\General\Power;
+use Illuminate\Database\Seeder;
 
 class PowerSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class PowerSeeder extends Seeder
     {
         foreach (Powers::cases() as $enum) {
             Power::updateOrCreate(
+                ['power' => $enum->value],
                 ['power' => $enum->value]
             );
         }

@@ -2,10 +2,9 @@
 
 namespace App\Models\Heirloom;
 
+use App\Enums\Heirlooms\EffectTargets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Heirloom\Heirloom;
-use App\Enums\Heirlooms\EffectTargets;
 
 class EffectTarget extends Model
 {

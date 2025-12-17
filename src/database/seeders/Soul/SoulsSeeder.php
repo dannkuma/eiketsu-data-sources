@@ -3,6 +3,7 @@
 namespace Database\Seeders\Soul;
 
 use Illuminate\Database\Seeder;
+
 class SoulsSeeder extends Seeder
 {
     /**

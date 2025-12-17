@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\StrategyCategories;
 use App\Models\General\StrategyCategory;
+use Illuminate\Database\Seeder;
 
 class StrategyCategorySeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class StrategyCategorySeeder extends Seeder
     {
         foreach (StrategyCategories::cases() as $enum) {
             StrategyCategory::updateOrCreate(
+                ['strategy_category' => $enum->value],
                 ['strategy_category' => $enum->value]
             );
         }

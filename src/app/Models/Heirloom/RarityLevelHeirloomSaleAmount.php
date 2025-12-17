@@ -2,17 +2,14 @@
 
 namespace App\Models\Heirloom;
 
+use App\Models\Rarity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Rarity;
-use App\Models\Heirloom\Level;
-use App\Models\Heirloom\HeirloomSaleAmount;
-use App\Models\Heirloom\Heirloom;
 
 class RarityLevelHeirloomSaleAmount extends Model
 {
-    protected $fillable = [ 'rarity_id', 'level_id', 'heirloom_sale_amount_id' ];
+    protected $fillable = ['rarity_id', 'level_id', 'heirloom_sale_amount_id'];
 
     public function rarity(): BelongsTo
     {

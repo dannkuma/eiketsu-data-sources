@@ -13,5 +13,4 @@ class Illustration extends Model
     {
         return $this->hasMany(General::class);
     }
-
 }

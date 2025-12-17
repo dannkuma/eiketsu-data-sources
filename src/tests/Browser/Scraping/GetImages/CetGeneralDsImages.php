@@ -2,26 +2,23 @@
 
 namespace Tests\Browser\Scraping\GetImages;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laravel\Dusk\Browser;
-use Symfony\Component\DomCrawler\Crawler;
-use Tests\DuskTestCase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Tests\DuskTestCase;
 
 class CetGeneralDsImages extends DuskTestCase
 {
     /**
      * A Dusk test example.
      */
-    public function testExample(): void
+    public function test_example(): void
     {
         $response = Http::get('https://eiketsu-taisen.net/datalist/api/base');
         $json_data = $response->json();
         $general_small = collect($json_data['general'])
-            ->map(fn($v) => explode(',', $v)[0] ?? null);
+            ->map(fn ($v) => explode(',', $v)[0] ?? null);
         $general_ds = collect($json_data['general'])
-            ->map(fn($v) => explode(',', $v)[1] ?? null);
+            ->map(fn ($v) => explode(',', $v)[1] ?? null);
         // 小さい画像の保存
         $general_small->values()->each(function ($id, $index) {
             $fileNumber = $index + 1;
