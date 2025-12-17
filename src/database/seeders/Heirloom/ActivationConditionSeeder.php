@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Heirloom;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Heirloom\ActivationCondition;
 use App\Enums\Heirlooms\ActivationConditions;
+use App\Models\Heirloom\ActivationCondition;
+use Illuminate\Database\Seeder;
 
 class ActivationConditionSeeder extends Seeder
 {

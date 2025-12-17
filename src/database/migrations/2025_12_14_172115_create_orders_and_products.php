@@ -40,7 +40,7 @@ return new class extends Migration
             $table->dropForeign(['product_id']);
             $table->dropColumn('product_id');
         });
-        Schema::table('products', function(Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['price_id']);
             $table->dropUnique(['stripe_product_id']);
         });

@@ -2,10 +2,9 @@
 
 namespace App\Models\Heirloom;
 
+use App\Enums\Heirlooms\HeirloomEffectUnits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Heirloom\HeirloomEffect;
-use App\Enums\Heirlooms\HeirloomEffectUnits;
 
 class HeirloomEffectUnit extends Model
 {

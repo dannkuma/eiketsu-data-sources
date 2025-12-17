@@ -2,7 +2,6 @@
 
 namespace Database\Seeders\Soul;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SoulEffectSeeder extends Seeder

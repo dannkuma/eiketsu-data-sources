@@ -2,27 +2,11 @@
 
 namespace App\Models\General;
 
+use App\Models\Rarity;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Models\General\FactionColor;
-use App\Models\General\ReleaseSet;
-use App\Models\General\CardType;
-use App\Models\Rarity;
-use App\Models\General\Period;
-use App\Models\General\UnitType;
-use App\Models\General\Cost;
-use App\Models\General\Power;
-use App\Models\General\Intelligence;
-use App\Models\General\StrategyName;
-use App\Models\General\StrategyNameFurigana;
-use App\Models\General\RequiredEnergy;
-use App\Models\General\StrategyEffectTime;
-use App\Models\General\StrategyOverview;
-use App\Models\General\Illustration;
-use App\Models\General\CharacterVoice;
-use App\Models\General\EffectRange;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class General extends Model

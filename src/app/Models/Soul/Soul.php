@@ -2,16 +2,14 @@
 
 namespace App\Models\Soul;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Heirloom\HeirloomSoulClassification;
 use App\Models\Rarity;
-use App\Models\Soul\SoulPurchaseAmount;
-use App\Models\Soul\SoulSaleAmount;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Soul extends Model
 {
-    protected $fillable = [ 'soul_name', 'rarity_id', 'heirloom_soul_classification_id', 'soul_purchase_amount_id', 'soul_sale_amount_id'];
+    protected $fillable = ['soul_name', 'rarity_id', 'heirloom_soul_classification_id', 'soul_purchase_amount_id', 'soul_sale_amount_id'];
 
     public function rarity(): BelongsTo
     {

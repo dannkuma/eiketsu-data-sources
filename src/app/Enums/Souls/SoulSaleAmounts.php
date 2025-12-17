@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Enums\Souls;
 
 enum SoulSaleAmounts: int

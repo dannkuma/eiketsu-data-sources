@@ -4,15 +4,10 @@ namespace App\Models\Heirloom;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Heirloom\Heirloom;
-use App\Models\Heirloom\HeirloomEffectDescription;
-use App\Models\Heirloom\HeirloomEffectCategory;
-use App\Models\Heirloom\ActivationCondition;
-use App\Models\Heirloom\EffectTarget;
 
 class HeirloomEffectSummary extends Model
 {
-    protected $fillable = [ 'heirloom_id', 'heirloom_effect_description_id', 'heirloom_effect_category_id', 'activation_condition_id', 'effect_target_id', 'effect_classification'];
+    protected $fillable = ['heirloom_id', 'heirloom_effect_description_id', 'heirloom_effect_category_id', 'activation_condition_id', 'effect_target_id', 'effect_classification'];
 
     public function heirloom(): BelongsTo
     {

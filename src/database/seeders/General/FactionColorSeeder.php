@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\FactionColors;
 use App\Models\General\FactionColor;
+use Illuminate\Database\Seeder;
 
 class FactionColorSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class FactionColorSeeder extends Seeder
     {
         foreach (FactionColors::cases() as $enum) {
             FactionColor::updateOrCreate(
+                ['faction_color' => $enum->value],
                 ['faction_color' => $enum->value]
             );
         }

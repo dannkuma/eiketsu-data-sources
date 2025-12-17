@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Enums\Souls;
 
 enum SoulEffectOperators: string
 {
-    case Plus         = 'plus';
-    case Minus        = 'minus';
+    case Plus = 'plus';
+    case Minus = 'minus';
 
     public function label(): string
     {

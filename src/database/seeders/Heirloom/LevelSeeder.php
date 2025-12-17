@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Heirloom;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Heirloom\Level;
 use App\Enums\Heirlooms\Levels;
+use App\Models\Heirloom\Level;
+use Illuminate\Database\Seeder;
 
 class LevelSeeder extends Seeder
 {

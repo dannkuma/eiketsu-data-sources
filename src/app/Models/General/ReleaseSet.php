@@ -2,9 +2,9 @@
 
 namespace App\Models\General;
 
+use App\Enums\Generals\ReleaseSets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Enums\Generals\ReleaseSets;
 
 class ReleaseSet extends Model
 {

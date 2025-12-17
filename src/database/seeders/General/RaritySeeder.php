@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Rarity;
 use App\Enums\Rarities;
+use App\Models\Rarity;
+use Illuminate\Database\Seeder;
 
 class RaritySeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class RaritySeeder extends Seeder
     {
         foreach (Rarities::cases() as $enum) {
             Rarity::updateOrCreate(
+                ['rarity' => $enum->value],
                 ['rarity' => $enum->value]
             );
         }

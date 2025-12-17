@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Soul;
 
-use Illuminate\Database\Seeder;
-use App\Models\Soul\SoulPurchaseAmount;
 use App\Enums\Souls\SoulPurchaseAmounts;
+use App\Models\Soul\SoulPurchaseAmount;
+use Illuminate\Database\Seeder;
 
 class SoulPurchaseAmountSeeder extends Seeder
 {

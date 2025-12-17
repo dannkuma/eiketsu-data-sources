@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\General\SpecialSkill;
 use App\Enums\Generals\SpecialSkills;
+use App\Models\General\SpecialSkill;
+use Illuminate\Database\Seeder;
 
 class SpecialSkillSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class SpecialSkillSeeder extends Seeder
     {
         foreach (SpecialSkills::cases() as $enum) {
             SpecialSkill::updateOrCreate(
+                ['special_skill' => $enum->value],
                 ['special_skill' => $enum->value]
             );
         }

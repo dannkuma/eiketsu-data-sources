@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\Costs;
 use App\Models\General\Cost;
+use Illuminate\Database\Seeder;
 
 class CostSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class CostSeeder extends Seeder
     {
         foreach (Costs::cases() as $enum) {
             Cost::updateOrCreate(
+                ['cost' => $enum->value],
                 ['cost' => $enum->value]
             );
         }

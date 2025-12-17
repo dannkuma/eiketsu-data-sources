@@ -4,8 +4,6 @@ namespace App\Models\Heirloom;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Heirloom\HeirloomEffect;
-use App\Models\Heirloom\HeirloomEnhancementType;
 
 class HeirloomEffectDetail extends Model
 {

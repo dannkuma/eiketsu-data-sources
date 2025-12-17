@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\UnitTypes;
 use App\Models\General\UnitType;
+use Illuminate\Database\Seeder;
 
 class UnitTypeSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class UnitTypeSeeder extends Seeder
     {
         foreach (UnitTypes::cases() as $enum) {
             UnitType::updateOrCreate(
+                ['unit_type' => $enum->value],
                 ['unit_type' => $enum->value]
             );
         }

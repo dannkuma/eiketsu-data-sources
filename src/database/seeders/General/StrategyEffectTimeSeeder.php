@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\StrategyEffectTimes;
 use App\Models\General\StrategyEffectTime;
+use Illuminate\Database\Seeder;
 
 class StrategyEffectTimeSeeder extends Seeder
 {

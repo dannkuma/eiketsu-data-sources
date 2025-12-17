@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\GetMethods;
 use App\Models\General\GetMethod;
+use Illuminate\Database\Seeder;
 
 class GetMethodSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class GetMethodSeeder extends Seeder
     {
         foreach (GetMethods::cases() as $enum) {
             GetMethod::updateOrCreate(
+                ['get_method' => $enum->value],
                 ['get_method' => $enum->value]
             );
         }

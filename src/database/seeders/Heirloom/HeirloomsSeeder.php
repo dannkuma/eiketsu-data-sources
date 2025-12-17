@@ -3,6 +3,7 @@
 namespace Database\Seeders\Heirloom;
 
 use Illuminate\Database\Seeder;
+
 class HeirloomsSeeder extends Seeder
 {
     /**

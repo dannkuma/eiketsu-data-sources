@@ -1,16 +1,17 @@
 <?php
+
 namespace App\Enums\Souls;
 
 enum SoulEffectUnits: string
 {
-    case Second     = 'second';     // 秒
-    case Percent    = 'percent';    // %
+    case Second = 'second';     // 秒
+    case Percent = 'percent';    // %
 
     public function label(): string
     {
         return match ($this) {
-            self::Second     => '秒',
-            self::Percent    => '%',
+            self::Second => '秒',
+            self::Percent => '%',
         };
     }
 

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\General\Intelligence;
 use App\Enums\Generals\Intelligences;
+use App\Models\General\Intelligence;
+use Illuminate\Database\Seeder;
 
 class IntelligenceSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class IntelligenceSeeder extends Seeder
     {
         foreach (Intelligences::cases() as $enum) {
             Intelligence::updateOrCreate(
+                ['intelligence' => $enum->value],
                 ['intelligence' => $enum->value]
             );
         }

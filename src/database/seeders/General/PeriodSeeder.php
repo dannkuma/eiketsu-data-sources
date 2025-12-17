@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\Periods;
 use App\Models\General\Period;
+use Illuminate\Database\Seeder;
 
 class PeriodSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class PeriodSeeder extends Seeder
     {
         foreach (Periods::cases() as $enum) {
             Period::updateOrCreate(
+                ['period' => $enum->value],
                 ['period' => $enum->value]
             );
         }

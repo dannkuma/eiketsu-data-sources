@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\Heirloom;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use App\Models\Heirloom\HeirloomSoulClassification;
 use App\Enums\Heirlooms\HeirloomSoulClassifications;
+use App\Models\Heirloom\HeirloomSoulClassification;
+use Illuminate\Database\Seeder;
 
 class HeirloomSoulClassificationSeeder extends Seeder
 {

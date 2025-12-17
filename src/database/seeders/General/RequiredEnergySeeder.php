@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\RequiredEnergies;
 use App\Models\General\RequiredEnergy;
+use Illuminate\Database\Seeder;
 
 class RequiredEnergySeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class RequiredEnergySeeder extends Seeder
     {
         foreach (RequiredEnergies::cases() as $enum) {
             RequiredEnergy::updateOrCreate(
+                ['required_energy' => $enum->value],
                 ['required_energy' => $enum->value]
             );
         }

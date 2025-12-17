@@ -2,15 +2,13 @@
 
 namespace App\Models\Heirloom;
 
+use App\Enums\Heirlooms\Levels;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Heirloom\RarityLevelHeirloomSaleAmount;
-use App\Models\Heirloom\RarityLevelHeirloomUpgradingAmount;
-use App\Enums\Heirlooms\Levels;
 
 class Level extends Model
 {
-    protected $fillable = [ 'level' ];
+    protected $fillable = ['level'];
 
     protected $casts = [
         'level' => Levels::class,

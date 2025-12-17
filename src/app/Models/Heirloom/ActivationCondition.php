@@ -2,10 +2,9 @@
 
 namespace App\Models\Heirloom;
 
+use App\Enums\Heirlooms\ActivationConditions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Heirloom\HeirloomEffectSummary;
-use App\Enums\Heirlooms\ActivationConditions;
 
 class ActivationCondition extends Model
 {

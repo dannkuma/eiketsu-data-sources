@@ -2,10 +2,9 @@
 
 namespace Database\Seeders\General;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Generals\CardTypes;
 use App\Models\General\CardType;
+use Illuminate\Database\Seeder;
 
 class CardTypeSeeder extends Seeder
 {
@@ -16,6 +15,7 @@ class CardTypeSeeder extends Seeder
     {
         foreach (CardTypes::cases() as $enum) {
             CardType::updateOrCreate(
+                ['card_type' => $enum->value],
                 ['card_type' => $enum->value]
             );
         }
