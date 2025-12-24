@@ -15,6 +15,7 @@ class ActivationConditionSeeder extends Seeder
     {
         foreach (ActivationConditions::cases() as $enum) {
             ActivationCondition::updateOrCreate(
+                ['activation_condition' => $enum->value],
                 ['activation_condition' => $enum->value]
             );
         }

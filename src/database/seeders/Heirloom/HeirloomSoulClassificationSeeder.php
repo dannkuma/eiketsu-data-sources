@@ -15,6 +15,7 @@ class HeirloomSoulClassificationSeeder extends Seeder
     {
         foreach (HeirloomSoulClassifications::cases() as $enum) {
             HeirloomSoulClassification::updateOrCreate(
+                ['heirloom_soul_classification' => $enum->value],
                 ['heirloom_soul_classification' => $enum->value]
             );
         }

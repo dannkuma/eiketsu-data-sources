@@ -15,6 +15,7 @@ class HeirloomSaleAmountSeeder extends Seeder
     {
         foreach (HeirloomSaleAmounts::cases() as $enum) {
             HeirloomSaleAmount::updateOrCreate(
+                ['heirloom_sale_amount' => $enum->value],
                 ['heirloom_sale_amount' => $enum->value]
             );
         }
