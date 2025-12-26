@@ -15,6 +15,7 @@ class HeirloomEffectDescriptionSeeder extends Seeder
     {
         foreach (HeirloomEffectDescriptions::cases() as $enum) {
             HeirloomEffectDescription::updateOrCreate(
+                ['heirloom_effect_description' => $enum->value],
                 ['heirloom_effect_description' => $enum->value]
             );
         }

@@ -15,6 +15,7 @@ class LevelSeeder extends Seeder
     {
         foreach (Levels::cases() as $enum) {
             Level::updateOrCreate(
+                ['level' => $enum->value],
                 ['level' => $enum->value]
             );
         }

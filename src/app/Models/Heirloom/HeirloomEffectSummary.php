@@ -4,6 +4,7 @@ namespace App\Models\Heirloom;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HeirloomEffectSummary extends Model
 {
@@ -32,5 +33,10 @@ class HeirloomEffectSummary extends Model
     public function effectTarget(): BelongsTo
     {
         return $this->belongsTo(EffectTarget::class);
+    }
+
+    public function heirloomEffectSummaryMappings(): HasMany
+    {
+        return $this->hasMany(HeirloomEffectSummaryMapping::class);
     }
 }

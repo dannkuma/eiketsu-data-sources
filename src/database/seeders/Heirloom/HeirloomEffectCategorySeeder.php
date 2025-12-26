@@ -15,6 +15,7 @@ class HeirloomEffectCategorySeeder extends Seeder
     {
         foreach (HeirloomEffectCategories::cases() as $enum) {
             HeirloomEffectCategory::updateOrCreate(
+                ['heirloom_effect_category' => $enum->value],
                 ['heirloom_effect_category' => $enum->value]
             );
         }

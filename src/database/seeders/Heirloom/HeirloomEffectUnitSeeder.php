@@ -15,6 +15,7 @@ class HeirloomEffectUnitSeeder extends Seeder
     {
         foreach (HeirloomEffectUnits::cases() as $enum) {
             HeirloomEffectUnit::updateOrCreate(
+                ['heirloom_effect_unit' => $enum->value],
                 ['heirloom_effect_unit' => $enum->value]
             );
         }

@@ -15,6 +15,7 @@ class EffectTargetSeeder extends Seeder
     {
         foreach (EffectTargets::cases() as $enum) {
             EffectTarget::updateOrCreate(
+                ['effect_target' => $enum->value],
                 ['effect_target' => $enum->value]
             );
         }

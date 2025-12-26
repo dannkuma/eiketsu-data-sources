@@ -14,18 +14,26 @@ class HeirloomsSeeder extends Seeder
 
         $this->call([
             HeirloomSoulClassificationSeeder::class,
-            HeirloomPurchaseAmountSeeder::class,
-            HeirloomSaleAmountSeeder::class,
-            HeirloomUpgradingAmountSeeder::class,
             LevelSeeder::class,
+            HeirloomPurchaseAmountSeeder::class,
+            RarityHeirloomPurchaseAmountSeeder::class,
+            HeirloomSaleAmountSeeder::class,
+            RarityLevelHeirloomSaleAmountSeeder::class,
+            HeirloomUpgradingAmountSeeder::class,
+            RarityLevelHeirloomUpgradingAmountSeeder::class,
+            HeirloomSeeder::class,
             HeirloomEffectDescriptionSeeder::class,
             HeirloomEffectCategorySeeder::class,
             ActivationConditionSeeder::class,
             EffectTargetSeeder::class,
-            // HeirloomEnhancementTypeSeeder::class,
+            HeirloomEffectSummarySeeder::class,
             HeirloomEffectOperatorSeeder::class,
-            // HeirloomValueSeeder::class,
+            HeirloomValueSeeder::class,
             HeirloomEffectUnitSeeder::class,
+            HeirloomEffectSeeder::class,
+            HeirloomEnhancementTypeSeeder::class,
+            HeirloomEffectDetailSeeder::class,
+            HeirloomEffectSummaryMappingSeeder::class,
         ]);
     }
 }
