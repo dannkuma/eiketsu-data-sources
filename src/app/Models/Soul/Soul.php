@@ -6,6 +6,8 @@ use App\Models\Heirloom\HeirloomSoulClassification;
 use App\Models\Rarity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Soul extends Model
 {
@@ -29,5 +31,15 @@ class Soul extends Model
     public function soulSaleAmount(): BelongsTo
     {
         return $this->belongsTo(SoulSaleAmount::class);
+    }
+
+    public function soulInitialEffects(): BelongsToMany
+    {
+        return $this->belongsToMany(SoulEffect::class, 'soul_initial_effects')->withTimestamps();
+    }
+
+    public function soulUser(): HasMany
+    {
+        return $this->hasMany(SoulUser::class);
     }
 }

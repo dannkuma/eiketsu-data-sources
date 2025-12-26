@@ -15,7 +15,8 @@ class SoulEffectCategorySeeder extends Seeder
     {
         foreach (SoulEffectCategories::cases() as $enum) {
             SoulEffectCategory::updateOrCreate(
-                ['soul_effect_category' => $enum->value]
+                ['soul_effect_category' => $enum->value],
+                []
             );
         }
     }

@@ -14,11 +14,15 @@ class SoulsSeeder extends Seeder
         $this->call([
             SoulPurchaseAmountSeeder::class,
             SoulSaleAmountSeeder::class,
-            // SoulEffectSeeder::class,
+            SoulSeeder::class,
             SoulEffectCategorySeeder::class,
             SoulEffectOperatorSeeder::class,
             SoulValueSeeder::class,
             SoulEffectUnitSeeder::class,
+            SoulEffectSeeder::class,
+            SoulInitialEffectSeeder::class,
+            SoulUserSeeder::class,
+            SoulUserEffectSeeder::class,
         ]);
     }
 }

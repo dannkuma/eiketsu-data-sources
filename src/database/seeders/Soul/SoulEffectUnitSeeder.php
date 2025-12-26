@@ -15,7 +15,8 @@ class SoulEffectUnitSeeder extends Seeder
     {
         foreach (SoulEffectUnits::cases() as $enum) {
             SoulEffectUnit::updateOrCreate(
-                ['soul_effect_unit' => $enum->value]
+                ['soul_effect_unit' => $enum->value],
+                []
             );
         }
     }

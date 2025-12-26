@@ -15,7 +15,8 @@ class SoulEffectOperatorSeeder extends Seeder
     {
         foreach (SoulEffectOperators::cases() as $enum) {
             SoulEffectOperator::updateOrCreate(
-                ['soul_effect_operator' => $enum->value]
+                ['soul_effect_operator' => $enum->value],
+                []
             );
         }
     }
