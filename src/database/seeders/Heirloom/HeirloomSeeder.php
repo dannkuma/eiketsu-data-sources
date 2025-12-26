@@ -24,8 +24,6 @@ class HeirloomSeeder extends Seeder
         $rarityLevelHeirloomUpgradingAmount = RarityLevelHeirloomUpgradingAmount::first();
         Heirloom::updateOrCreate(
             [
-                'name' => '曜変天目茶碗',
-                'name_furigana' => 'ようへんてんもくちゃわん',
                 'rarity_id' => $rarity->id,
                 'heirloom_soul_classification_id' => $heirloomSoulClassification->id,
                 'rarity_heirloom_purchase_amount_id' => $rarityHeirloomPurchaseAmount->id,
@@ -34,11 +32,6 @@ class HeirloomSeeder extends Seeder
             ], [
                 'name' => '曜変天目茶碗',
                 'name_furigana' => 'ようへんてんもくちゃわん',
-                'rarity_id' => $rarity->id,
-                'heirloom_soul_classification_id' => $heirloomSoulClassification->id,
-                'rarity_heirloom_purchase_amount_id' => $rarityHeirloomPurchaseAmount->id,
-                'rarity_level_heirloom_sale_amount_id' => $rarityLevelHeirloomSaleAmount->id,
-                'rarity_level_heirloom_upgrading_amount_id' => $rarityLevelHeirloomUpgradingAmount->id,
             ]
         );
     }

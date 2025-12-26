@@ -24,11 +24,7 @@ class HeirloomEffectSummaryMappingSeeder extends Seeder
                 'heirloom_effect_detail_id' => $heirloomEffectDetail->id,
                 'level_id' => $level->id,
             ],
-            [
-                'heirloom_effect_summary_id' => $heirloomEffectSummary->id,
-                'heirloom_effect_detail_id' => $heirloomEffectDetail->id,
-                'level_id' => $level->id,
-            ]
+            []
         );
     }
 }

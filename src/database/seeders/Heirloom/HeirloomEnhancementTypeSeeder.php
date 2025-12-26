@@ -13,10 +13,10 @@ class HeirloomEnhancementTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (HeirloomEnhancementTypes::cases() as $type) {
+        foreach (HeirloomEnhancementTypes::cases() as $enum) {
             HeirloomEnhancementType::updateOrCreate(
-                ['heirloom_enhancement_type' => $type],
-                ['heirloom_enhancement_type' => $type]
+                ['heirloom_enhancement_type' => $enum->value],
+                []
             );
         }
     }

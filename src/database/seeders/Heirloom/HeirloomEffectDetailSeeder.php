@@ -21,10 +21,7 @@ class HeirloomEffectDetailSeeder extends Seeder
                 'heirloom_effect_id' => $heirloomEffect->id,
                 'heirloom_enhancement_type_id' => $heirloomEnhancementType->id,
             ],
-            [
-                'heirloom_effect_id' => $heirloomEffect->id,
-                'heirloom_enhancement_type_id' => $heirloomEnhancementType->id,
-            ]
+            []
         );
     }
 }

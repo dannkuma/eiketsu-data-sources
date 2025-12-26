@@ -27,12 +27,7 @@ class HeirloomEffectSeeder extends Seeder
                 'heirloom_value_id' => $heirloomValue->id,
                 'heirloom_effect_unit_id' => $heirloomEffectUnit->id,
             ],
-            [
-                'heirloom_effect_category_id' => $heirloomEffectCategory->id,
-                'heirloom_effect_operator_id' => $heirloomEffectOperator->id,
-                'heirloom_value_id' => $heirloomValue->id,
-                'heirloom_effect_unit_id' => $heirloomEffectUnit->id,
-            ]
+            []
         );
     }
 }

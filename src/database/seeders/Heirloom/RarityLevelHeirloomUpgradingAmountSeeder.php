@@ -24,10 +24,7 @@ class RarityLevelHeirloomUpgradingAmountSeeder extends Seeder
                 'level_id' => $level->id,
                 'heirloom_upgrading_amount_id' => $heirloomUpgradingAmount->id,
             ],
-            [
-                'rarity_id' => $rarity->id,
-                'level_id' => $level->id,
-                'heirloom_upgrading_amount_id' => $heirloomUpgradingAmount->id,
-            ]);
+            []
+        );
     }
 }

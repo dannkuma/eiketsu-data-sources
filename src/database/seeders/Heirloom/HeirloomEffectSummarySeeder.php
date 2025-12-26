@@ -31,14 +31,7 @@ class HeirloomEffectSummarySeeder extends Seeder
                 'effect_target_id' => $effectTarget->id,
                 'effect_classification' => 0,
             ],
-            [
-                'heirloom_id' => $heirloom->id,
-                'heirloom_effect_description_id' => $heirloomEffectDescriptions->id,
-                'heirloom_effect_category_id' => $heirloomEffectCategory->id,
-                'activation_condition_id' => $activationCondition->id,
-                'effect_target_id' => $effectTarget->id,
-                'effect_classification' => 0,
-            ]
+            []
         );
     }
 }

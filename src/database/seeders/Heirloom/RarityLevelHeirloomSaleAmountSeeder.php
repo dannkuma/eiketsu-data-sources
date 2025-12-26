@@ -24,11 +24,7 @@ class RarityLevelHeirloomSaleAmountSeeder extends Seeder
                 'level_id' => $level->id,
                 'heirloom_sale_amount_id' => $heirloomSaleAmount->id,
             ],
-            [
-                'rarity_id' => $rarity->id,
-                'level_id' => $level->id,
-                'heirloom_sale_amount_id' => $heirloomSaleAmount->id,
-            ]
+            []
         );
     }
 }
