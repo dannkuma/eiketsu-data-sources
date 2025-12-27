@@ -38,7 +38,7 @@ class Soul extends Model
         return $this->belongsToMany(SoulEffect::class, 'soul_initial_effects')->withTimestamps();
     }
 
-    public function soulUser(): HasMany
+    public function soulUsers(): HasMany
     {
         return $this->hasMany(SoulUser::class);
     }
