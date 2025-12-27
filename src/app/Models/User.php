@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\General\General;
+use App\Models\Heirloom\HeirloomUserLevel;
 use App\Models\Soul\SoulUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -64,5 +65,10 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function heirloomUserLevels(): HasMany
+    {
+        return $this->hasMany(HeirloomUserLevel::class);
     }
 }

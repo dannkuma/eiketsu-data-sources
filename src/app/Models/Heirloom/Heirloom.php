@@ -40,4 +40,9 @@ class Heirloom extends Model
     {
         return $this->hasMany(HeirloomEffectSummary::class);
     }
+
+    public function heirloomUserLevels(): HasMany
+    {
+        return $this->hasMany(HeirloomUserLevel::class);
+    }
 }

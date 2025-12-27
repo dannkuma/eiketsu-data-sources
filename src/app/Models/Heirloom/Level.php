@@ -23,4 +23,9 @@ class Level extends Model
     {
         return $this->hasMany(RarityLevelHeirloomUpgradingAmount::class);
     }
+
+    public function heirloomUserLevels(): HasMany
+    {
+        return $this->hasMany(HeirloomUserLevel::class);
+    }
 }
