@@ -127,6 +127,7 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook' => env('STRIPE_WEBHOOK_SECRET'),
+        'product_id_oban' => env('STRIPE_PRODUCT_ID_OBAN'),
         'price_id_one_hundred' => env('STRIPE_PRICE_ID_ONE_HUNDRED'),
         'price_id_three_hundred' => env('STRIPE_PRICE_ID_THREE_HUNDRED'),
         'price_id_five_hundred' => env('STRIPE_PRICE_ID_FIVE_HUNDRED'),

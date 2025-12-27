@@ -10,7 +10,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
+    /**∆∆
      * Seed the application's database.
      */
     public function run(): void
@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             FavoriteSeeder::class,
             HeirloomsSeeder::class,
             SoulsSeeder::class,
+            PriceSeeder::class,
+            ProductSeeder::class,
             OrderSeeder::class,
         ]);
     }
