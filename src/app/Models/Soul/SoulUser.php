@@ -2,10 +2,12 @@
 
 namespace App\Models\Soul;
 
+use App\Models\Heirloom\HeirloomUserLevel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SoulUser extends Model
 {
@@ -24,5 +26,10 @@ class SoulUser extends Model
     public function soulUserEffects(): HasMany
     {
         return $this->hasMany(SoulUserEffect::class);
+    }
+
+    public function heirloomUserLevels(): HasOne
+    {
+        return $this->hasOne(HeirloomUserLevel::class);
     }
 }
