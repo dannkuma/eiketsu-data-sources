@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             FavoriteSeeder::class,
             HeirloomsSeeder::class,
             SoulsSeeder::class,
+            OrderSeeder::class,
         ]);
     }
 }

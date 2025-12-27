@@ -127,7 +127,10 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook' => env('STRIPE_WEBHOOK_SECRET'),
-        'price_id' => env('STRIPE_PRICE_ID'),
+        'price_id_one_hundred' => env('STRIPE_PRICE_ID_ONE_HUNDRED'),
+        'price_id_three_hundred' => env('STRIPE_PRICE_ID_THREE_HUNDRED'),
+        'price_id_five_hundred' => env('STRIPE_PRICE_ID_FIVE_HUNDRED'),
+        'price_id_thousand' => env('STRIPE_PRICE_ID_THOUSAND'),
     ],
 
     'scraping' => [
