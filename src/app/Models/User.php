@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\General\General;
+use App\Models\Soul\SoulUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -53,6 +54,11 @@ class User extends Authenticatable
     public function favorites(): BelongsToMany
     {
         return $this->belongsToMany(General::class, 'favorites')->withTimestamps();
+    }
+
+    public function soulUsers(): HasMany
+    {
+        return $this->hasMany(SoulUser::class);
     }
 
     public function orders(): HasMany

@@ -15,7 +15,8 @@ class SoulPurchaseAmountSeeder extends Seeder
     {
         foreach (SoulPurchaseAmounts::cases() as $enum) {
             SoulPurchaseAmount::updateOrCreate(
-                ['soul_purchase_amount' => $enum->value]
+                ['soul_purchase_amount' => $enum->value],
+                []
             );
         }
     }

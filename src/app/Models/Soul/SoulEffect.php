@@ -4,6 +4,7 @@ namespace App\Models\Soul;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SoulEffect extends Model
@@ -33,5 +34,10 @@ class SoulEffect extends Model
     public function soulUserEffects(): HasMany
     {
         return $this->hasMany(SoulUserEffect::class);
+    }
+
+    public function soulInitialEffects(): BelongsToMany
+    {
+        return $this->belongsToMany(Soul::class, 'soul_initial_effects')->withTimestamps();
     }
 }

@@ -15,7 +15,8 @@ class SoulValueSeeder extends Seeder
     {
         foreach (SoulValues::cases() as $enum) {
             SoulValue::updateOrCreate(
-                ['soul_value' => $enum->value]
+                ['soul_value' => $enum->value],
+                []
             );
         }
     }
