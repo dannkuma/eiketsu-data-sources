@@ -22,7 +22,7 @@ class SoulUserSeeder extends Seeder
                 'user_id' => $user->id,
             ],
             [
-                'lock' => false,
+                'is_locked' => false,
             ]
         );
     }

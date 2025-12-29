@@ -11,7 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SoulUser extends Model
 {
-    protected $fillable = ['soul_id', 'user_id', 'lock'];
+    protected $fillable = ['soul_id', 'user_id', 'is_locked'];
+
+    protected $casts = [
+        'is_locked' => 'boolean',
+    ];
 
     public function soul(): BelongsTo
     {

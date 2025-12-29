@@ -29,8 +29,8 @@ class HeirloomUserLevelSeeder extends Seeder
                     'soul_user_id' => $soulUser->id,
                 ],
                 [
-                    'lock' => false,
-                    'submission_status' => false,
+                    'is_locked' => false,
+                    'is_submitted' => false,
                 ]
             );
         }

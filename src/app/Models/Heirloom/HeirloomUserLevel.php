@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class HeirloomUserLevel extends Model
 {
-    protected $fillable = ['heirloom_id', 'user_id', 'level_id', 'lock', 'submission_status', 'soul_user_id'];
+    protected $fillable = ['heirloom_id', 'user_id', 'level_id', 'is_locked', 'is_submitted', 'soul_user_id'];
+
+    protected $casts = [
+        'is_locked' => 'boolean',
+        'is_submitted' => 'boolean',
+    ];
 
     public function heirloom(): BelongsTo
     {

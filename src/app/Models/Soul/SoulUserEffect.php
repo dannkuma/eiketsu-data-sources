@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SoulUserEffect extends Model
 {
-    protected $fillable = ['soul_user_id', 'soul_effect_id', 'effect_fixed_flag'];
+    protected $fillable = ['soul_user_id', 'soul_effect_id', 'is_effect_fixed'];
+
+    protected $casts = [
+        'is_effect_fixed' => 'boolean',
+    ];
 
     public function soulUser(): BelongsTo
     {
