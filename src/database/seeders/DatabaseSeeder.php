@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\General\FavoriteSeeder;
 use Database\Seeders\General\GeneralsSeeder;
 use Database\Seeders\Heirloom\HeirloomsSeeder;
+use Database\Seeders\Heirloom\HeirloomUserLevelSeeder;
 use Database\Seeders\Soul\SoulsSeeder;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PriceSeeder::class,
             ProductSeeder::class,
             OrderSeeder::class,
+            HeirloomUserLevelSeeder::class,
         ]);
     }
 }

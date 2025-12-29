@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
             } elseif ($price->stripe_price_id === config('app.stripe.price_id_thousand')) {
                 return ['price_id' => $price->id, 'stripe_product_id' => config('app.stripe.product_id_oban'), 'name' => '大判（1000枚）', 'description' => '', 'quantity' => 1];
             }
-        })->toArray();
+        })->filter()->values()->toArray();
 
         Product::upsert(
             $insertProducts,
