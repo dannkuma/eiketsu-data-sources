@@ -21,7 +21,9 @@ class SoulUserEffectSeeder extends Seeder
                 'soul_user_id' => $soulUser->id,
                 'soul_effect_id' => $soulEffect->id,
             ],
-            []
+            [
+                'is_effect_fixed' => false,
+            ]
         );
     }
 }
