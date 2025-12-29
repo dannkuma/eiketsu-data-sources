@@ -48,3 +48,12 @@
 
 -   `docker compose exec app composer show | grep dusk`で dusk のインストールを確認
 -   `docker compose exec app php artisan dusk tests/Browser/ScrapingTest.php`を実行
+
+## Serenaの適用
+本PJではGitHub Copilotに対してSerena MCPの適用が可能です。
+ローカルPCでSerenaの実行要件を満たし、Copilotに対して以下の命令を実行します。
+`現在のプロジェクトを Serena MCP を利用して分析してください。`
+プロジェクトディレクトリの直下に.serenaディレクトリが作成されればOKです。
+
+- 参考資料
+[なぜSerena MCPを使うのか](https://izanami.dev/post/725d69ba-890d-4d0d-a06b-c81b77ccbc72)
