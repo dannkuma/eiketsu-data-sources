@@ -1,0 +1,67 @@
+<?php
+
+namespace Tests\Browser\Scraping\General;
+
+use App\Services\LeagueCsvService;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use League\Csv\Exception as CsvException;
+use Tests\DuskTestCase;
+
+class CreateIdList extends DuskTestCase
+{
+    protected LeagueCsvService $leagueCsvService;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->leagueCsvService = app(LeagueCsvService::class);
+    }
+
+    /**
+     * A Dusk test example.
+     */
+    public function test_create_id_list(): void
+    {
+        // ヘッダーの定義
+        $IdListHeader = ['id'];
+
+        try {
+            // マスタの取得
+            $response = Http::get('https://eiketsu-taisen.net/datalist/api/base');
+            $json = $response->json();
+            $generals = $json['general'] ?? [];
+
+            if (empty($generals)) {
+                throw new \Exception('武将データの取得に失敗しました。');
+            }
+
+            $Ids = collect($generals)->map(function ($general) {
+                // カンマより前の文字列を取得
+                return [Str::before($general, ',')];
+            })->toArray();
+
+            // ディレクトリの自動作成
+            if (! Storage::exists('csv/generals')) {
+                Storage::makeDirectory('csv/generals');
+            }
+
+            $path = Storage::path('csv/generals/id-list.csv');
+
+            // CSV Writerの生成
+            $writer = $this->leagueCsvService->createCsvWriter($path);
+            $this->leagueCsvService->insertHeader($writer, $IdListHeader);
+            $this->leagueCsvService->insertAll($writer, $Ids);
+
+            Log::info("武将IDリストのCSV作成に成功しました: {$path}");
+        } catch (CsvException $e) {
+            Log::error('CSVの書き込みに失敗しました: '.$e->getMessage());
+            throw $e;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            throw $e;
+        }
+    }
+}
