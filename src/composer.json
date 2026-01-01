@@ -10,6 +10,7 @@
         "laravel/cashier": "^15.7",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "league/csv": "^9.28",
         "spatie/browsershot": "^5.0",
         "symfony/dom-crawler": "^7.3"
     },
