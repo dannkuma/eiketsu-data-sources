@@ -33,11 +33,11 @@ class CreateGeneralProvidedEndsCsv extends BaseGeneralHtmlCommand
             $text = $node->text();
             // ～より後の日付部分を取得
             $parts = explode('～', $text);
-            $EndDate = trim($parts[1]) ? trim($parts[1]) : '';
+            $endDate = trim($parts[1]) ? trim($parts[1]) : '';
 
             $this->generalProvidedEnds[] = [
                 $generalId['id'],
-                $EndDate,
+                $endDate,
             ];
         });
     }

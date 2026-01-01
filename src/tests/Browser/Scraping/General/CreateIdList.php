@@ -26,7 +26,7 @@ class CreateIdList extends DuskTestCase
     public function test_create_id_list(): void
     {
         // ヘッダーの定義
-        $IdListHeader = ['id'];
+        $idListHeader = ['id'];
 
         try {
             // マスタの取得
@@ -38,8 +38,8 @@ class CreateIdList extends DuskTestCase
                 throw new \Exception('武将データの取得に失敗しました。');
             }
 
-            $Ids = collect($generals)->map(function ($general) {
-                // 武将を一位に識別するIDのみ抽出
+            $ids = collect($generals)->map(function ($general) {
+                // 武将を一意に識別するIDのみ抽出
                 return [Str::before($general, ',')];
             })->toArray();
 
@@ -53,8 +53,8 @@ class CreateIdList extends DuskTestCase
             // CSV Writerの生成
             $writer = $this->leagueCsvService->createCsvWriter($path);
             // ヘッダーとデータの挿入
-            $this->leagueCsvService->insertHeader($writer, $IdListHeader);
-            $this->leagueCsvService->insertAll($writer, $Ids);
+            $this->leagueCsvService->insertHeader($writer, $idListHeader);
+            $this->leagueCsvService->insertAll($writer, $ids);
 
             Log::info("武将IDリストのCSV作成に成功しました: {$path}");
         } catch (CsvException $e) {

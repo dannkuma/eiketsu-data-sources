@@ -44,13 +44,13 @@ class CreateGeneralGetMethodsCsv extends BaseGeneralHtmlCommand
             $parts = explode('～', $providedDates);
             $startDate = trim($parts[0]);
             // ～より後の日付部分を取得
-            $EndDate = isset($parts[1]) ? trim($parts[1]) : '';
+            $endDate = isset($parts[1]) ? trim($parts[1]) : '';
 
             $this->generalGetMethods[] = [
                 $generalId['id'],
                 $getMethod,
                 $startDate,
-                $EndDate,
+                $endDate,
             ];
         });
     }

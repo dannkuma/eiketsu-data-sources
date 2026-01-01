@@ -52,7 +52,7 @@ class SaveGeneralDetailPages extends DuskTestCase
                                 continue;
                             }
 
-                            $directory = storage_path(config('app.scraping.output_file_path', 'app/private/general_details'));
+                            $directory = storage_path(config('app.scraping.output_file_path_general', 'app/private/general_details'));
                             if (! file_exists($directory)) {
                                 mkdir($directory, 0755, true);
                             }
@@ -71,6 +71,7 @@ class SaveGeneralDetailPages extends DuskTestCase
                 // PHPのメモリ解放
                 gc_collect_cycles();
             }
+
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             throw $e;

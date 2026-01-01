@@ -18,7 +18,7 @@ class CreateAllGeneralCsv extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = '武将に関連するCSVをすべて作成するコマンド';
 
     /**
      * Execute the console command.
