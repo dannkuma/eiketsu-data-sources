@@ -23,7 +23,7 @@ class CreateAllGeneralCsv extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         try {
             $this->call('app:create-character-voices-csv');

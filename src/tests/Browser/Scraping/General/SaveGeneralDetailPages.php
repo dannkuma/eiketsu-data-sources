@@ -37,7 +37,7 @@ class SaveGeneralDetailPages extends DuskTestCase
                         try {
                             $browser->visit("https://eiketsu-taisen.net/datalist/?v=general&s=general&c={$generalId['id']}");
 
-                            // サイトへの負荷軽減とスクレイピング検知回避のため、固定で2.5秒待機
+                            // サイトへの負荷軽減とスクレイピング検知回避のため、設定時間待機
                             $browser->pause(config('app.scraping.visit_site_wait_time', 2500));
 
                             // Shadow DOM 内の <ul class="detail"> を取得

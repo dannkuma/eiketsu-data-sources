@@ -20,7 +20,7 @@ abstract class BaseGeneralHtmlCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         try {
             // 武将IDCSVの読み込み
@@ -28,7 +28,10 @@ abstract class BaseGeneralHtmlCommand extends Command
             $directory = storage_path(config('app.scraping.output_file_path_general', 'app/private/general_details'));
 
             foreach ($generalIds as $generalId) {
-                $filePath = $directory.DIRECTORY_SEPARATOR."{$generalId['id']}.html";
+                // パストラバーサル対策としてbasenameを使用
+                $safeId = basename($generalId['id']);
+                $filePath = $directory.DIRECTORY_SEPARATOR."{$safeId}.html";
+
                 // ファイルの存在確認
                 if (! file_exists($filePath)) {
                     throw new \Exception("ファイルが存在しません: {$filePath}");
