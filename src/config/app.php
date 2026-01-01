@@ -136,6 +136,6 @@ return [
 
     'scraping' => [
         'local_selenium_url' => env('LOCAL_SELENIUM_URL'),
-        'output_file_path' => env('OUTPUT_FILE_PATH'),
+        'output_file_path_general' => env('OUTPUT_FILE_PATH_GENERAL', 'app/general_details'),
     ],
 ];

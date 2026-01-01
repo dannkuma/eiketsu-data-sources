@@ -45,9 +45,14 @@
 -   `docker compose exec -d app npm run dev `を実行
 
 ## スクレイピングの実行
-
 -   `docker compose exec app composer show | grep dusk`で dusk のインストールを確認
--   `docker compose exec app php artisan dusk tests/Browser/ScrapingTest.php`を実行
+### 武将のスクレイピング
+1. `docker compose exec app php artisan dusk tests/Browser/Scraping/General/CreateIdList.php`
+2. `storage/private/csv/generals`直下に`id-list.csv`が保存されていることを確認
+3. `docker compose exec app php artisan dusk tests/Browser/Scraping/General/SaveGeneralDetailPages.php`を実行
+4. `storage/app/general_details`直下に`武将ID.html`が保存されていることを確認
+5. `php src/artisan app:create-all-general-csv`を実行
+6. `storage/private/csv/generals`直下に武将用テーブルの各CSVが保存されていることを確認
 
 ## Serenaの適用
 本PJではGitHub Copilotに対してSerena MCPの適用が可能です。

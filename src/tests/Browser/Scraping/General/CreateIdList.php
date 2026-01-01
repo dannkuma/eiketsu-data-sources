@@ -39,7 +39,7 @@ class CreateIdList extends DuskTestCase
             }
 
             $Ids = collect($generals)->map(function ($general) {
-                // カンマより前の文字列を取得
+                // 武将を一位に識別するIDのみ抽出
                 return [Str::before($general, ',')];
             })->toArray();
 
@@ -52,6 +52,7 @@ class CreateIdList extends DuskTestCase
 
             // CSV Writerの生成
             $writer = $this->leagueCsvService->createCsvWriter($path);
+            // ヘッダーとデータの挿入
             $this->leagueCsvService->insertHeader($writer, $IdListHeader);
             $this->leagueCsvService->insertAll($writer, $Ids);
 

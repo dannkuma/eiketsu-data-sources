@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use League\Csv\Reader;
 use League\Csv\Writer;
 
 class LeagueCsvService
@@ -19,5 +20,13 @@ class LeagueCsvService
     public function insertAll(Writer $writer, array $records): void
     {
         $writer->insertAll($records);
+    }
+
+    public function readCsvToArray(string $path): array
+    {
+        $reader = Reader::from($path, 'r');
+        $reader->setHeaderOffset(0);
+
+        return iterator_to_array($reader->getRecords());
     }
 }
