@@ -34,18 +34,7 @@ class CreateGeneralsCsv extends BaseGeneralHtmlCommand
         // CSVデータの抽出
         $this->generals[] = [
             $generalId['id'],
-            $crawler->filter('.name')->count() ? (function () use ($crawler) {
-                $node = $crawler->filter('.name')->getNode(0);
-                // 子要素を走査してrtタグを削除
-                $childNodes = iterator_to_array($node->childNodes);
-                foreach ($childNodes as $child) {
-                    if ($child->nodeName === 'rt') {
-                        $node->removeChild($child);
-                    }
-                }
-
-                return $node->textContent;
-            })() : '',
+            $this->extractTextWithoutRuby($crawler, '.name'),
             $crawler->filter('.name')->count() ? $crawler->filter('.name')->attr('data-ruby') : '',
             $crawler->filter('.color img')->count() ? $crawler->filter('.color img')->attr('alt') : '',
             $crawler->filter('.appear')->count() ? (function () use ($crawler) {
@@ -87,17 +76,7 @@ class CreateGeneralsCsv extends BaseGeneralHtmlCommand
 
                 return $text;
             })() : '',
-            $crawler->filter('.p-strat__title ruby')->count() ? (function () use ($crawler) {
-                $node = $crawler->filter('.p-strat__title ruby')->getNode(0);
-                $text = '';
-                foreach ($node->childNodes as $child) {
-                    if ($child->nodeName !== 'rt') {
-                        $text .= $child->textContent;
-                    }
-                }
-
-                return trim($text);
-            })() : '',
+            $this->extractTextWithoutRuby($crawler, '.p-strat__title ruby'),
             $crawler->filter('.mincho ruby rt')->count() ? $crawler->filter('.mincho ruby rt')->text() : '',
             $crawler->filter('.strat_mp')->count() ? (function () use ($crawler) {
                 $text = $crawler->filter('.strat_mp')->text();

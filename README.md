@@ -53,6 +53,8 @@
 4. `storage/app/general_details`直下に`武将ID.html`が保存されていることを確認
 5. `php src/artisan app:create-all-general-csv`を実行
 6. `storage/private/csv/generals`直下に武将用テーブルの各CSVが保存されていることを確認
+7. `php src/artisan app:get-general-images`を実行
+6. `storage/public/generals/card_smalls`と`storage/public/generals/cards`直下に武将の画像が保存されていることを確認
 
 ## Serenaの適用
 本PJではGitHub Copilotに対してSerena MCPの適用が可能です。

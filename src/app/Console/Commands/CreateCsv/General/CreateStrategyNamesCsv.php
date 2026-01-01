@@ -31,22 +31,10 @@ class CreateStrategyNamesCsv extends BaseGeneralHtmlCommand
      */
     protected function processGeneral(Crawler $crawler, array $generalId): void
     {
-
         // CSVデータの抽出
         $this->strategyNames[] = [
             $generalId['id'],
-            $crawler->filter('.p-strat__title ruby')->count() ? (function () use ($crawler) {
-                $node = $crawler->filter('.p-strat__title ruby')->getNode(0);
-                // 子要素を走査してrtタグを削除
-                $childNodes = iterator_to_array($node->childNodes);
-                foreach ($childNodes as $child) {
-                    if ($child->nodeName === 'rt') {
-                        $node->removeChild($child);
-                    }
-                }
-
-                return $node->textContent;
-            })() : '',
+            $this->extractTextWithoutRuby($crawler, '.p-strat__title ruby'),
         ];
     }
 

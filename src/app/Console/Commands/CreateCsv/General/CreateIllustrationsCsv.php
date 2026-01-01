@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\CreateCsv\General;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 

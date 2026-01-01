@@ -37,7 +37,6 @@ class CreateAllGeneralCsv extends Command
             $this->call('app:create-strategy-name-furiganas-csv');
             $this->call('app:create-strategy-names-csv');
             $this->call('app:create-strategy-overviews-csv');
-            $this->call('app:get-general-images');
 
             return 0;
         } catch (\Exception $e) {

@@ -63,7 +63,7 @@ abstract class BaseGeneralHtmlCommand extends Command
     /**
      * 各武将ごとの処理を行う抽象メソッド
      *
-     * @param  array  $generalId  ['id' => '...'] の形式
+     * @param  array{id: string}  $generalId  ['id' => '...'] の形式
      */
     abstract protected function processGeneral(Crawler $crawler, array $generalId): void;
 
@@ -73,5 +73,26 @@ abstract class BaseGeneralHtmlCommand extends Command
     protected function afterProcessing(): void
     {
         // デフォルトでは何もしない
+    }
+
+    /**
+     * 指定したセレクタの要素からrtタグ（ルビ）を除外してテキストを取得する
+     */
+    protected function extractTextWithoutRuby(Crawler $crawler, string $selector): string
+    {
+        if ($crawler->filter($selector)->count() === 0) {
+            return '';
+        }
+
+        $node = $crawler->filter($selector)->getNode(0);
+        // 子要素を走査してrtタグを削除
+        $childNodes = iterator_to_array($node->childNodes);
+        foreach ($childNodes as $child) {
+            if ($child->nodeName === 'rt') {
+                $node->removeChild($child);
+            }
+        }
+
+        return trim($node->textContent);
     }
 }

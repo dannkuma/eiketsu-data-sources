@@ -47,7 +47,6 @@ class CreateGeneralProvidedEndsCsv extends BaseGeneralHtmlCommand
      */
     protected function afterProcessing(): void
     {
-
         // ヘッダーの定義
         $headers = [
             'general_id',

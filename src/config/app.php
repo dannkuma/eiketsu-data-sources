@@ -136,6 +136,10 @@ return [
 
     'scraping' => [
         'local_selenium_url' => env('LOCAL_SELENIUM_URL'),
+        'visit_site_wait_time' => (int) env('VISIT_SITE_WAIT_TIME', 2500), // ミリ秒単位
         'output_file_path_general' => env('OUTPUT_FILE_PATH_GENERAL', 'app/general_details'),
+        'output_file_path_heirloom' => env('OUTPUT_FILE_PATH_HEIRLOOM', 'app/private/heirloom_details'),
+        'output_file_path_soul' => env('OUTPUT_FILE_PATH_SOUL', 'app/private/soul_details'),
+        'general_id_chunk_size' => (int) env('GENERAL_ID_CHUNK_SIZE', 50), // 武将IDリストのチャンクサイズ
     ],
 ];

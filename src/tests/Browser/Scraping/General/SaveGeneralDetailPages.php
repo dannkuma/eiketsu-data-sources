@@ -4,6 +4,7 @@ namespace Tests\Browser\Scraping\General;
 
 use App\Services\LeagueCsvService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -19,16 +20,16 @@ class SaveGeneralDetailPages extends DuskTestCase
     }
 
     /**
-     * A Dusk test example.
+     * 武将IDリストを読み込み、各武将の詳細ページからShadow DOMデータをHTMLとして保存する
      */
     public function test_create_generals_csv(): void
     {
         try {
             // 武将IDCSVの読み込み
-            $generalIds = $this->leagueCsvService->readCsvToArray(storage_path('app/private/csv/generals/id-list.csv'));
+            $generalIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/generals/id-list.csv'));
 
             // メモリ負荷対策: 50件ごとのチャンクに分割して処理
-            foreach (array_chunk($generalIds, 50) as $chunkIndex => $chunk) {
+            foreach (array_chunk($generalIds, config('app.scraping.general_id_chunk_size', 50)) as $chunkIndex => $chunk) {
                 Log::info(($chunkIndex + 1).'番目のチャンクを処理中');
 
                 $this->browse(function (Browser $browser) use ($chunk) {
@@ -37,7 +38,7 @@ class SaveGeneralDetailPages extends DuskTestCase
                             $browser->visit("https://eiketsu-taisen.net/datalist/?v=general&s=general&c={$generalId['id']}");
 
                             // サイトへの負荷軽減とスクレイピング検知回避のため、固定で2.5秒待機
-                            $browser->pause(2500);
+                            $browser->pause(config('app.scraping.visit_site_wait_time', 2500));
 
                             // Shadow DOM 内の <ul class="detail"> を取得
                             $shadowHtml = $browser->script("
