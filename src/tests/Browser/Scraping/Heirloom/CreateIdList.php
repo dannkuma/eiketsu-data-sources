@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Scraping\General;
+namespace Tests\Browser\Scraping\Heirloom;
 
 use App\Services\LeagueCsvService;
 use Illuminate\Support\Facades\Http;
@@ -32,23 +32,23 @@ class CreateIdList extends DuskTestCase
             // マスタの取得
             $response = Http::get(config('app.scraping.visit_site_base_url', 'https://eiketsu-taisen.net/datalist/api/base'));
             $json = $response->json();
-            $generals = $json['general'] ?? [];
+            $heirlooms = $json['equip'] ?? [];
 
-            if (empty($generals)) {
-                throw new \Exception('武将データの取得に失敗しました。');
+            if (empty($heirlooms)) {
+                throw new \Exception('戦器データの取得に失敗しました。');
             }
 
-            $ids = collect($generals)->map(function ($general) {
-                // 武将を一意に識別するIDのみ抽出
-                return [Str::before($general, ',')];
+            $ids = collect($heirlooms)->map(function ($heirloom) {
+                // 戦器を一意に識別するIDのみ抽出
+                return [Str::before($heirloom, ',')];
             })->toArray();
 
             // ディレクトリの自動作成
-            if (! Storage::exists('csv/generals')) {
-                Storage::makeDirectory('csv/generals');
+            if (! Storage::exists('csv/heirlooms')) {
+                Storage::makeDirectory('csv/heirlooms');
             }
 
-            $path = Storage::path('csv/generals/id-list.csv');
+            $path = Storage::path('csv/heirlooms/id-list.csv');
 
             // CSV Writerの生成
             $writer = $this->leagueCsvService->createCsvWriter($path);
@@ -56,7 +56,7 @@ class CreateIdList extends DuskTestCase
             $this->leagueCsvService->insertHeader($writer, $idListHeader);
             $this->leagueCsvService->insertAll($writer, $ids);
 
-            Log::info("武将IDリストのCSV作成に成功しました: {$path}");
+            Log::info("戦器IDリストのCSV作成に成功しました: {$path}");
         } catch (CsvException $e) {
             Log::error('CSVの書き込みに失敗しました: '.$e->getMessage());
             throw $e;

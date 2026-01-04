@@ -50,11 +50,21 @@
 1. `docker compose exec app php artisan dusk tests/Browser/Scraping/General/CreateIdList.php`
 2. `storage/private/csv/generals`直下に`id-list.csv`が保存されていることを確認
 3. `docker compose exec app php artisan dusk tests/Browser/Scraping/General/SaveGeneralDetailPages.php`を実行
-4. `storage/app/general_details`直下に`武将ID.html`が保存されていることを確認
+4. `storage/app/private/general_details`直下に`武将ID.html`が保存されていることを確認
 5. `docker compose exec app php artisan app:create-all-general-csv`を実行
 6. `storage/private/csv/generals`直下に武将用テーブルの各CSVが保存されていることを確認
 7. `docker compose exec app php artisan app:get-general-images`を実行
-6. `storage/public/generals/card_smalls`と`storage/public/generals/cards`直下に武将の画像が保存されていることを確認
+8. `storage/public/generals/card_smalls`と`storage/public/generals/cards`直下に武将の画像が保存されていることを確認
+
+### 戦器のスクレイピング
+1. `docker compose exec app php artisan dusk tests/Browser/Scraping/Heirloom/CreateIdList.php`
+2. `storage/private/csv/heirlooms`直下に`id-list.csv`が保存されていることを確認
+3. `docker compose exec app php artisan dusk tests/Browser/Scraping/Heirloom/SaveHeirloomDetailPages.php`を実行
+4. `storage/app/private/heirloom_details`直下に`戦器ID.html`が保存されていることを確認
+5. `docker compose exec app php artisan app:create-all-heirloom-csv`を実行
+6. `storage/private/csv/heirlooms`直下に戦器用テーブルの各CSVが保存されていることを確認
+7. `docker compose exec app php artisan app:get-heirloom-images`を実行
+8. `storage/public/heirlooms/images`直下に戦器の画像が保存されていることを確認
 
 ## Serenaの適用
 本PJではGitHub Copilotに対してSerena MCPの適用が可能です。

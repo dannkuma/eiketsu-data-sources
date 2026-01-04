@@ -46,4 +46,28 @@ class LeagueCsvService
 
         return iterator_to_array($reader->getRecords());
     }
+
+    /**
+     * 指定したカラム（単一または複数）の値をキーとして重複を排除する
+     * （重複した場合は後勝ち）
+     *
+     * @param  int|array  $columnIndices  カラムのインデックス（単一のint、またはintの配列）
+     */
+    public function uniqueByColumn(array $records, int|array $columnIndices): array
+    {
+        $indices = (array) $columnIndices;
+        $unique = [];
+
+        foreach ($records as $row) {
+            $keyParts = [];
+            foreach ($indices as $index) {
+                $keyParts[] = $row[$index] ?? '';
+            }
+            // 配列をJSON化してユニークキーとする（区切り文字問題の回避）
+            $key = json_encode($keyParts);
+            $unique[$key] = $row;
+        }
+
+        return array_values($unique);
+    }
 }

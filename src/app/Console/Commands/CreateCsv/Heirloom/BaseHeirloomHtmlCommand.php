@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Console\Commands\CreateCsv\General;
+namespace App\Console\Commands\CreateCsv\Heirloom;
 
 use App\Services\LeagueCsvService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 
-abstract class BaseGeneralHtmlCommand extends Command
+abstract class BaseHeirloomHtmlCommand extends Command
 {
     protected LeagueCsvService $leagueCsvService;
 
@@ -23,13 +23,13 @@ abstract class BaseGeneralHtmlCommand extends Command
     public function handle(): int
     {
         try {
-            // 武将IDCSVの読み込み
-            $generalIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/generals/id-list.csv'));
-            $directory = storage_path(config('app.scraping.output_file_path_general', 'app/private/general_details'));
+            // 戦器IDCSVの読み込み
+            $heirloomIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/heirlooms/id-list.csv'));
+            $directory = storage_path(config('app.scraping.output_file_path_heirloom', 'app/private/heirloom_details'));
 
-            foreach ($generalIds as $generalId) {
+            foreach ($heirloomIds as $heirloomId) {
                 // パストラバーサル対策としてbasenameを使用
-                $safeId = basename($generalId['id']);
+                $safeId = basename($heirloomId['id']);
                 $filePath = $directory.DIRECTORY_SEPARATOR."{$safeId}.html";
 
                 // ファイルの存在確認
@@ -48,7 +48,7 @@ abstract class BaseGeneralHtmlCommand extends Command
                 $crawler = new Crawler($html);
 
                 // 子クラスの処理を実行
-                $this->processGeneral($crawler, $generalId);
+                $this->processHeirloom($crawler, $heirloomId);
             }
 
             // 後処理（CSV保存など）
@@ -64,11 +64,11 @@ abstract class BaseGeneralHtmlCommand extends Command
     }
 
     /**
-     * 各武将ごとの処理を行う抽象メソッド
+     * 各戦器ごとの処理を行う抽象メソッド
      *
-     * @param  array{id: string}  $generalId  ['id' => '...'] の形式
+     * @param  array{id: string}  $heirloomId  ['id' => '...'] の形式
      */
-    abstract protected function processGeneral(Crawler $crawler, array $generalId): void;
+    abstract protected function processHeirloom(Crawler $crawler, array $heirloomId): void;
 
     /**
      * 全件処理後の後処理を行うフックメソッド
