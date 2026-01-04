@@ -44,9 +44,10 @@ class SaveHeirloomDetailPages extends DuskTestCase
                         ")[0];
 
                         if (! $shadowHtml) {
-                            Log::warning("戦器ID: {$heirloomId['id']} のShadow DOMデータが見つかりませんでした。");
+                            $errorMessage = "戦器ID: {$heirloomId['id']} のShadow DOMデータが見つかりませんでした。";
+                            Log::error($errorMessage);
 
-                            continue;
+                            throw new \Exception($errorMessage);
                         }
 
                         $directory = storage_path(config('app.scraping.output_file_path_heirloom', 'app/private/heirloom_details'));
@@ -59,6 +60,7 @@ class SaveHeirloomDetailPages extends DuskTestCase
 
                     } catch (\Exception $e) {
                         Log::error("戦器ID {$heirloomId['id']} の処理中にエラーが発生しました: ".$e->getMessage());
+                        throw $e;
                     }
                 }
             });

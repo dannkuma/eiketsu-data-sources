@@ -21,7 +21,7 @@ class CreateIdList extends DuskTestCase
     }
 
     /**
-     * A Dusk test example.
+     * 戦器IDリストCSVを作成する
      */
     public function test_create_id_list(): void
     {

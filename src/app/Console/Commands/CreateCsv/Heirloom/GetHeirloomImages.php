@@ -39,9 +39,14 @@ class GetHeirloomImages extends BaseHeirloomHtmlCommand
 
             // ドメイン検証
             if (str_starts_with($heirloomImageUrl, 'https://image.eiketsu-taisen.net/')) {
-                $content = Http::timeout(10)->get($heirloomImageUrl)->body();
-                Storage::disk('public')->put($imagePath, $content);
-                $this->info("画像を保存しました: {$imagePath}");
+                $response = Http::timeout(10)->get($heirloomImageUrl);
+
+                if ($response->successful()) {
+                    Storage::disk('public')->put($imagePath, $response->body());
+                    $this->info("画像を保存しました: {$imagePath}");
+                } else {
+                    $this->warn("画像の取得に失敗したため保存をスキップしました ({$response->status()}): {$heirloomImageUrl}");
+                }
             } else {
                 $this->warn("不正なドメインのためスキップしました: {$heirloomImageUrl}");
             }

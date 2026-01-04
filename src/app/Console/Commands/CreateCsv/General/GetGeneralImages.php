@@ -41,9 +41,14 @@ class GetGeneralImages extends BaseGeneralHtmlCommand
 
             // ドメイン検証
             if (str_starts_with($cardImageUrl, 'https://image.eiketsu-taisen.net/')) {
-                $content = Http::timeout(10)->get($cardImageUrl)->body();
-                Storage::disk('public')->put($imagePath, $content);
-                $this->info("画像を保存しました: {$imagePath}");
+                $response = Http::timeout(10)->get($cardImageUrl);
+
+                if ($response->successful()) {
+                    Storage::disk('public')->put($imagePath, $response->body());
+                    $this->info("画像を保存しました: {$imagePath}");
+                } else {
+                    $this->warn("画像の取得に失敗したため保存をスキップしました ({$response->status()}): {$cardImageUrl}");
+                }
             } else {
                 $this->warn("不正なドメインのためスキップしました: {$cardImageUrl}");
             }
@@ -54,9 +59,14 @@ class GetGeneralImages extends BaseGeneralHtmlCommand
 
             // ドメイン検証
             if (str_starts_with($cardSmallImageUrl, 'https://image.eiketsu-taisen.net/')) {
-                $content = Http::timeout(10)->get($cardSmallImageUrl)->body();
-                Storage::disk('public')->put($imageSmallPath, $content);
-                $this->info("画像を保存しました: {$imageSmallPath}");
+                $response = Http::timeout(10)->get($cardSmallImageUrl);
+
+                if ($response->successful()) {
+                    Storage::disk('public')->put($imageSmallPath, $response->body());
+                    $this->info("画像を保存しました: {$imageSmallPath}");
+                } else {
+                    $this->warn("画像の取得に失敗したため保存をスキップしました ({$response->status()}): {$cardSmallImageUrl}");
+                }
             } else {
                 $this->warn("不正なドメインのためスキップしました: {$cardSmallImageUrl}");
             }
