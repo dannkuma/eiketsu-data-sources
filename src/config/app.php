@@ -141,5 +141,6 @@ return [
         'output_file_path_heirloom' => env('OUTPUT_FILE_PATH_HEIRLOOM', 'app/private/heirloom_details'),
         'output_file_path_soul' => env('OUTPUT_FILE_PATH_SOUL', 'app/private/soul_details'),
         'general_id_chunk_size' => (int) env('GENERAL_ID_CHUNK_SIZE', 50), // 武将IDリストのチャンクサイズ
+        'visit_site_base_url' => env('VISIT_SITE_BASE_URL', 'https://eiketsu-taisen.net/datalist/api/base'),
     ],
 ];

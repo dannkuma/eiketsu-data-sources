@@ -48,9 +48,10 @@ class SaveGeneralDetailPages extends DuskTestCase
                             ")[0];
 
                             if (! $shadowHtml) {
-                                Log::warning("武将ID: {$generalId['id']} のShadow DOMデータが見つかりませんでした。");
+                                $errorMessage = "武将ID: {$generalId['id']} のShadow DOMデータが見つかりませんでした。";
+                                Log::error($errorMessage);
 
-                                continue;
+                                throw new \Exception($errorMessage);
                             }
 
                             $directory = storage_path(config('app.scraping.output_file_path_general', 'app/private/general_details'));
@@ -63,6 +64,7 @@ class SaveGeneralDetailPages extends DuskTestCase
 
                         } catch (\Exception $e) {
                             Log::error("武将ID {$generalId['id']} の処理中にエラーが発生しました: ".$e->getMessage());
+                            throw $e;
                         }
                     }
                     // チャンクごとにCookieを削除してブラウザの状態をリフレッシュ
