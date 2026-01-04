@@ -44,13 +44,13 @@ class CreateHeirloomValuesCsv extends BaseHeirloomHtmlCommand
         $headers = [
             'heirloom_value',
         ];
-        $uniqueHeirloomValues = $this->leagueCsvService->uniqueByColumn($this->heirloomValues, 0);
+        $uniqueHeirloomValues = $this->csvManager->uniqueByColumn($this->heirloomValues, 0);
         $path = Storage::path('csv/heirlooms/heirloom-values.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $uniqueHeirloomValues);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $uniqueHeirloomValues);
 
         $this->info("CSV出力完了: {$path}");
     }

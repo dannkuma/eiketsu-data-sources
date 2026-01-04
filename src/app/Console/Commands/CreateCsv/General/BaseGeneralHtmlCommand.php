@@ -2,19 +2,19 @@
 
 namespace App\Console\Commands\CreateCsv\General;
 
-use App\Services\LeagueCsvService;
+use App\Infrastructure\Csv\CsvManager;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 
 abstract class BaseGeneralHtmlCommand extends Command
 {
-    protected LeagueCsvService $leagueCsvService;
+    protected CsvManager $csvManager;
 
-    public function __construct(LeagueCsvService $leagueCsvService)
+    public function __construct(CsvManager $csvManager)
     {
         parent::__construct();
-        $this->leagueCsvService = $leagueCsvService;
+        $this->csvManager = $csvManager;
     }
 
     /**
@@ -24,7 +24,7 @@ abstract class BaseGeneralHtmlCommand extends Command
     {
         try {
             // 武将IDCSVの読み込み
-            $generalIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/generals/id-list.csv'));
+            $generalIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/generals/id-list.csv'));
             $directory = storage_path(config('app.scraping.output_file_path_general', 'app/private/general_details'));
 
             foreach ($generalIds as $generalId) {

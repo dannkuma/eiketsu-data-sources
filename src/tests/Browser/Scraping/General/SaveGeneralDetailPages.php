@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Scraping\General;
 
-use App\Services\LeagueCsvService;
+use App\Infrastructure\Csv\CsvManager;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Dusk\Browser;
@@ -10,13 +10,13 @@ use Tests\DuskTestCase;
 
 class SaveGeneralDetailPages extends DuskTestCase
 {
-    protected LeagueCsvService $leagueCsvService;
+    protected CsvManager $csvManager;
 
     protected function setUp(): void
     {
         parent::setUp();
         set_time_limit(0); // 実行時間を無制限に設定
-        $this->leagueCsvService = app(LeagueCsvService::class);
+        $this->csvManager = app(CsvManager::class);
     }
 
     /**
@@ -26,7 +26,7 @@ class SaveGeneralDetailPages extends DuskTestCase
     {
         try {
             // 武将IDCSVの読み込み
-            $generalIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/generals/id-list.csv'));
+            $generalIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/generals/id-list.csv'));
 
             // メモリ負荷対策: 50件ごとのチャンクに分割して処理
             foreach (array_chunk($generalIds, config('app.scraping.general_id_chunk_size', 50)) as $chunkIndex => $chunk) {

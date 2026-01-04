@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Scraping\General;
 
-use App\Services\LeagueCsvService;
+use App\Infrastructure\Csv\CsvManager;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -12,12 +12,12 @@ use Tests\DuskTestCase;
 
 class CreateIdList extends DuskTestCase
 {
-    protected LeagueCsvService $leagueCsvService;
+    protected CsvManager $csvManager;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->leagueCsvService = app(LeagueCsvService::class);
+        $this->csvManager = app(CsvManager::class);
     }
 
     /**
@@ -51,10 +51,10 @@ class CreateIdList extends DuskTestCase
             $path = Storage::path('csv/generals/id-list.csv');
 
             // CSV Writerの生成
-            $writer = $this->leagueCsvService->createCsvWriter($path);
+            $writer = $this->csvManager->createCsvWriter($path);
             // ヘッダーとデータの挿入
-            $this->leagueCsvService->insertHeader($writer, $idListHeader);
-            $this->leagueCsvService->insertAll($writer, $ids);
+            $this->csvManager->insertHeader($writer, $idListHeader);
+            $this->csvManager->insertAll($writer, $ids);
 
             Log::info("武将IDリストのCSV作成に成功しました: {$path}");
         } catch (CsvException $e) {

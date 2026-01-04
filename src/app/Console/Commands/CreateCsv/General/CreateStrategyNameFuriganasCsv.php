@@ -52,9 +52,9 @@ class CreateStrategyNameFuriganasCsv extends BaseGeneralHtmlCommand
         $path = Storage::path('csv/generals/strategy-name-furiganas.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->strategyNameFuriganas);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->strategyNameFuriganas);
 
         $this->info("CSV出力完了: {$path}");
     }

@@ -55,9 +55,9 @@ class CreateHeirloomsCsv extends BaseHeirloomHtmlCommand
         $path = Storage::path('csv/heirlooms/heirlooms.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->heirlooms);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->heirlooms);
 
         $this->info("CSV出力完了: {$path}");
     }

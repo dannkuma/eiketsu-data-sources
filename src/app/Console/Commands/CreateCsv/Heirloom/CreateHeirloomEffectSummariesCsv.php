@@ -71,9 +71,9 @@ class CreateHeirloomEffectSummariesCsv extends BaseHeirloomHtmlCommand
         $path = Storage::path('csv/heirlooms/heirloom-effect-summaries.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->heirloomEffectSummaries);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->heirloomEffectSummaries);
 
         $this->info("CSV出力完了: {$path}");
     }
