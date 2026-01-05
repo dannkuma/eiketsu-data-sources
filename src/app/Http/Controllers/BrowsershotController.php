@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BrowsershotController extends Controller
 {
-    protected $browserShotManager;
+    protected BrowserShotManager $browserShotManager;
 
     public function __construct(BrowserShotManager $browserShotManager)
     {
