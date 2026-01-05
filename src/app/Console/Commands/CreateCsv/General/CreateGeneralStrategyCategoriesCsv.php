@@ -68,9 +68,9 @@ class CreateGeneralStrategyCategoriesCsv extends BaseGeneralHtmlCommand
         $path = Storage::path('csv/generals/general-strategy-categories.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->generalStrategyCategories);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->generalStrategyCategories);
 
         $this->info("CSV出力完了: {$path}");
     }

@@ -53,9 +53,9 @@ class CreateGeneralSpecialSkillsCsv extends BaseGeneralHtmlCommand
         $path = Storage::path('csv/generals/general-special-skills.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->generalSpecialSkills);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->generalSpecialSkills);
         $this->info("CSV出力完了: {$path}");
     }
 }

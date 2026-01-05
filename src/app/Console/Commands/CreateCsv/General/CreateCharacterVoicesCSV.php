@@ -51,9 +51,9 @@ class CreateCharacterVoicesCsv extends BaseGeneralHtmlCommand
         $path = Storage::path('csv/generals/character-voices.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->characterVoices);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->characterVoices);
 
         $this->info("CSV出力完了: {$path}");
     }

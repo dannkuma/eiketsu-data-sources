@@ -63,8 +63,8 @@ class CreateStrategyOverviewsCsv extends BaseGeneralHtmlCommand
         $path = Storage::path('csv/generals/strategy_overviews.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->strategyOverviews);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->strategyOverviews);
     }
 }

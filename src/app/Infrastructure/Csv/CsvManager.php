@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Infrastructure\Csv;
 
 use Illuminate\Support\Facades\File;
 use League\Csv\Reader;
 use League\Csv\Writer;
 
-class LeagueCsvService
+class CsvManager
 {
     /**
      * 指定されたパスでCSV Writerインスタンスを作成する

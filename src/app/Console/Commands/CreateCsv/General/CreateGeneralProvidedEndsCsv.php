@@ -56,9 +56,9 @@ class CreateGeneralProvidedEndsCsv extends BaseGeneralHtmlCommand
         $path = Storage::path('csv/generals/general-provided-ends.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
-        $this->leagueCsvService->insertAll($writer, $this->generalProvidedEnds);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
+        $this->csvManager->insertAll($writer, $this->generalProvidedEnds);
         $this->info("CSV出力完了: {$path}");
     }
 }

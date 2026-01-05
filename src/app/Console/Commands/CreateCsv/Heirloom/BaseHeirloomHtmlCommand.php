@@ -2,19 +2,19 @@
 
 namespace App\Console\Commands\CreateCsv\Heirloom;
 
-use App\Services\LeagueCsvService;
+use App\Infrastructure\Csv\CsvManager;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 
 abstract class BaseHeirloomHtmlCommand extends Command
 {
-    protected LeagueCsvService $leagueCsvService;
+    protected CsvManager $csvManager;
 
-    public function __construct(LeagueCsvService $leagueCsvService)
+    public function __construct(CsvManager $csvManager)
     {
         parent::__construct();
-        $this->leagueCsvService = $leagueCsvService;
+        $this->csvManager = $csvManager;
     }
 
     /**
@@ -24,7 +24,7 @@ abstract class BaseHeirloomHtmlCommand extends Command
     {
         try {
             // 戦器IDCSVの読み込み
-            $heirloomIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/heirlooms/id-list.csv'));
+            $heirloomIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/heirlooms/id-list.csv'));
             $directory = storage_path(config('app.scraping.output_file_path_heirloom', 'app/private/heirloom_details'));
 
             foreach ($heirloomIds as $heirloomId) {

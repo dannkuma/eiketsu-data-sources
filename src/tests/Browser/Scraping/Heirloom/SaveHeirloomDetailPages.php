@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Scraping\Heirloom;
 
-use App\Services\LeagueCsvService;
+use App\Infrastructure\Csv\CsvManager;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Dusk\Browser;
@@ -10,13 +10,13 @@ use Tests\DuskTestCase;
 
 class SaveHeirloomDetailPages extends DuskTestCase
 {
-    protected LeagueCsvService $leagueCsvService;
+    protected CsvManager $csvManager;
 
     protected function setUp(): void
     {
         parent::setUp();
         set_time_limit(0); // 実行時間を無制限に設定
-        $this->leagueCsvService = app(LeagueCsvService::class);
+        $this->csvManager = app(CsvManager::class);
     }
 
     /**
@@ -26,7 +26,7 @@ class SaveHeirloomDetailPages extends DuskTestCase
     {
         try {
             // 戦器IDCSVの読み込み
-            $heirloomIds = $this->leagueCsvService->readCsvToArray(Storage::disk('local')->path('csv/heirlooms/id-list.csv'));
+            $heirloomIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/heirlooms/id-list.csv'));
 
             $this->browse(function (Browser $browser) use ($heirloomIds) {
                 foreach ($heirloomIds as $heirloomId) {

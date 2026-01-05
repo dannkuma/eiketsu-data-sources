@@ -86,12 +86,12 @@ class CreateHeirloomEffectsCsv extends BaseHeirloomHtmlCommand
         $path = Storage::path('csv/heirlooms/heirloom-effects.csv');
 
         // CSV Writerの生成
-        $writer = $this->leagueCsvService->createCsvWriter($path);
-        $this->leagueCsvService->insertHeader($writer, $headers);
+        $writer = $this->csvManager->createCsvWriter($path);
+        $this->csvManager->insertHeader($writer, $headers);
 
         // 全カラムの組み合わせで重複排除
-        $uniqueEffects = $this->leagueCsvService->uniqueByColumn($this->heirloomEffects, [0, 1, 2, 3, 4]);
-        $this->leagueCsvService->insertAll($writer, $uniqueEffects);
+        $uniqueEffects = $this->csvManager->uniqueByColumn($this->heirloomEffects, [0, 1, 2, 3, 4]);
+        $this->csvManager->insertAll($writer, $uniqueEffects);
 
         $this->info("CSV出力完了: {$path}");
     }
