@@ -4,8 +4,8 @@ namespace App\Enums\Souls;
 
 enum SoulSaleAmounts: int
 {
-    case OneHundred = 100;
-    case FiveHundred = 500;
+    case Fifty = 50;
+    case TwoHundredFifty = 250;
 
     public static function values(): array
     {

@@ -66,6 +66,16 @@
 7. `docker compose exec app php artisan app:get-heirloom-images`を実行
 8. `storage/public/heirlooms/images`直下に戦器の画像が保存されていることを確認
 
+### 英魂スクレイピング
+1. `docker compose exec app php artisan dusk tests/Browser/Scraping/Soul/CreateIdList.php`
+2. `storage/private/csv/souls`直下に`id-list.csv`が保存されていることを確認
+3. `docker compose exec app php artisan dusk tests/Browser/Scraping/Soul/SaveSoulDetailPages.php`を実行
+4. `storage/app/private/soul_details`直下に`英魂ID.html`が保存されていることを確認
+5. `docker compose exec app php artisan app:create-all-soul-csv`を実行
+6. `storage/private/csv/souls`直下に英魂用テーブルの各CSVが保存されていることを確認
+7. `docker compose exec app php artisan app:get-soul-images`を実行
+8. `storage/public/souls/images`直下に英魂の画像が保存されていることを確認
+
 ## Serenaの適用
 本PJではGitHub Copilotに対してSerena MCPの適用が可能です。
 ローカルPCでSerenaの実行要件を満たし、Copilotに対して以下の命令を実行します。
