@@ -25,7 +25,7 @@ abstract class BaseSoulHtmlCommand extends Command
         try {
             // 英魂IDCSVの読み込み
             $soulIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/souls/id-list.csv'));
-            $directory = storage_path(config('app.scraping.output_file_path_soul', 'app/private/soul_details'));
+            $directory = storage_path(config('app.scraping.output_file_path_souls', 'app/private/soul_details'));
 
             foreach ($soulIds as $soulId) {
                 // パストラバーサル対策としてbasenameを使用
@@ -64,7 +64,7 @@ abstract class BaseSoulHtmlCommand extends Command
     }
 
     /**
-     * 各戦器ごとの処理を行う抽象メソッド
+     * 各英魂ごとの処理を行う抽象メソッド
      *
      * @param  array{id: string}  $soulId  ['id' => '...'] の形式
      */
@@ -89,7 +89,7 @@ abstract class BaseSoulHtmlCommand extends Command
 
         // DOMを破壊しないようにクローンを作成して操作する
         $node = $crawler->filter($selector)->getNode(0)->cloneNode(true);
-        // 子要素を走査してrtタグを削除
+        // 子要素を走査して指定されたタグを削除
         $childNodes = iterator_to_array($node->childNodes);
         foreach ($childNodes as $child) {
             if (in_array($child->nodeName, (array) $excludeTags)) {
@@ -98,5 +98,24 @@ abstract class BaseSoulHtmlCommand extends Command
         }
 
         return trim($node->textContent);
+    }
+
+    /**
+     * 英魂効果のテキストから英魂効果データを抽出するヘルパーメソッド
+     *
+     * @return array<int, string>|null [category, operator, value, unit] 形式の配列。マッチしない場合は null。
+     */
+    protected function extractEffectData(string $text): ?array
+    {
+        if (! preg_match('/^([^\+\-＋－\d]+)([＋\+\-－])([\d\.]+)(.*)$/u', $text, $matches)) {
+            return null;
+        }
+
+        return [
+            trim($matches[1]), // soul_effect_category (速度)
+            $matches[2],       // soul_effect_operator (＋)
+            $matches[3],       // soul_value (5)
+            trim($matches[4]), // soul_effect_unit (％)
+        ];
     }
 }

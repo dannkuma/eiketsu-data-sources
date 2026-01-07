@@ -22,7 +22,7 @@ class SaveHeirloomDetailPages extends DuskTestCase
     /**
      * 戦器IDリストを読み込み、各戦器の詳細ページからShadow DOMデータをHTMLとして保存する
      */
-    public function test_create_heirlooms_csv(): void
+    public function test_save_heirloom_detail_pages_csv(): void
     {
         try {
             // 戦器IDCSVの読み込み

@@ -89,7 +89,7 @@ abstract class BaseGeneralHtmlCommand extends Command
 
         // DOMを破壊しないようにクローンを作成して操作する
         $node = $crawler->filter($selector)->getNode(0)->cloneNode(true);
-        // 子要素を走査してrtタグを削除
+        // 子要素を走査して指定されたタグを削除
         $childNodes = iterator_to_array($node->childNodes);
         foreach ($childNodes as $child) {
             if (in_array($child->nodeName, (array) $excludeTags)) {

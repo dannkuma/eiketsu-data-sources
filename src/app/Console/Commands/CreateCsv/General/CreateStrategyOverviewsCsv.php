@@ -36,7 +36,7 @@ class CreateStrategyOverviewsCsv extends BaseGeneralHtmlCommand
             $generalId['id'],
             $crawler->filter('.p-strat__full .p-strat__column')->count() ? (function () use ($crawler) {
                 $node = $crawler->filter('.p-strat__full .p-strat__column')->getNode(0);
-                // 子要素を走査してrtタグを削除
+                // 子要素を走査して指定されたタグを削除
                 $childNodes = iterator_to_array($node->childNodes);
                 foreach ($childNodes as $child) {
                     if ($child->nodeName === 'strong') {

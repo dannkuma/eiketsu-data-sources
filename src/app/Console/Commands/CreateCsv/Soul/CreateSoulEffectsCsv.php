@@ -31,13 +31,9 @@ class CreateSoulEffectsCsv extends BaseSoulHtmlCommand
         $crawler->filter('.c-sec__text')->each(function (Crawler $node) {
             $text = trim($node->text());
 
-            if (preg_match('/^([^\+\-＋－\d]+)([＋\+\-－])([\d\.]+)(.*)$/u', $text, $matches)) {
-                $this->soulEffects[] = [
-                    trim($matches[1]), // soul_effect_category (速度)
-                    $matches[2],       // soul_effect_operator (＋)
-                    $matches[3],       // soul_value (5)
-                    trim($matches[4]), // soul_effect_unit (％)
-                ];
+            $effect = $this->extractEffectData($text);
+            if ($effect !== null) {
+                $this->soulEffects[] = $effect;
             }
         });
     }

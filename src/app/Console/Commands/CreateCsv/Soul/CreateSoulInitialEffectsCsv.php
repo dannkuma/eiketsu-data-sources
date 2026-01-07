@@ -30,15 +30,10 @@ class CreateSoulInitialEffectsCsv extends BaseSoulHtmlCommand
     {
         $crawler->filter('.c-sec__text')->each(function (Crawler $node) use ($soulId) {
             $text = trim($node->text());
-
-            if (preg_match('/^([^\+\-＋－\d]+)([＋\+\-－])([\d\.]+)(.*)$/u', $text, $matches)) {
-                $this->soulInitialEffects[] = [
-                    $soulId['id'],
-                    trim($matches[1]), // soul_effect_category (速度)
-                    $matches[2],       // soul_effect_operator (＋)
-                    $matches[3],       // soul_value (5)
-                    trim($matches[4]), // soul_effect_unit (％)
-                ];
+            $soulIdArray = [$soulId['id']];
+            $effect = $this->extractEffectData($text);
+            if ($effect !== null) {
+                $this->soulInitialEffects[] = $soulIdArray + $effect;
             }
         });
     }

@@ -22,7 +22,7 @@ class SaveSoulDetailPages extends DuskTestCase
     /**
      * 英魂IDリストを読み込み、各英魂の詳細ページからShadow DOMデータをHTMLとして保存する
      */
-    public function test_create_souls_csv(): void
+    public function test_save_soul_detail_pages_csv(): void
     {
         try {
             // 英魂IDCSVの読み込み
@@ -50,7 +50,7 @@ class SaveSoulDetailPages extends DuskTestCase
                             throw new \Exception($errorMessage);
                         }
 
-                        $directory = storage_path(config('app.scraping.output_file_path_souls', 'app/private/soul_details'));
+                        $directory = storage_path(config('app.scraping.output_file_path_soul', 'app/private/soul_details'));
                         if (! file_exists($directory)) {
                             mkdir($directory, 0755, true);
                         }
