@@ -34,7 +34,7 @@ class CreateStrategyNamesCsv extends BaseGeneralHtmlCommand
         // CSVデータの抽出
         $this->strategyNames[] = [
             $generalId['id'],
-            $this->extractTextWithoutRuby($crawler, '.p-strat__title ruby'),
+            $this->extractTextWithoutTags($crawler, '.p-strat__title ruby', 'rt'),
         ];
     }
 

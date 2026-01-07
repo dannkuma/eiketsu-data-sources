@@ -34,7 +34,7 @@ class CreateGeneralsCsv extends BaseGeneralHtmlCommand
         // CSVデータの抽出
         $this->generals[] = [
             $generalId['id'],
-            $this->extractTextWithoutRuby($crawler, '.name'),
+            $this->extractTextWithoutTags($crawler, '.name', 'rt'),
             $crawler->filter('.name')->count() ? $crawler->filter('.name')->attr('data-ruby') : '',
             $crawler->filter('.color img')->count() ? $crawler->filter('.color img')->attr('alt') : '',
             $crawler->filter('.appear')->count() ? (function () use ($crawler) {
@@ -76,7 +76,7 @@ class CreateGeneralsCsv extends BaseGeneralHtmlCommand
 
                 return $text;
             })() : '',
-            $this->extractTextWithoutRuby($crawler, '.p-strat__title ruby'),
+            $this->extractTextWithoutTags($crawler, '.p-strat__title ruby', 'rt'),
             $crawler->filter('.mincho ruby rt')->count() ? $crawler->filter('.mincho ruby rt')->text() : '',
             $crawler->filter('.strat_mp')->count() ? (function () use ($crawler) {
                 $text = $crawler->filter('.strat_mp')->text();

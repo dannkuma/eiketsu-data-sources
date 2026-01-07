@@ -22,7 +22,7 @@ class SaveGeneralDetailPages extends DuskTestCase
     /**
      * 武将IDリストを読み込み、各武将の詳細ページからShadow DOMデータをHTMLとして保存する
      */
-    public function test_create_generals_csv(): void
+    public function test_save_general_detail_pages_csv(): void
     {
         try {
             // 武将IDCSVの読み込み

@@ -79,9 +79,9 @@ abstract class BaseHeirloomHtmlCommand extends Command
     }
 
     /**
-     * 指定したセレクタの要素からrtタグ（ルビ）を除外してテキストを取得する
+     * 指定したセレクタの要素から不要なタグを除外してテキストを取得する
      */
-    protected function extractTextWithoutRuby(Crawler $crawler, string $selector): string
+    protected function extractTextWithoutTags(Crawler $crawler, string $selector, string|array $excludeTags): string
     {
         if ($crawler->filter($selector)->count() === 0) {
             return '';
@@ -89,10 +89,10 @@ abstract class BaseHeirloomHtmlCommand extends Command
 
         // DOMを破壊しないようにクローンを作成して操作する
         $node = $crawler->filter($selector)->getNode(0)->cloneNode(true);
-        // 子要素を走査してrtタグを削除
+        // 子要素を走査して指定されたタグを削除
         $childNodes = iterator_to_array($node->childNodes);
         foreach ($childNodes as $child) {
-            if ($child->nodeName === 'rt') {
+            if (in_array($child->nodeName, (array) $excludeTags)) {
                 $node->removeChild($child);
             }
         }

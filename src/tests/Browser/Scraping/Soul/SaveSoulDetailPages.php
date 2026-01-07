@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Scraping\Heirloom;
+namespace Tests\Browser\Scraping\Soul;
 
 use App\Infrastructure\Csv\CsvManager;
 use Illuminate\Support\Facades\Log;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class SaveHeirloomDetailPages extends DuskTestCase
+class SaveSoulDetailPages extends DuskTestCase
 {
     protected CsvManager $csvManager;
 
@@ -20,18 +20,18 @@ class SaveHeirloomDetailPages extends DuskTestCase
     }
 
     /**
-     * 戦器IDリストを読み込み、各戦器の詳細ページからShadow DOMデータをHTMLとして保存する
+     * 英魂IDリストを読み込み、各英魂の詳細ページからShadow DOMデータをHTMLとして保存する
      */
-    public function test_save_heirloom_detail_pages_csv(): void
+    public function test_save_soul_detail_pages_csv(): void
     {
         try {
-            // 戦器IDCSVの読み込み
-            $heirloomIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/heirlooms/id-list.csv'));
+            // 英魂IDCSVの読み込み
+            $soulIds = $this->csvManager->readCsvToArray(Storage::disk('local')->path('csv/souls/id-list.csv'));
 
-            $this->browse(function (Browser $browser) use ($heirloomIds) {
-                foreach ($heirloomIds as $heirloomId) {
+            $this->browse(function (Browser $browser) use ($soulIds) {
+                foreach ($soulIds as $soulId) {
                     try {
-                        $browser->visit("https://eiketsu-taisen.net/datalist/?v=equip&s=equip&c={$heirloomId['id']}");
+                        $browser->visit("https://eiketsu-taisen.net/datalist/?v=soul&s=soul&c={$soulId['id']}");
 
                         // サイトへの負荷軽減とスクレイピング検知回避のため、設定時間待機
                         $browser->pause(config('app.scraping.visit_site_wait_time', 2500));
@@ -39,27 +39,27 @@ class SaveHeirloomDetailPages extends DuskTestCase
                         // Shadow DOM 内の <ul class="detail"> を取得
                         $shadowHtml = $browser->script("
                             const shadowHost = document.querySelector('ekt-main');
-                            const heirloom = shadowHost?.shadowRoot?.querySelector('.detail');
-                            return heirloom ? heirloom.outerHTML : null;
+                            const soul = shadowHost?.shadowRoot?.querySelector('.detail');
+                            return soul ? soul.outerHTML : null;
                         ")[0];
 
                         if (! $shadowHtml) {
-                            $errorMessage = "戦器ID: {$heirloomId['id']} のShadow DOMデータが見つかりませんでした。";
+                            $errorMessage = "英魂ID: {$soulId['id']} のShadow DOMデータが見つかりませんでした。";
                             Log::error($errorMessage);
 
                             throw new \Exception($errorMessage);
                         }
 
-                        $directory = storage_path(config('app.scraping.output_file_path_heirloom', 'app/private/heirloom_details'));
+                        $directory = storage_path(config('app.scraping.output_file_path_soul', 'app/private/soul_details'));
                         if (! file_exists($directory)) {
                             mkdir($directory, 0755, true);
                         }
-                        $filename = "{$heirloomId['id']}.html";
+                        $filename = "{$soulId['id']}.html";
                         $filePath = $directory.DIRECTORY_SEPARATOR.$filename;
                         file_put_contents($filePath, $shadowHtml);
 
                     } catch (\Exception $e) {
-                        Log::error("戦器ID {$heirloomId['id']} の処理中にエラーが発生しました: ".$e->getMessage());
+                        Log::error("英魂ID {$soulId['id']} の処理中にエラーが発生しました: ".$e->getMessage());
                         throw $e;
                     }
                 }

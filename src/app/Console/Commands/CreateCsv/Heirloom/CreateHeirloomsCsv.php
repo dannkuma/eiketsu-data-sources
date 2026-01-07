@@ -31,7 +31,7 @@ class CreateHeirloomsCsv extends BaseHeirloomHtmlCommand
         // CSVデータの抽出
         $this->heirlooms[] = [
             $heirloomId['id'],
-            $this->extractTextWithoutRuby($crawler, '.name ruby'),
+            $this->extractTextWithoutTags($crawler, '.name ruby', 'rt'),
             $crawler->filter('.name rt')->count() ? $crawler->filter('.name rt')->text() : '',
             $crawler->filter('.rarity')->count() ? $crawler->filter('.rarity')->attr('alt') : '',
             $crawler->filter('.category')->count() ? $crawler->filter('.category')->attr('alt') : '',
