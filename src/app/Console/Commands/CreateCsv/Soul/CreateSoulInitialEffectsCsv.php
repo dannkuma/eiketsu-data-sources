@@ -33,7 +33,7 @@ class CreateSoulInitialEffectsCsv extends BaseSoulHtmlCommand
             $soulIdArray = [$soulId['id']];
             $effect = $this->extractEffectData($text);
             if ($effect !== null) {
-                $this->soulInitialEffects[] = $soulIdArray + $effect;
+                $this->soulInitialEffects[] = array_merge($soulIdArray, $effect);
             }
         });
     }

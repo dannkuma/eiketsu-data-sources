@@ -107,15 +107,17 @@ abstract class BaseSoulHtmlCommand extends Command
      */
     protected function extractEffectData(string $text): ?array
     {
-        if (! preg_match('/^([^\+\-＋－\d]+)([＋\+\-－])([\d\.]+)(.*)$/u', $text, $matches)) {
+        // 先頭から任意の文字(非貪欲マッチ) + 演算子 + 数値 + 残りの文字列(単位) という構造で抽出
+        // カテゴリ名の文字種制限を撤廃し、最初の演算子で区切るシンプルなロジックに変更
+        if (! preg_match('/^(.*?)([＋\+\-－])([\d\.]+)(.*)$/u', $text, $matches)) {
             return null;
         }
 
         return [
-            trim($matches[1]), // soul_effect_category (速度)
-            $matches[2],       // soul_effect_operator (＋)
-            $matches[3],       // soul_value (5)
-            trim($matches[4]), // soul_effect_unit (％)
+            trim($matches[1]), // soul_effect_category
+            $matches[2],       // soul_effect_operator
+            $matches[3],       // soul_value
+            trim($matches[4]), // soul_effect_unit
         ];
     }
 }
