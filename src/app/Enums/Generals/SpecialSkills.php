@@ -4,7 +4,6 @@ namespace App\Enums\Generals;
 
 enum SpecialSkills: string
 {
-    case None = 'none';           // 無特技
     case Ambush = 'ambush';         // 伏兵
     case Palisade = 'palisade';       // 防柵
     case Revival = 'revival';        // 復活
@@ -24,7 +23,6 @@ enum SpecialSkills: string
     public function label(): string
     {
         return match ($this) {
-            self::None => '無特技',
             self::Ambush => '伏兵',
             self::Palisade => '防柵',
             self::Revival => '復活',
