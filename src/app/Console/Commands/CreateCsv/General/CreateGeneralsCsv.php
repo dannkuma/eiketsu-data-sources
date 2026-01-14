@@ -27,24 +27,23 @@ class CreateGeneralsCsv extends BaseGeneralHtmlCommand
     protected array $generals = [];
 
     /**
+     * ID連番用カウンタ
+     */
+    protected int $sequenceId = 1;
+
+    /**
      * 各武将ごとの処理
      */
     protected function processGeneral(Crawler $crawler, array $generalId): void
     {
         // CSVデータの抽出
         $this->generals[] = [
-            $generalId['id'],
+            $this->sequenceId++, // 1列目: 連番ID (1からインクリメント)
+            $generalId['id'],    // 2列目: ハッシュ
             $this->extractTextWithoutTags($crawler, '.name', 'rt'),
             $crawler->filter('.name')->count() ? $crawler->filter('.name')->attr('data-ruby') : '',
             $crawler->filter('.color img')->count() ? $crawler->filter('.color img')->attr('alt') : '',
-            $crawler->filter('.appear')->count() ? (function () use ($crawler) {
-                $text = $crawler->filter('.appear')->text();
-                if (preg_match('/^([^-]+)-/', $text, $matches)) {
-                    return $matches[1];
-                }
-
-                return $text;
-            })() : '',
+            $crawler->filter('.appear')->count() ? $crawler->filter('.appear')->text() : '',
             $crawler->filter('.number')->count() ? (function () use ($crawler) {
                 $text = $crawler->filter('.number')->text();
                 // 先頭のアルファベット部分のみを抽出 (例: ST001 -> ST)
@@ -121,10 +120,11 @@ class CreateGeneralsCsv extends BaseGeneralHtmlCommand
         // ヘッダーの定義
         $headers = [
             'id',
+            'hash',
             'general_name',
             'general_name_furigana',
             'faction_color',
-            'release_est',
+            'release_set',
             'card_type',
             'rarity',
             'period',
