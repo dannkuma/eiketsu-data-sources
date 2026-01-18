@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Enums\Rarities;
 use App\Models\General\General;
 use App\Models\Heirloom\RarityHeirloomPurchaseAmount;
-use App\Models\Heirloom\RarityLevelHeirloomSaleAmount;
+use App\Models\Heirloom\RarityHeirloomSaleAmount;
 use App\Models\Heirloom\RarityLevelHeirloomUpgradingAmount;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,9 +28,9 @@ class Rarity extends Model
         return $this->hasMany(RarityHeirloomPurchaseAmount::class);
     }
 
-    public function rarityLevelHeirloomSaleAmounts(): HasMany
+    public function rarityHeirloomSaleAmounts(): HasMany
     {
-        return $this->hasMany(RarityLevelHeirloomSaleAmount::class);
+        return $this->hasMany(RarityHeirloomSaleAmount::class);
     }
 
     public function rarityLevelHeirloomUpgradingAmounts(): HasMany
