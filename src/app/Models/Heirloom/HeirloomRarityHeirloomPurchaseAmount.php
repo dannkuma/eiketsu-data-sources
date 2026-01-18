@@ -5,11 +5,10 @@ namespace App\Models\Heirloom;
 use App\Models\Rarity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class RarityHeirloomPurchaseAmount extends Model
+class HeirloomRarityHeirloomPurchaseAmount extends Model
 {
-    protected $fillable = ['rarity_id', 'heirloom_purchase_amount_id'];
+    protected $fillable = ['rarity_id', 'heirloom_purchase_amount_id', 'heirloom_id'];
 
     public function rarity(): BelongsTo
     {
@@ -21,8 +20,8 @@ class RarityHeirloomPurchaseAmount extends Model
         return $this->belongsTo(HeirloomPurchaseAmount::class);
     }
 
-    public function heirlooms(): HasMany
+    public function heirloom(): BelongsTo
     {
-        return $this->hasMany(Heirloom::class);
+        return $this->belongsTo(Heirloom::class);
     }
 }
