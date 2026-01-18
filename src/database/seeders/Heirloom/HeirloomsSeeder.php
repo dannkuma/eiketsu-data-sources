@@ -18,7 +18,7 @@ class HeirloomsSeeder extends Seeder
             HeirloomPurchaseAmountSeeder::class,
             RarityHeirloomPurchaseAmountSeeder::class,
             HeirloomSaleAmountSeeder::class,
-            RarityLevelHeirloomSaleAmountSeeder::class,
+            RarityHeirloomSaleAmountSeeder::class,
             HeirloomUpgradingAmountSeeder::class,
             RarityLevelHeirloomUpgradingAmountSeeder::class,
             HeirloomSeeder::class,
