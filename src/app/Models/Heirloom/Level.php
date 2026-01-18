@@ -16,7 +16,7 @@ class Level extends Model
 
     public function rarityLevelHeirloomUpgradingAmounts(): HasMany
     {
-        return $this->hasMany(RarityLevelHeirloomUpgradingAmount::class);
+        return $this->hasMany(HeirloomRarityLevelHeirloomUpgradingAmount::class);
     }
 
     public function heirloomUserLevels(): HasMany
