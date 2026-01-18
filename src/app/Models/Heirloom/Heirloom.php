@@ -21,19 +21,19 @@ class Heirloom extends Model
         return $this->belongsTo(HeirloomSoulClassification::class);
     }
 
-    public function rarityHeirloomPurchaseAmount(): BelongsTo
+    public function heirloomRarityHeirloomPurchaseAmount(): HasMany
     {
-        return $this->belongsTo(RarityHeirloomPurchaseAmount::class);
+        return $this->hasMany(HeirloomRarityHeirloomPurchaseAmount::class);
     }
 
-    public function rarityHeirloomSaleAmount(): BelongsTo
+    public function heirloomRarityHeirloomSaleAmount(): HasMany
     {
-        return $this->belongsTo(RarityHeirloomSaleAmount::class);
+        return $this->hasMany(HeirloomRarityHeirloomSaleAmount::class);
     }
 
-    public function rarityLevelHeirloomUpgradingAmount(): BelongsTo
+    public function heirloomRarityLevelHeirloomUpgradingAmount(): HasMany
     {
-        return $this->belongsTo(RarityLevelHeirloomUpgradingAmount::class);
+        return $this->hasMany(HeirloomRarityLevelHeirloomUpgradingAmount::class);
     }
 
     public function heirloomEffectSummaries(): HasMany
