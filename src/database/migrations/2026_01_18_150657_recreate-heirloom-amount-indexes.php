@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -71,6 +72,7 @@ return new class extends Migration
     {
         Schema::table('heirloom_rarity_level_heirloom_upgrading_amounts', function ($table) {
             // 新しいインデックス削除
+            $table->dropForeign('hrlhua_heirloom_foreign');
             $table->dropForeign('hrlhua_rarity_foreign');
             $table->dropForeign('hrlhua_level_foreign');
             $table->dropForeign('hrlhua_hua_foreign');
