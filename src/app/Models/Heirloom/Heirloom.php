@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Heirloom extends Model
 {
-    protected $fillable = ['name', 'name_furigana', 'rarity_id', 'heirloom_soul_classification_id', 'rarity_heirloom_purchase_amount_id', 'rarity_level_heirloom_sale_amount_id', 'rarity_level_heirloom_upgrading_amount_id'];
+    protected $fillable = ['name', 'name_furigana', 'rarity_id', 'heirloom_soul_classification_id', 'rarity_heirloom_purchase_amount_id', 'rarity_heirloom_sale_amount_id', 'rarity_level_heirloom_upgrading_amount_id'];
 
     public function rarity(): BelongsTo
     {
@@ -26,9 +26,9 @@ class Heirloom extends Model
         return $this->belongsTo(RarityHeirloomPurchaseAmount::class);
     }
 
-    public function rarityLevelHeirloomSaleAmount(): BelongsTo
+    public function rarityHeirloomSaleAmount(): BelongsTo
     {
-        return $this->belongsTo(RarityLevelHeirloomSaleAmount::class);
+        return $this->belongsTo(RarityHeirloomSaleAmount::class);
     }
 
     public function rarityLevelHeirloomUpgradingAmount(): BelongsTo
