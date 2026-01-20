@@ -5,7 +5,7 @@ namespace App\Enums\Heirlooms;
 enum HeirloomPurchaseAmounts: int
 {
     case Ten = 10;
-    case Hundred = 100;
+    case OneHundred = 100;
     case FiveHundred = 500;
 
     public static function values(): array
