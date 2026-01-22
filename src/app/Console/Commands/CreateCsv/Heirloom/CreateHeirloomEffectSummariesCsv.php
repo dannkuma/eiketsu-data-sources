@@ -47,7 +47,7 @@ class CreateHeirloomEffectSummariesCsv extends BaseHeirloomHtmlCommand
                 trim($crawler->filter('.sub .detail')->text()),
                 trim($crawler->filter('.system')->eq(1)->text()),
                 $crawler->filter('.sub .caption')->count() > 0 ? trim($crawler->filter('.sub .caption')->text()) : '',
-                trim($crawler->filter('.sub dl dd')->text()),
+                trim($crawler->filter('.sub dl dd')->eq(1)->text()),
                 1,
             ];
         }
