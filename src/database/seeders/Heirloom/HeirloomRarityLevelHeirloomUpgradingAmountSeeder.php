@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\Heirloom;
 
+use App\Enums\Heirlooms\HeirloomUpgradingAmounts;
 use App\Enums\Heirlooms\Levels;
 use App\Enums\Rarities;
 use App\Models\Heirloom\Heirloom;
@@ -32,11 +33,11 @@ class HeirloomRarityLevelHeirloomUpgradingAmountSeeder extends Seeder
         foreach ($heirlooms as $heirloom) {
             foreach ($levels as $level) {
                 if ($heirloom->rarity_id === $rareId && $level->id === $levelTwoId) {
-                    $heirloomUpgradingAmountValue = 100;
+                    $heirloomUpgradingAmountValue = HeirloomUpgradingAmounts::OneHundred->value;
                 } elseif ($heirloom->rarity_id === $superRareId && in_array($level->level, $levelsRange)) {
-                    $heirloomUpgradingAmountValue = 500;
+                    $heirloomUpgradingAmountValue = HeirloomUpgradingAmounts::FiveHundred->value;
                 } elseif ($heirloom->rarity_id === $superRareId && $level->id === $levelMaxId) {
-                    $heirloomUpgradingAmountValue = 3000;
+                    $heirloomUpgradingAmountValue = HeirloomUpgradingAmounts::FiveThousand->value;
                 } else {
                     continue; // 上記以外はスキップ
                 }
