@@ -13,7 +13,7 @@ enum HeirloomEffectOperators: string
         return match ($this) {
             self::Plus => '+',
             self::Minus => '-',
-            self::Circle => '◯',
+            self::Circle => '○',
         };
     }
 
