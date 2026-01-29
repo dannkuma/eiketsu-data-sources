@@ -21,9 +21,19 @@ class HeirloomRarityHeirloomPurchaseAmountSeeder extends Seeder
         $heirlooms = Heirloom::all();
         $heirloomRarityHeirloomPurchaseAmounts = [];
 
+        // レアリティのIDはループ外で取得しておく
+        $normalRarityId = Rarity::firstWhere('rarity', Rarities::N->value)->id;
+        $rareRarityId = Rarity::firstWhere('rarity', Rarities::R->value)->id;
+
         foreach ($heirlooms as $heirloom) {
             // レアリティに対応する金額を設定
-            $heirloomPurchaseAmountValue = $heirloom->rarity_id === Rarity::firstWhere('rarity', Rarities::N->value)->id ? HeirloomPurchaseAmounts::Ten->value : ($heirloom->rarity_id === Rarity::firstWhere('rarity', Rarities::R->value)->id ? HeirloomPurchaseAmounts::OneHundred->value : HeirloomPurchaseAmounts::FiveHundred->value);
+            if ($heirloom->rarity_id === $normalRarityId) {
+                $heirloomPurchaseAmountValue = HeirloomPurchaseAmounts::Ten->value;
+            } elseif ($heirloom->rarity_id === $rareRarityId) {
+                $heirloomPurchaseAmountValue = HeirloomPurchaseAmounts::OneHundred->value;
+            } else {
+                $heirloomPurchaseAmountValue = HeirloomPurchaseAmounts::FiveHundred->value;
+            }
             $heirloomRarityHeirloomPurchaseAmounts[] = [
                 'rarity_id' => $heirloom->rarity_id,
                 'heirloom_purchase_amount_id' => $heirloomPurchaseAmounts->firstWhere('heirloom_purchase_amount', $heirloomPurchaseAmountValue)->id,

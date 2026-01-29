@@ -1383,7 +1383,7 @@ class HeirloomEffectSummaryMappingSeeder extends Seeder
                 'heirloom_effect_detail_id' => 50,
                 'level_id' => 2,
             ],
-            [   // てつはう sub Level3
+            [   // 蛇矛 sub Level3
                 'heirloom_effect_summary_id' => 65,
                 'heirloom_effect_detail_id' => 50,
                 'level_id' => 3,
