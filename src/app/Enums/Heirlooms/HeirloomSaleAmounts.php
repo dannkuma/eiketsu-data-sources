@@ -4,9 +4,9 @@ namespace App\Enums\Heirlooms;
 
 enum HeirloomSaleAmounts: int
 {
-    case N = 5;
-    case R = 25;
-    case SR = 250;
+    case Five = 5;
+    case TwentyFive = 25;
+    case TwoHundredFifty = 250;
 
     public static function values(): array
     {

@@ -4,12 +4,15 @@ namespace App\Enums\Heirlooms;
 
 enum HeirloomEffectCategories: string
 {
-    case Revival = 'revival';                 // 復活減少
+    case Revival = 'revival';                 // 復活
+    case BattlefieldRevival = 'battlefield_revival';       // 戦場復活
+    case Retreat = 'retreat';                // 撤退時
     case Troop = 'troop';                   // 兵力
     case Power = 'power';                   // 武力
     case Intelligence = 'intelligence';            // 知力
     case Speed = 'speed';                   // 速度
     case Disruption = 'disruption';              // 妨害
+    case EnemySpeed = 'enemy_speed';         // 敵速度
     case Morale = 'morale';                  // 士気
     case SchoolGauge = 'school_gauge';            // 流派ゲージ
     case ReturnCastle = 'return_castle';           // 帰城
@@ -22,16 +25,20 @@ enum HeirloomEffectCategories: string
     case InstantSlash = 'instant_slash';           // 即斬撃
     case ReloadTime = 'reload_time';             // リロード時間
     case MeleeInterval = 'melee_interval';          // 乱戦間隔
+    case ContinuousRecovery = 'continuous_recovery';   // 継続回復
 
     public function label(): string
     {
         return match ($this) {
-            self::Revival => '復活減少',
+            self::Revival => '復活',
+            self::BattlefieldRevival => '戦場復活',
+            self::Retreat => '撤退時',
             self::Troop => '兵力',
             self::Power => '武力',
             self::Intelligence => '知力',
             self::Speed => '速度',
             self::Disruption => '妨害',
+            self::EnemySpeed => '敵速度',
             self::Morale => '士気',
             self::SchoolGauge => '流派ゲージ',
             self::ReturnCastle => '帰城',
@@ -44,6 +51,7 @@ enum HeirloomEffectCategories: string
             self::InstantSlash => '即斬撃',
             self::ReloadTime => 'リロード時間',
             self::MeleeInterval => '乱戦間隔',
+            self::ContinuousRecovery => '継続回復',
         };
     }
 

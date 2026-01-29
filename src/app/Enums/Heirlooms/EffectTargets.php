@@ -5,6 +5,7 @@ namespace App\Enums\Heirlooms;
 enum EffectTargets: string
 {
     case AllAllies = 'all-allies';             // 味方全部隊
+    case AllEnemies = 'all-enemies';           // 敵全部隊
     case OwnArmy = 'own-army';               // 自軍
     case AlliesWithWarHeirloom = 'allies-with-war-heirloom';   // 戦器を装備している味方
     case BattlefieldAllies = 'battlefield-allies';     // 戦場の味方
@@ -21,11 +22,12 @@ enum EffectTargets: string
     {
         return match ($this) {
             self::AllAllies => '味方全部隊',
+            self::AllEnemies => '敵全部隊',
             self::OwnArmy => '自軍',
             self::AlliesWithWarHeirloom => '戦器を装備している味方',
             self::BattlefieldAllies => '戦場の味方',
-            self::CostGte2_5Allies => 'コスト2.5以上の味方',
-            self::CostLte1_5Allies => 'コスト1.5以下の味方',
+            self::CostGte2_5Allies => 'コスト２.５以上の味方',
+            self::CostLte1_5Allies => 'コスト１.５以下の味方',
             self::LancerAllies => '槍兵の味方',
             self::ArcherAllies => '弓兵の味方',
             self::SwordsmanAllies => '剣豪の味方',

@@ -11,10 +11,10 @@ enum GetMethods: string
     case BasaraShop = 'basara-shop';     // 金剛石商店(バサラ石交換所)
     case PointShop = 'point-shop';      // ポイントショップイベント
     case StampsCampaign = 'stamps-campaign'; // 大戦スタンプキャンペーン
-    case GoodsCampaignFirst = 'goods-campaign-first'; // グッズキャンペーン第1弾
-    case GoodsCampaignSecond = 'goods-campaign-second'; // グッズキャンペーン第2弾
-    case GoodsCampaignThird = 'goods-campaign-third'; // グッズキャンペーン第3弾
-    case GoodsCampaignFourth = 'goods-campaign-fourth'; // グッズキャンペーン第4弾
+    case GoodsCampaignFirst = 'goods-campaign-first'; // スペシャルグッズキャンペーン第1弾
+    case GoodsCampaignSecond = 'goods-campaign-second'; // スペシャルグッズキャンペーン第2弾
+    case GoodsCampaignThird = 'goods-campaign-third'; // スペシャルグッズキャンペーン第3弾
+    case GoodsCampaignFourth = 'goods-campaign-fourth'; // スペシャルグッズキャンペーン第4弾
     case PreviousGamePlayPrivilege = 'previous-game-play-privilege'; // 三国志大戦プレイ特典
     case CommunityAndTwitterCampaign = 'community-and-twitter-campaign'; // 大戦組連携&Twitterフォローキャンペーン
     case LaunchCommemorationCampaign = 'launch-commemoration-campaign'; // 英傑大戦稼働記念キャンペーン

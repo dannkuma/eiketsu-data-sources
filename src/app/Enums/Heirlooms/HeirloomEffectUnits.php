@@ -12,7 +12,7 @@ enum HeirloomEffectUnits: string
     {
         return match ($this) {
             self::Second => '秒',
-            self::Percent => '%',
+            self::Percent => '％',
             self::Multiplier => '倍',
         };
     }

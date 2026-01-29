@@ -37,11 +37,11 @@ return new class extends Migration
 
             // FK再設定（明示的な名前指定のためforeign()を使用）
             $table->foreign('rarity_heirloom_purchase_amount_id', 'heirlooms_rarity_heirloom_purchase_amount_id_foreign')
-                ->references('id')->on('rarity_heirloom_purchase_amounts');
+                ->references('id')->on('heirloom_rarity_heirloom_purchase_amounts');
             $table->foreign('rarity_heirloom_sale_amount_id', 'heirlooms_rarity_heirloom_sale_amount_id_foreign')
-                ->references('id')->on('rarity_heirloom_sale_amounts');
+                ->references('id')->on('heirloom_rarity_heirloom_sale_amounts');
             $table->foreign('rarity_level_heirloom_upgrading_amount_id', 'heirlooms_rarity_level_heirloom_upgrading_amount_id_foreign')
-                ->references('id')->on('rarity_level_heirloom_upgrading_amounts');
+                ->references('id')->on('heirloom_rarity_level_heirloom_upgrading_amounts');
         });
     }
 };
