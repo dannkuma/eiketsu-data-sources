@@ -11,7 +11,7 @@ enum SoulEffectUnits: string
     {
         return match ($this) {
             self::Second => '秒',
-            self::Percent => '%',
+            self::Percent => '％',
         };
     }
 
