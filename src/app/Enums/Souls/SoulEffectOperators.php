@@ -10,7 +10,7 @@ enum SoulEffectOperators: string
     public function label(): string
     {
         return match ($this) {
-            self::Plus => '+',
+            self::Plus => '＋',
             self::Minus => '-',
         };
     }
