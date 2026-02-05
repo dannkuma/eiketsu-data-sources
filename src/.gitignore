@@ -23,6 +23,7 @@ yarn-error.log
 /.idea
 /.nova
 /.vscode
+!/.vscode/extensions.json
 /.zed/.phpunit.cache
 /node_modules
 /public/build
