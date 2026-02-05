@@ -4,3 +4,6 @@
 _ide_helper.php
 .phpstorm.meta.php
 .serena
+.DS_Store
+**/.DS_Store
+./Souls

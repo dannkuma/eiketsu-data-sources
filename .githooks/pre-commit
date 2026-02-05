@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# 実行対象のコンテナ名
+DOCKER_CONTAINER="eiketsu-data-sources-app-1"
+# コンテナ内の作業ディレクトリ
+DOCKER_WORKDIR="/workspace"
+
+# ステージされたファイルを取得（追加/コピー/変更）
+STAGED=$(git diff --cached --name-only --diff-filter=ACM || true)
+# ステージされたファイルがなければ静かに終了
+if [ -z "$STAGED" ]; then
+  exit 0
+fi
+
+# PHPファイルのみを抽出
+PHP_FILES=$(printf "%s\n" "$STAGED" | grep -E '\.php$' || true)
+# PHP ファイルが無ければ静かに終了
+if [ -z "$PHP_FILES" ]; then
+  exit 0
+fi
+
+# リモートbash用にシェルエスケープしたファイル引数リストを作成
+FILES_ESC=""
+while IFS= read -r file; do
+  [ -z "$file" ] && continue
+  # コンテナ内ではリポジトリの中身が /workspace にマウントされており
+  # ホスト側の `src/` プレフィックスが無い構成になっているため
+  # 先頭の `src/` を取り除いてコンテナ側のパスに変換する
+  container_file="${file#src/}"
+  FILES_ESC+=" $(printf '%q' "$container_file")"
+done <<< "$PHP_FILES"
+
+CMD="cd '$DOCKER_WORKDIR' && ./vendor/bin/phpstan analyse $FILES_ESC"
+
+# phpstan の出力を一時ファイルに集め、失敗時にのみ表示する
+TMP=$(mktemp)
+docker exec -i "$DOCKER_CONTAINER" bash -lc "$CMD" >"$TMP" 2>&1
+RC=$?
+if [ $RC -ne 0 ]; then
+  # Larastan/phpstan の生出力をそのまま表示
+  cat "$TMP" >&2
+  rm -f "$TMP"
+  exit $RC
+fi
+rm -f "$TMP"
+exit 0
