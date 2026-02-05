@@ -1,9 +1,14 @@
+# IDE関連
 .idea
-.vscode
+.vscode/*
+!.vscode/extensions.json
+
+# 環境変数
 .env
 _ide_helper.php
 .phpstorm.meta.php
 .serena
+
+# キャッシュ・ログ
 .DS_Store
 **/.DS_Store
-./Souls
