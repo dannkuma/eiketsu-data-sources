@@ -10,7 +10,7 @@ class TrustProxies extends Middleware
     /**
      * 信頼するプロキシのリスト
      *
-     * @var array|string|null
+     * @var array<int, string>|string|null
      */
     protected $proxies = '*'; // 全プロキシを信頼
 

@@ -3,13 +3,13 @@
 namespace App\Services;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Laravel\Cashier\Billable;
 use Laravel\Cashier\Cashier;
 
 class PaymentService
 {
-    public function checkout(Billable $user, string $stripe_price_id, string $quantity)
+    public function checkout(User $user, string $stripe_price_id, int $quantity)
     {
         $stripe_price_id = 'price_1RB33K08c06ZX1f2TPNtMQmC';
         $quantity = 1;
