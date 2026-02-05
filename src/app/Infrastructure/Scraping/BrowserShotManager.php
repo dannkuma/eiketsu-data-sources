@@ -13,7 +13,7 @@ class BrowserShotManager
     {
         // png画像として保存
         Browsershot::url($url)
-            ->setRemoteInstance('172.22.0.100', '9222')
+            ->setRemoteInstance('172.22.0.100', 9222)
             ->noSandbox()
             ->waitUntilNetworkIdle()
             ->save($outputPath);

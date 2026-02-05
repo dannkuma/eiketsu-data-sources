@@ -40,10 +40,12 @@ class CreateSoulsCsv extends BaseSoulHtmlCommand
             match ($soulRarity) {
                 Rarities::R->label() => SoulPurchaseAmounts::OneHundred->value,
                 Rarities::SR->label() => SoulPurchaseAmounts::FiveHundred->value,
+                default => '',
             },
             match ($soulRarity) {
                 Rarities::R->label() => SoulSaleAmounts::Fifty->value,
                 Rarities::SR->label() => SoulSaleAmounts::TwoHundredFifty->value,
+                default => '',
             },
         ];
     }

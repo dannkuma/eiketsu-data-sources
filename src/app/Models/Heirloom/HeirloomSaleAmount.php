@@ -14,8 +14,8 @@ class HeirloomSaleAmount extends Model
         'heirloom_sale_amount' => HeirloomSaleAmounts::class,
     ];
 
-    public function heirlooms(): HasMany
+    public function heirloomRarityHeirloomSaleAmounts(): HasMany
     {
-        return $this->hasMany(Heirloom::class);
+        return $this->hasMany(HeirloomRarityHeirloomSaleAmount::class);
     }
 }
