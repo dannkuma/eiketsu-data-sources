@@ -1,7 +1,5 @@
 # IDE関連
 .idea
-.vscode/*
-!.vscode/extensions.json
 
 # 環境変数
 .env
