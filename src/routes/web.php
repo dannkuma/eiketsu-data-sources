@@ -42,4 +42,7 @@ Route::get('/checkout', function (Request $request) {
 Route::view('/checkout/success', 'stripe.checkout-success')->name('checkout.success');
 Route::view('/checkout/cancel', 'stripe.checkout-cancel')->name('checkout.cancel');
 
+// TODO: モーダルの動作確認用ルート（本番環境では削除予定）
+Route::view('/modal', 'modal')->name('modal');
+
 require __DIR__.'/auth.php';
