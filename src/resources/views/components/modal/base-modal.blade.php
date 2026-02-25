@@ -1,5 +1,5 @@
 @props([
-    'name' => 'base-modal',
+    'name' => config('modal.names.base', 'base-modal'),
 ])
 
 <div x-data="{ isOpen: false }" x-on:open-modal.window="if ($event.detail === '{{ $name }}') isOpen = true"
