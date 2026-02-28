@@ -16,6 +16,11 @@ parameters:
         -
             message: '#Undefined variable: \$this#'
             path: tests/*
+        
+        # Pestのテストコード内で呼び出される Laravel固有のメソッド ($this->get() や $this->actingAs() など) を許容する
+        -
+            message: '#Call to an undefined method PHPUnit\\Framework\\TestCase::.*#'
+            path: tests/*
 #
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php
