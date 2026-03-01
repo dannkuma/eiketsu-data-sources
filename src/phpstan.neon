@@ -16,10 +16,15 @@ parameters:
         -
             message: '#Undefined variable: \$this#'
             path: tests/*
-        
+
         # Pestのテストコード内で呼び出される Laravel固有のメソッド ($this->get() や $this->actingAs() など) を許容する
         -
             message: '#Call to an undefined method PHPUnit\\Framework\\TestCase::.*#'
+            path: tests/*
+
+        # Mockery の expectation に対するメソッド呼び出しエラーを許容する
+        -
+            message: '#Call to an undefined method Mockery\\ExpectationInterface\|Mockery\\HigherOrderMessage::.*#'
             path: tests/*
 #
 #    excludePaths:
