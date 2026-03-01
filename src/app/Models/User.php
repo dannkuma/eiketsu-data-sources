@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+// TODO: ログイン機能実装時にMustVerifyEmailの利用を検討する
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\General\General;
 use App\Models\Heirloom\HeirloomUserLevel;
