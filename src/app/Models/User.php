@@ -26,8 +26,18 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'login_id',
         'password',
+        'balance',
+        'heirloom_effect_fixed_ticket',
+        'email',
+        'email_verified_at',
+        'remember_token',
+        'stripe_id',
+        'pm_type',
+        'pm_last_four',
+        'trial_ends_at',
+        'is_admin',
     ];
 
     /**
