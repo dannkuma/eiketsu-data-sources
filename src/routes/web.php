@@ -1,7 +1,8 @@
 <?php
 
+use App\Enums\StripePricePlans;
 use App\Http\Controllers\ProfileController;
-use App\Models\User;
+use App\Infrastructure\Cashier\CashierManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,21 +22,7 @@ Route::middleware('auth')->group(function () {
 
 // TODO: Stripe動作確認用のルート（本番環境では削除予定）
 Route::get('/checkout', function (Request $request) {
-    $stripe_price_id = config('app.stripe.price_id_one_hundred');
-    $quantity = 1;
-    $user = $request->user(); // Use the currently logged-in user
-
-    return $user->checkout(
-        [$stripe_price_id => $quantity],
-        [
-            'success_url' => route('checkout.success').'?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.cancel'),
-            'metadata' => [
-                'user_id' => $user->id, // Ensure user_id is from the logged-in user
-                'stripe_price_id' => $stripe_price_id,
-            ],
-        ]
-    );
+    return (new CashierManager)->initiateChargeBalance(1, StripePricePlans::ONE_HUNDRED);
 })->name('checkout');
 
 // TODO: Stripe動作確認用のルート（本番環境では削除予定）

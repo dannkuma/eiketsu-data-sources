@@ -18,4 +18,32 @@ class Order extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * ordersテーブルに注文情報を保存する
+     *
+     * @param  string  $userId  ユーザーID
+     * @param  string  $productId  商品ID
+     * @param  string  $stripeEventId  StripeのイベントID
+     * @return Order 保存されたOrderインスタンス
+     */
+    public static function createOrder(string $userId, string $productId, string $stripeEventId): Order
+    {
+        return self::create([
+            'user_id' => $userId,
+            'product_id' => $productId,
+            'stripe_event_id' => $stripeEventId,
+        ]);
+    }
+
+    /**
+     * 引数で受け取ったイベントIDを持つ注文の存在チェック
+     *
+     * @param  string  $stripeEventId  StripeのイベントID
+     * @return bool 存在する場合はtrue、存在しない場合はfalse
+     */
+    public static function existsByStripeEventId(string $stripeEventId): bool
+    {
+        return self::where('stripe_event_id', $stripeEventId)->exists();
+    }
 }

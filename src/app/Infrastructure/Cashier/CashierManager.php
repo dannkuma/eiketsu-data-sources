@@ -4,6 +4,7 @@ namespace App\Infrastructure\Cashier;
 
 use App\Contracts\Infrastructure\PaymentInterface;
 use App\Enums\StripePricePlans;
+use App\Models\Price;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,17 +19,20 @@ class CashierManager implements PaymentInterface
     public function initiateChargeBalance(int $quantity, StripePricePlans $plan): Responsable
     {
         // 価格識別子から価格IDを取得
-        $priceId = $plan->getPriceId();
+        $stripePriceId = $plan->getPriceId();
+        // 価格IDから商品IDを取得
+        $productId = Price::findPriceAndProductByStripePriceId($stripePriceId)?->products?->first()?->id;
 
         // 現在ログインしているユーザーのチェックアウトセッションを作成して返す
         return Auth::user()->checkout(
-            [$priceId => $quantity],
+            [$stripePriceId => $quantity],
             [
                 'success_url' => route('checkout.success').'?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => route('checkout.cancel'),
                 'metadata' => [
                     'user_id' => Auth::id(),
-                    'stripe_price_id' => $priceId,
+                    'product_id' => $productId,
+                    'stripe_price_id' => $stripePriceId,
                 ],
             ]
         );
