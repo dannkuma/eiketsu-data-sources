@@ -21,7 +21,10 @@ ARG GID=1000
 # Composerをマルチステージビルドでインストール
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
-# hadolint ignore=DL3008
+# ==============================================================================
+# 1. 基本パッケージとPHP拡張モジュールのインストール
+# (ビルドの中で一番重いため、独立させてキャッシュを効かせる)
+# ==============================================================================
 RUN <<EOF
   apt-get update
   apt-get -y install --no-install-recommends \
@@ -43,25 +46,46 @@ RUN <<EOF
     pdo_mysql \
     zip \
     bcmath
-  # install memcached extension
   pecl install memcached
   docker-php-ext-enable memcached
-  #install nodejs
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+EOF
+
+# ==============================================================================
+# 2. Node.js のインストール
+# ==============================================================================
+RUN <<EOF
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-  apt-get install -y nodejs
+  apt-get install -y nodejs --no-install-recommends
   corepack enable
-  # install puppeteer
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+EOF
+
+# ==============================================================================
+# 3. Puppeteer 用の依存ライブラリ（ブラウザ関連）のインストール
+# ==============================================================================
+RUN <<EOF
+  apt-get update
   apt-get -y install \
-  libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 \
-  libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 \
-  libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
-  libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 \
-  libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 \
-  libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
-  ca-certificates fonts-liberation lsb-release xdg-utils wget \
-  nodejs gconf-service libappindicator1 libgbm-dev libxshmfence-dev \
-  --no-install-recommends && rm -rf /var/lib/apt/lists/*
-  # permission denied bind mount in Linux environment
+    libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 \
+    libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 \
+    libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
+    libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 \
+    libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 \
+    libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
+    fonts-liberation lsb-release xdg-utils wget \
+    gconf-service libappindicator1 libgbm-dev libxshmfence-dev \
+    --no-install-recommends
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+EOF
+
+# ==============================================================================
+# 4. phper ユーザーの作成と権限設定
+# ==============================================================================
+RUN <<EOF
   groupadd --gid $GID phper
   useradd --uid $UID --gid $GID phper
   mkdir /composer
@@ -70,10 +94,6 @@ RUN <<EOF
   chown phper:phper /composer
   chown phper:phper /workspace
   chown -R phper:phper /home/phper
-  chown phper:phper /home/phper/.config/psysh
-  chown -R phper:phper /home/phper/.npm
-  apt-get clean
-  rm -rf /var/lib/apt/lists/*
 EOF
 
 # Puppeteer をグローバルにインストールし、Chromium もダウンロード
