@@ -56,6 +56,8 @@ class OrderWebhookService
                 $customer->balance += $price->price;
                 $customer->save();
             });
+
+            return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             $code = Payments::FAILED_TO_UPDATE_BALANCE;
             $message = $code->getMessage();
