@@ -28,6 +28,8 @@ RUN <<EOF
     locales \
     git \
     unzip \
+    curl \
+    ca-certificates \
     libzip-dev \
     libicu-dev \
     libonig-dev \
@@ -67,6 +69,7 @@ RUN <<EOF
   mkdir -p /home/phper/.npm
   chown phper:phper /composer
   chown phper:phper /workspace
+  chown -R phper:phper /home/phper
   chown phper:phper /home/phper/.config/psysh
   chown -R phper:phper /home/phper/.npm
   apt-get clean
@@ -93,6 +96,7 @@ RUN <<EOF
   docker-php-ext-enable xdebug
 EOF
 
+COPY ./infra/docker/php/php.development.ini /usr/local/etc/php/php.ini
 COPY ./infra/docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 USER phper
