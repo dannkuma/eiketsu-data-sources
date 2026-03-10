@@ -4,11 +4,21 @@ namespace Tests\Unit\Infrastructure\Cashier;
 
 use App\Enums\StripePricePlans;
 use App\Infrastructure\Cashier\CashierManager;
+use App\Models\Price;
 use App\Models\User;
+use Database\Seeders\PriceSeeder;
+use Database\Seeders\ProductSeeder;
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Mockery;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    $this->seed(PriceSeeder::class);
+    $this->seed(ProductSeeder::class);
+});
 
 test('initiateChargeBalance を呼び出すと、ユーザーの checkout メソッドが正しい引数で実行される', function () {
     // 1. 準備 (Arrange)
@@ -16,9 +26,9 @@ test('initiateChargeBalance を呼び出すと、ユーザーの checkout メソ
     $quantity = 3;
     $plan = StripePricePlans::ONE_HUNDRED;
 
-    // config を設定して Enum の getPriceId() が返す値を固定する
-    $expectedPriceId = 'price_test_123';
-    Config::set('app.stripe.price_id_one_hundred', $expectedPriceId);
+    // Seederで投入されたデータから正しい商品IDと価格IDを取得する
+    $expectedPriceId = $plan->getPriceId();
+    $productId = Price::findPriceAndProductByStripePriceId($expectedPriceId)?->products?->first()?->id;
 
     // 返り値となる Responsable モックを用意
     $responsableMock = Mockery::mock(Responsable::class);
@@ -34,7 +44,7 @@ test('initiateChargeBalance を呼び出すと、ユーザーの checkout メソ
                 'cancel_url' => route('checkout.cancel'),
                 'metadata' => [
                     'user_id' => $userId,
-                    'product_id' => null, // テストDBに商品が存在しないため常にNullになる
+                    'product_id' => $productId, // Seederから取得した実DB上のproduct_id
                     'stripe_price_id' => $expectedPriceId,
                 ],
             ] // 引数2: Stripeのオプション引数

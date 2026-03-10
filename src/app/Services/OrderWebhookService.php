@@ -9,6 +9,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderWebhookService
 {
@@ -24,7 +25,7 @@ class OrderWebhookService
             // すでに同じイベントIDの注文が存在する場合はLogに警告を記録して終了
             $code = Payments::DUPLICATE_ORDER;
             $message = $code->getMessage();
-            \Log::error($code->value.': '.$message." Stripe Event ID: {$payload['id']}");
+            Log::error($code->value.': '.$message." Stripe Event ID: {$payload['id']}");
 
             // Webhookのリトライ防止のため、成功レスポンスを返す
             return response()->json(['message' => $message], 200);
@@ -38,7 +39,7 @@ class OrderWebhookService
             // 価格が見つからない場合はLogにエラーを記録して終了
             $code = Payments::PRICE_NOT_FOUND;
             $message = $code->getMessage();
-            \Log::error($code->value.': '.$message." Stripe Price ID: {$priceId}");
+            Log::error($code->value.': '.$message." Stripe Price ID: {$priceId}");
 
             return response()->json(['error' => $message], 500);
         }
@@ -56,13 +57,11 @@ class OrderWebhookService
                 $customer->balance += $price->price;
                 $customer->save();
             });
-
-            return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             $code = Payments::FAILED_TO_UPDATE_BALANCE;
             $message = $code->getMessage();
-            \Log::error($code->value.': '.$message." Stripe Price ID: {$priceId}");
-            \Log::error($code->value.': '.$message." message: {$e->getMessage()}");
+            Log::error($code->value.': '.$message." Stripe Price ID: {$priceId}");
+            Log::error($code->value.': '.$message." message: {$e->getMessage()}");
 
             return response()->json(['error' => $message], 500);
 
