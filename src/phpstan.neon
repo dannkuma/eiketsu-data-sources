@@ -7,20 +7,8 @@ parameters:
     paths:
         - app/
         - routes/
+    excludePaths:
+        - tests/*
 
     # Level 10 is the highest level
     level: 5
-
-    ignoreErrors:
-        # Pest.php などのテスト環境内で発生する「クロージャ内の$this未定義エラー」を許容する
-        -
-            message: '#Undefined variable: \$this#'
-            path: tests/*
-        
-        # Pestのテストコード内で呼び出される Laravel固有のメソッド ($this->get() や $this->actingAs() など) を許容する
-        -
-            message: '#Call to an undefined method PHPUnit\\Framework\\TestCase::.*#'
-            path: tests/*
-#
-#    excludePaths:
-#        - ./*/*/FileToBeExcluded.php

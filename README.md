@@ -21,6 +21,8 @@
     - [自動実行 (Git Hook)](#自動実行-git-hook)
     - [手動実行](#手動実行-1)
   - [開発用サーバの起動 (Tailwind CSS)](#開発用サーバの起動-tailwind-css)
+  - [実装関連](#実装関連)
+    - [外部サービスの利用方法](#外部サービスの利用方法)
 - [スクレイピング手順](#スクレイピング手順)
   - [武将データの取得](#武将データの取得)
   - [戦器データの取得](#戦器データの取得)
@@ -116,7 +118,12 @@ docker exec -it eiketsu-data-sources-app-1 ./vendor/bin/phpstan analyse
 docker compose exec -d app npm run dev
 ```
 
----
+### 実装関連
+
+#### 外部サービスの利用方法
+LeagueCsvやCashier(Stripe)などの外部ライブラリはsrc/app/Infrastructureレイヤーを設け、
+その中に定義したManagerをControllerから呼び出す構成となっています。
+追加で外部ライブラリを利用する際は、上記構成に従ってください。
 
 <a id="スクレイピング手順"></a>
 
