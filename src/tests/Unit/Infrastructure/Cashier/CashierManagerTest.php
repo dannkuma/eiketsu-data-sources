@@ -34,6 +34,7 @@ test('initiateChargeBalance を呼び出すと、ユーザーの checkout メソ
                 'cancel_url' => route('checkout.cancel'),
                 'metadata' => [
                     'user_id' => $userId,
+                    'product_id' => null, // テストDBに商品が存在しないため常にNullになる
                     'stripe_price_id' => $expectedPriceId,
                 ],
             ] // 引数2: Stripeのオプション引数
