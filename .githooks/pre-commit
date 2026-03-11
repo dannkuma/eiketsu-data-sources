@@ -37,6 +37,12 @@ TMP=$(mktemp)
 docker exec -i "$DOCKER_CONTAINER" bash -lc "$CMD" >"$TMP" 2>&1
 RC=$?
 if [ $RC -ne 0 ]; then
+  # 解析対象のファイルがない場合は正常終了とする
+  if grep -q "No files found to analyse." "$TMP"; then
+    rm -f "$TMP"
+    exit 0
+  fi
+
   # Larastan/phpstan の生出力をそのまま表示
   cat "$TMP" >&2
   rm -f "$TMP"
