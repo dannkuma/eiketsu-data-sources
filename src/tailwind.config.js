@@ -14,8 +14,21 @@ export default {
 
     theme: {
         extend: {
+            colors: {
+                "brand-dark": "#423D3D",
+                "brand-yamabuki": "#F3CB17",
+                "brand-orange": "#DA7940",
+                "brand-brown": "#A14B19",
+            },
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                mincho: [
+                    "Zen Old Mincho",
+                    "Hiragino Mincho ProN",
+                    ...defaultTheme.fontFamily.serif,
+                ],
+                sans: [
+                    ...defaultTheme.fontFamily.sans,
+                ],
             },
         },
     },
