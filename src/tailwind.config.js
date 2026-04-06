@@ -15,10 +15,19 @@ export default {
     theme: {
         extend: {
             colors: {
+                "brand-base-back": "#D0D0D0",
                 "brand-dark": "#423D3D",
                 "brand-yamabuki": "#F3CB17",
                 "brand-orange": "#DA7940",
                 "brand-brown": "#A14B19",
+                "brand-action-light": "#C44E5C",
+                "brand-action-dark": "#B52C3A",
+                "brand-cancel-light": "#426CB0",
+                "brand-cancel-dark": "#1D4A96",
+                "brand-success-light": "#9CD669",
+                "brand-success-dark": "#109552",
+                "brand-logout-light": "#99918F",
+                "brand-logout-dark": "#34292A",
             },
             fontFamily: {
                 mincho: [
@@ -26,9 +35,7 @@ export default {
                     "Hiragino Mincho ProN",
                     ...defaultTheme.fontFamily.serif,
                 ],
-                sans: [
-                    ...defaultTheme.fontFamily.sans,
-                ],
+                sans: [...defaultTheme.fontFamily.sans],
             },
         },
     },
