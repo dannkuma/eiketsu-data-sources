@@ -5,7 +5,7 @@ namespace App\Enums\Generals;
 enum ReleaseSets: string
 {
     case D1_1 = 'd1-1';
-    case D1_1_B = 'd1-2';
+    case D1_2 = 'd1-2';
     case D1_EX = 'd1-ex';
     case D1_PL = 'd1-pl';
     case D1_ST = 'd1-st';
@@ -34,7 +34,7 @@ enum ReleaseSets: string
     {
         return match ($this) {
             self::D1_1 => '第1弾-1',
-            self::D1_1_B => '第1弾-2',
+            self::D1_2 => '第1弾-2',
             self::D1_EX => '第1弾-EX',
             self::D1_PL => '第1弾-PL',
             self::D1_ST => '第1弾-ST',
@@ -64,5 +64,70 @@ enum ReleaseSets: string
     public static function values(): array
     {
         return array_column(self::cases(), 'value');
+    }
+
+    /**
+     * 第1弾 (D1) で始まり、末尾が半角数字のケースのみを取得する
+     * (例: D1_1, D1_2 は含むが、D1_EX, D1_PL などは除外する)
+     *
+     * @return self[]
+     */
+    public static function getD1NormalCases(): array
+    {
+        return array_filter(self::cases(), function (self $case) {
+            return str_starts_with($case->name, 'D1') && preg_match('/[0-9]$/', $case->name);
+        });
+    }
+
+    /**
+     * 第2弾 (D2) で始まり、末尾が半角数字のケースのみを取得する
+     * (例: D2_1, D2_2 は含むが、D2_EX, D2_PL などは除外する)
+     *
+     * @return self[]
+     */
+    public static function getD2NormalCases(): array
+    {
+        return array_filter(self::cases(), function (self $case) {
+            return str_starts_with($case->name, 'D2') && preg_match('/[0-9]$/', $case->name);
+        });
+    }
+
+    /**
+     * 第3弾 (D3) で始まり、末尾が半角数字のケースのみを取得する
+     * (例: D3_1, D3_2 は含むが、D3_EX, D3_PL などは除外する)
+     *
+     * @return self[]
+     */
+    public static function getD3NormalCases(): array
+    {
+        return array_filter(self::cases(), function (self $case) {
+            return str_starts_with($case->name, 'D3') && preg_match('/[0-9]$/', $case->name);
+        });
+    }
+
+    /**
+     * 第4弾 (D4) で始まり、末尾が半角数字のケースのみを取得する
+     * (例: D4_1, D4_2 は含むが、D4_EX, D4_PL などは除外する)
+     *
+     * @return self[]
+     */
+    public static function getD4NormalCases(): array
+    {
+        return array_filter(self::cases(), function (self $case) {
+            return str_starts_with($case->name, 'D4') && preg_match('/[0-9]$/', $case->name);
+        });
+    }
+
+    /**
+     * 第5弾 (D5) で始まり、末尾が半角数字のケースのみを取得する
+     * (例: D5_1, D5_2 は含むが、D5_EX, D5_PL などは除外する)
+     *
+     * @return self[]
+     */
+    public static function getD5NormalCases(): array
+    {
+        return array_filter(self::cases(), function (self $case) {
+            return str_starts_with($case->name, 'D5') && preg_match('/[0-9]$/', $case->name);
+        });
     }
 }

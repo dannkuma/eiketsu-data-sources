@@ -7,3 +7,9 @@
         @apply font-mincho;
     }
 }
+
+@layer components {
+    .btn-pushable {
+        @apply shadow-[0.125rem_0.125rem_0_0_rgba(0,0,0,0.18)] hover:brightness-105 active:translate-x-[0.125rem] active:translate-y-[0.125rem] active:brightness-95 active:shadow-none;
+    }
+}

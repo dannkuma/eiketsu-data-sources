@@ -6,22 +6,22 @@
     </div>
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-28">
+        <div class="grid grid-cols-3 items-center h-20">
             <!-- Logo -->
-            <div class="shrink-0 flex items-center">
+            <div class="shrink-0 flex items-center justify-start">
                 <a href="{{ route('dashboard') }}">
-                    <x-application-logo class="block h-24 w-auto object-contain fill-current text-gray-800" />
+                    <x-application-logo class="block h-20 w-auto object-contain fill-current text-gray-800" />
                 </a>
             </div>
 
             <!-- Title -->
-            <div class="h-full flex items-center">
-                <h1 class="text-4xl font-bold text-white">データリスト</h1>
+            <div class="h-full flex items-center justify-center">
+                <h1 class="text-2xl font-bold text-white">データリスト</h1>
             </div>
 
             <!-- Hamburger Box -->
-            <div :style="open ? 'transform: translateX(-19rem)' : ''"
-                class="flex items-center h-4/5 aspect-square bg-white rounded-md shadow-sm transition-transform duration-300 z-50">
+            <div :style="open ? 'transform: translateX(-3rem)' : ''"
+                class="justify-self-end flex items-center h-3/5 aspect-square bg-white rounded-md shadow-sm transition-transform duration-300 z-50">
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center w-full rounded-md text-black focus:outline-none">
                     <div class="flex flex-col items-center w-full">

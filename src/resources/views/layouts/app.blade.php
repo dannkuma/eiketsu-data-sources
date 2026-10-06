@@ -15,8 +15,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased bg-brand-base-back text-xl">
-    <div class="min-h-screen bg-gray-100 mx-20">
+<body class="relative min-w-[50rem] bg-brand-base-back">
+    <div class="mx-auto min-h-screen w-[50rem] bg-gray-100">
         <x-header />
 
         <!-- Page Content -->
@@ -24,6 +24,7 @@
             {{ $slot }}
         </main>
     </div>
+    @stack('scripts')
 </body>
 
 </html>
