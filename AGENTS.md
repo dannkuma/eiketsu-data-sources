@@ -56,12 +56,15 @@
 正確なバージョンや依存関係については、
 このファイルではなく以下の実ファイルを正としてください。
 
-- `composer.json`
-- `composer.lock`
-- `package.json`
-- `package-lock.json`
+- `src/composer.json`
+- `src/composer.lock`
+- `src/package.json`
+- `src/package-lock.json`
 - `compose.yaml`
-- `Dockerfile`
+- `infra/docker/php/Dockerfile`
+- `infra/docker/nginx/Dockerfile`
+- `infra/docker/mysql/Dockerfile`
+- `infra/docker/memcached/Dockerfile`
 
 記載内容と実際の設定が異なる場合は、
 実際の設定ファイルを優先してください。
@@ -136,20 +139,27 @@ Controller は HTTP リクエスト・レスポンスの調整を主な責務と
 
 変更内容に対応するテストが存在する場合は実行してください。
 
+以下のコマンドは、Docker Compose の `app` コンテナが起動した状態で、
+リポジトリルートから実行してください。
+ホスト側の `src/` はコンテナ内の `/workspace` にマウントされているため、
+コマンドに渡すファイルパスには `src/` を付けないでください。
+
 PHPUnit / Laravel のテスト:
 
-    php artisan test
+    docker compose exec -T app php artisan test
 
 コードフォーマット:
 
-    ./vendor/bin/pint
+    docker compose exec -T app ./vendor/bin/pint
 
 静的解析:
 
-    ./vendor/bin/phpstan analyse
+    docker compose exec -T app ./vendor/bin/phpstan analyse
 
 ブラウザ操作を伴う機能については、
 必要に応じて Laravel Dusk を使用してください。
+
+    docker compose exec -T app php artisan dusk
 
 テストを通すためだけに既存テストの期待値を変更しないでください。
 
