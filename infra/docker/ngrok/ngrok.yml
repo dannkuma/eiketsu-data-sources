@@ -1,5 +1,5 @@
 version: "2"
-authtoken: "2z2oQ4YVkQz1vLXgGxibPF0vGv2_7z81io8sLVoksh2RYAgTU"
+authtoken:
 tunnels:
   nginx:
     proto: http
