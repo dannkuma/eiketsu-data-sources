@@ -186,7 +186,7 @@
                                 <select name="power_min" class="w-full text-xl py-0">
                                     @foreach (App\Enums\Generals\Powers::cases() as $power)
                                         <option value="{{ $power->value }}" @selected(request('power_min') == $power->value)>
-                                            {{ $power }}</option>
+                                            {{ $power->value }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -230,7 +230,7 @@
                                 <select name="intelligence_max" class="w-full text-xl py-0">
                                     @foreach (App\Enums\Generals\Intelligences::cases() as $intelligence)
                                         <option value="{{ $intelligence->value }}" @selected(request('intelligence_max', 12) == $intelligence->value)>
-                                            {{ $intelligence }}</option>
+                                            {{ $intelligence->value }}</option>
                                     @endforeach
                                 </select>
                             </div>
