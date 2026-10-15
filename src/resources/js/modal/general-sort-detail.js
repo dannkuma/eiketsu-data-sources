@@ -7,11 +7,13 @@ form.onsubmit = (event) => {
         (record, index) => {
             const sortCondId = record.dataset.sortCondId;
             const sortCondOrder = index + 1;
-            const sortCondCategoryAndDirection = sortCondId.split("_");
+            const separatorIndex = sortCondId.lastIndexOf("_");
+            const sortCondCategory = sortCondId.slice(0, separatorIndex);
+            const sortCondDirection = sortCondId.slice(separatorIndex + 1);
             return [
                 {
                     name: `sort_conditions[${index}][id]`,
-                    value: sortCondCategoryAndDirection[0],
+                    value: sortCondCategory,
                 },
                 {
                     name: `sort_conditions[${index}][order]`,
@@ -19,7 +21,7 @@ form.onsubmit = (event) => {
                 },
                 {
                     name: `sort_conditions[${index}][direction]`,
-                    value: sortCondCategoryAndDirection[1],
+                    value: sortCondDirection,
                 },
             ];
         },
@@ -145,10 +147,10 @@ function setSortCond(button) {
         );
     }
     descButton.innerHTML = "&#9660;";
-    descButton.setAttribute("onclick", `changeCondAsc(this)`);
+    descButton.setAttribute("onclick", `changeCondDesc(this)`);
     descButton.type = "button";
     ascButton.innerHTML = "&#9650;";
-    ascButton.setAttribute("onclick", `changeCondDesc(this)`);
+    ascButton.setAttribute("onclick", `changeCondAsc(this)`);
     ascButton.type = "button";
 
     const moveArea = document.createElement("div");
@@ -217,9 +219,11 @@ function setSortCond(button) {
     redrawSortCondMoveButtons();
 }
 
-/** ソート条件を降順に切り替える **/
-function changeCondDesc(button) {
-    descButton = button.previousElementSibling;
+/** ソート条件を昇順に切り替える **/
+function changeCondAsc(button) {
+    const record = button.closest(".sort-cond-record");
+    record.dataset.sortCondId = record.dataset.sortCondId.replace(/_(asc|desc)$/, "_asc");
+    const descButton = button.previousElementSibling;
     descButton.classList.remove(
         "pointer-events-none",
         "bg-brand-sort-detail-button-selected",
@@ -232,9 +236,11 @@ function changeCondDesc(button) {
     );
 }
 
-/** ソート条件を昇順に切り替える **/
-function changeCondAsc(button) {
-    ascButton = button.nextElementSibling;
+/** ソート条件を降順に切り替える **/
+function changeCondDesc(button) {
+    const record = button.closest(".sort-cond-record");
+    record.dataset.sortCondId = record.dataset.sortCondId.replace(/_(asc|desc)$/, "_desc");
+    const ascButton = button.nextElementSibling;
     ascButton.classList.remove(
         "pointer-events-none",
         "bg-brand-sort-detail-button-selected",
@@ -249,8 +255,8 @@ function changeCondAsc(button) {
 
 /** ソート条件レコードを1つ上に移動する **/
 function upSortCond(button) {
-    sortCondRecord = button.closest(".sort-cond-record");
-    previousRecord = sortCondRecord.previousElementSibling;
+    const sortCondRecord = button.closest(".sort-cond-record");
+    const previousRecord = sortCondRecord.previousElementSibling;
     if (previousRecord) {
         sortCondRecord.parentNode.insertBefore(sortCondRecord, previousRecord);
         renumberingSortCond();
@@ -260,8 +266,8 @@ function upSortCond(button) {
 
 /** ソート条件レコードを1つ下に移動する **/
 function downSortCond(button) {
-    sortCondRecord = button.closest(".sort-cond-record");
-    nextRecord = sortCondRecord.nextElementSibling;
+    const sortCondRecord = button.closest(".sort-cond-record");
+    const nextRecord = sortCondRecord.nextElementSibling;
     if (nextRecord) {
         sortCondRecord.parentNode.insertBefore(nextRecord, sortCondRecord);
         renumberingSortCond();
