@@ -23,21 +23,21 @@ enum SpecialSkills: string
     public function label(): string
     {
         return match ($this) {
-            self::Ambush => '伏兵',
-            self::Palisade => '防柵',
-            self::Revival => '復活',
+            self::Ambush => '伏',
+            self::Palisade => '防',
+            self::Revival => '活',
             self::Shinobi => '忍',
-            self::Spirit => '気合',
-            self::Snipe => '狙撃',
-            self::Exaltation => '昂揚',
-            self::Technique => '技巧',
-            self::Vanguard => '先陣',
+            self::Spirit => '気',
+            self::Snipe => '狙',
+            self::Exaltation => '昂',
+            self::Technique => '技',
+            self::Vanguard => '先',
             self::Oni => '鬼',
-            self::Dash => '疾駆',
-            self::HeavyTroops => '大兵',
-            self::Alliance => '同盟',
-            self::SpearTechnique => '槍術',
-            self::Oushi => '黄熾',
+            self::Dash => '疾',
+            self::HeavyTroops => '大',
+            self::Alliance => '盟',
+            self::SpearTechnique => '槍',
+            self::Oushi => '黄',
         };
     }
 
