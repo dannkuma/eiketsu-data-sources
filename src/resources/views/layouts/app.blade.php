@@ -17,7 +17,13 @@
 
 <body class="relative min-w-[50rem] bg-brand-base-back">
     <div class="mx-auto min-h-screen w-[50rem] bg-gray-100">
-        <x-header />
+        <x-header>
+            @isset($header)
+                <x-slot name="header">
+                    {{ $header }}
+                </x-slot>
+            @endisset
+        </x-header>
 
         <!-- Page Content -->
         <main>

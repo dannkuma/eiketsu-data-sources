@@ -16,7 +16,11 @@
 
             <!-- Title -->
             <div class="h-full flex items-center justify-center">
-                <h1 class="text-2xl font-bold text-white">データリスト</h1>
+                @isset($header)
+                    {{ $header }}
+                @else
+                    <h1 class="text-2xl font-bold text-white">データリスト</h1>
+                @endisset
             </div>
 
             <!-- Hamburger Box -->
