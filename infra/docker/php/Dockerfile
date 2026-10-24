@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-bullseye AS base
+FROM php:8.3.36-fpm-bookworm AS base
 
 WORKDIR /workspace
 
@@ -6,12 +6,12 @@ WORKDIR /workspace
 # システムロケール等を設定
 # Laravel側のロケールは別途設定するので影響なし
 ENV TZ=UTC \
-  # locale
-  LANG=en_US.UTF-8 \
-  LANGUAGE=en_US:en \
-  LC_ALL=en_US.UTF-8 \
-  # composer environment
-  COMPOSER_HOME=/composer
+    # locale
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8 \
+    # composer environment
+    COMPOSER_HOME=/composer
 
 # 開発時のホストとクライアントのUID/GIDを指定
 # これにより、ホスト側のファイルシステムへのアクセス権を適切に設定
@@ -56,10 +56,15 @@ EOF
 # 2. Node.js のインストール
 # ==============================================================================
 RUN <<EOF
-  curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+  set -eu
+  curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
+  bash /tmp/nodesource_setup.sh
   apt-get install -y nodejs --no-install-recommends
+  node --version
+  npm --version
   corepack enable
   apt-get clean
+  rm /tmp/nodesource_setup.sh
   rm -rf /var/lib/apt/lists/*
 EOF
 
