@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\TrustProxies;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,10 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         // TODO: 本番では不要(ngrokリバースプロキシ用)
-        $middleware->append(\App\Http\Middleware\TrustProxies::class);
+        $middleware->append(TrustProxies::class);
 
         // webhookのCSRFトークン検証をスキップ
-        $middleware->validateCsrfTokens(except: [
+        $middleware->preventRequestForgery(except: [
             'stripe/*',
             'webhook/stripe',
         ]);

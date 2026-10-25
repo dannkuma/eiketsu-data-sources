@@ -32,7 +32,7 @@ return new class extends Migration
         // 計略名フリガナIDにNULLが残っていないかチェックする
         $nullForeignKeyCount = DB::table('generals')->whereNull('strategy_name_furigana_id')->count();
         if ($nullForeignKeyCount > 0) {
-            throw new \Exception("ロールバックできません: 'generals' テーブルに 'strategy_name_furigana_id' が NULL のレコードが {$nullForeignKeyCount} 件存在します。ロールバックする前に、これらのレコードを有効なIDに手動で紐付けてください。");
+            throw new Exception("ロールバックできません: 'generals' テーブルに 'strategy_name_furigana_id' が NULL のレコードが {$nullForeignKeyCount} 件存在します。ロールバックする前に、これらのレコードを有効なIDに手動で紐付けてください。");
         }
 
         // 文字列カラムのNULLを空文字に更新する
