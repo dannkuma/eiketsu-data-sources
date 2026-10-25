@@ -68,6 +68,7 @@
 4.  `.env.example` をコピーして `.env` を作成
 5.  `docker compose exec app composer install`
 6.  `docker compose exec app npm install`
+    - 続けて `docker compose exec -T app npm run build` を実行し、ローカル用のアセットを生成してください。
 7.  `docker compose exec app php artisan key:generate`
 8.  `docker compose exec app php artisan storage:link`
 9.  `docker compose exec app chmod -R 777 storage bootstrap/cache`
@@ -114,9 +115,25 @@ docker exec -it eiketsu-data-sources-app-1 ./vendor/bin/phpstan analyse
 
 ### 開発用サーバの起動 (Tailwind CSS)
 
+CSS・JavaScript を変更しながら開発する場合は、コンテナ起動後に以下を実行してください。
+開発サーバーの起動中は、Laravel が `public/hot` を使ってアセットを参照します。
+
 ```bash
-docker compose exec -d app npm run dev
+docker compose exec app npm run dev
 ```
+
+開発サーバーを使わずにローカルで画面を表示する場合は、以下を実行してください。
+
+```bash
+docker compose exec -T app npm run build
+```
+
+`src/public/build/manifest.json` と CSS・JavaScript が生成され、コンテナ内の
+`/workspace/public/build` として参照されます。`public/build` は Git 管理対象外のままで問題ありません。
+アセットを変更した場合は、再度ビルドしてください。
+
+`Vite manifest not found` が表示される場合も、上記のビルドで生成してください。
+開発サーバーを強制終了して `src/public/hot` が残っている場合は、そのファイルを削除してからビルド済みアセットを使用してください。
 
 ### 実装関連
 
