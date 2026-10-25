@@ -79,7 +79,14 @@ class DownloadGeneralThumbnailImages extends Command
                     continue;
                 }
 
-                Storage::disk('public')->put($outputPath, $response->body());
+                if (! Storage::disk('public')->put($outputPath, $response->body())) {
+                    $message = '画像の保存に失敗しました: '.$outputPath;
+                    $this->error($message);
+                    Log::error($message);
+
+                    return self::FAILURE;
+                }
+
                 $this->info('画像を保存しました: '.$outputPath);
 
                 $this->sleepBetweenRequests();
