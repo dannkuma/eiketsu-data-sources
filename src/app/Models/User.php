@@ -56,6 +56,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 
@@ -77,5 +78,21 @@ class User extends Authenticatable
     public function heirloomUserLevels(): HasMany
     {
         return $this->hasMany(HeirloomUserLevel::class);
+    }
+
+    /**
+     * ユーザーが管理者かどうかを判定する
+     */
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
+    }
+
+    /**
+     * ユーザーが一般ユーザーかどうかを判定する
+     */
+    public function isGeneral(): bool
+    {
+        return ! $this->is_admin;
     }
 }

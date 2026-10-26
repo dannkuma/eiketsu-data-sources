@@ -10,12 +10,12 @@
         class="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div class="relative w-full max-w-5xl" @click.stop>
             <button type="button"
-                class="absolute -top-14 right-0 p-0 text-6xl leading-none text-white hover:text-gray-300 transition-colors focus:outline-none"
+                class="absolute -top-14 right-0 p-0 text-6xl leading-none text-white transition-colors hover:text-gray-300 focus:outline-none"
                 aria-label="閉じる" @click="isOpen = false">
                 &times;
             </button>
             <div class="bg-white p-4 shadow-xl">
-                <div class="border-solid border-black border p-4">
+                <div class="border border-solid border-black p-4">
                     {{ $slot }}
                 </div>
             </div>

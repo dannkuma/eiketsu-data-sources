@@ -13,11 +13,11 @@ enum UnitTypes: string
     public function label(): string
     {
         return match ($this) {
-            self::Cavalry => '騎兵',
-            self::Lancer => '槍兵',
-            self::Archer => '弓兵',
-            self::Swordsman => '剣豪',
-            self::GunSquad => '鉄砲隊',
+            self::Cavalry => '騎',
+            self::Lancer => '槍',
+            self::Archer => '弓',
+            self::Swordsman => '剣',
+            self::GunSquad => '鉄',
         };
     }
 
