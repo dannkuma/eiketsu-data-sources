@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\General\General;
 use App\Models\Heirloom\HeirloomUserLevel;
 use App\Models\Soul\SoulUser;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,7 +17,7 @@ use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<UserFactory> */
     use Billable, HasFactory, Notifiable;
 
     /**

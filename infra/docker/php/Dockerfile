@@ -1,4 +1,4 @@
-FROM php:8.3.36-fpm-trixie AS base
+FROM php:8.5.12-fpm-trixie AS base
 
 WORKDIR /workspace
 
@@ -19,13 +19,14 @@ ARG UID=1000
 ARG GID=1000
 
 # Composerをマルチステージビルドでインストール
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # ==============================================================================
 # 1. 基本パッケージとPHP拡張モジュールのインストール
 # (ビルドの中で一番重いため、独立させてキャッシュを効かせる)
 # ==============================================================================
 RUN <<EOF
+  set -eu
   apt-get update
   apt-get -y install --no-install-recommends \
     locales \
@@ -57,12 +58,11 @@ EOF
 # ==============================================================================
 RUN <<EOF
   set -eu
-  curl -fsSL https://deb.nodesource.com/setup_22.x -o /tmp/nodesource_setup.sh
+  curl -fsSL https://deb.nodesource.com/setup_26.x -o /tmp/nodesource_setup.sh
   bash /tmp/nodesource_setup.sh
   apt-get install -y nodejs --no-install-recommends
   node --version
   npm --version
-  corepack enable
   apt-get clean
   rm /tmp/nodesource_setup.sh
   rm -rf /var/lib/apt/lists/*
@@ -92,6 +92,7 @@ EOF
 # 4. phper ユーザーの作成と権限設定
 # ==============================================================================
 RUN <<EOF
+  set -eu
   groupadd --gid $GID phper
   useradd --uid $UID --gid $GID phper
   mkdir /composer
@@ -118,6 +119,7 @@ USER phper
 FROM base AS development-xdebug
 
 RUN <<EOF
+  set -eu
   pecl install xdebug
   docker-php-ext-enable xdebug
 EOF
@@ -135,6 +137,7 @@ COPY --chown=phper:phper ./src /workspace
 USER phper
 
 RUN <<EOF
+  set -eu
   composer install --quiet --no-interaction --no-ansi --no-dev --no-scripts --no-progress --prefer-dist
   composer dump-autoload --optimize
   chmod -R 777 storage bootstrap/cache
