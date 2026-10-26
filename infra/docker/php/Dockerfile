@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-bullseye AS base
+FROM php:8.5.12-fpm-trixie AS base
 
 WORKDIR /workspace
 
@@ -6,12 +6,12 @@ WORKDIR /workspace
 # システムロケール等を設定
 # Laravel側のロケールは別途設定するので影響なし
 ENV TZ=UTC \
-  # locale
-  LANG=en_US.UTF-8 \
-  LANGUAGE=en_US:en \
-  LC_ALL=en_US.UTF-8 \
-  # composer environment
-  COMPOSER_HOME=/composer
+    # locale
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8 \
+    # composer environment
+    COMPOSER_HOME=/composer
 
 # 開発時のホストとクライアントのUID/GIDを指定
 # これにより、ホスト側のファイルシステムへのアクセス権を適切に設定
@@ -19,13 +19,14 @@ ARG UID=1000
 ARG GID=1000
 
 # Composerをマルチステージビルドでインストール
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # ==============================================================================
 # 1. 基本パッケージとPHP拡張モジュールのインストール
 # (ビルドの中で一番重いため、独立させてキャッシュを効かせる)
 # ==============================================================================
 RUN <<EOF
+  set -eu
   apt-get update
   apt-get -y install --no-install-recommends \
     locales \
@@ -56,10 +57,14 @@ EOF
 # 2. Node.js のインストール
 # ==============================================================================
 RUN <<EOF
-  curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+  set -eu
+  curl -fsSL https://deb.nodesource.com/setup_26.x -o /tmp/nodesource_setup.sh
+  bash /tmp/nodesource_setup.sh
   apt-get install -y nodejs --no-install-recommends
-  corepack enable
+  node --version
+  npm --version
   apt-get clean
+  rm /tmp/nodesource_setup.sh
   rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -67,16 +72,17 @@ EOF
 # 3. Puppeteer 用の依存ライブラリ（ブラウザ関連）のインストール
 # ==============================================================================
 RUN <<EOF
+  set -eu
   apt-get update
   apt-get -y install \
-    libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 \
-    libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 \
-    libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 \
+    libasound2t64 libatk-bridge2.0-0t64 libatk1.0-0t64 libc6 libcairo2 libcups2t64 \
+    libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc-s1 \
+    libgdk-pixbuf-2.0-0 libglib2.0-0t64 libgtk-3-0t64 libnspr4 libnss3 \
     libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 \
     libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 \
     libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
     fonts-liberation lsb-release xdg-utils wget \
-    gconf-service libappindicator1 libgbm-dev libxshmfence-dev \
+    libgbm-dev libxshmfence-dev \
     --no-install-recommends
   apt-get clean
   rm -rf /var/lib/apt/lists/*
@@ -86,6 +92,7 @@ EOF
 # 4. phper ユーザーの作成と権限設定
 # ==============================================================================
 RUN <<EOF
+  set -eu
   groupadd --gid $GID phper
   useradd --uid $UID --gid $GID phper
   mkdir /composer
@@ -112,6 +119,7 @@ USER phper
 FROM base AS development-xdebug
 
 RUN <<EOF
+  set -eu
   pecl install xdebug
   docker-php-ext-enable xdebug
 EOF
@@ -129,6 +137,7 @@ COPY --chown=phper:phper ./src /workspace
 USER phper
 
 RUN <<EOF
+  set -eu
   composer install --quiet --no-interaction --no-ansi --no-dev --no-scripts --no-progress --prefer-dist
   composer dump-autoload --optimize
   chmod -R 777 storage bootstrap/cache

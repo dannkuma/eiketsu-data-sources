@@ -1,9 +1,10 @@
 <?php
 
-uses(\Tests\DuskTestCase::class);
+uses(DuskTestCase::class);
 use Carbon\Carbon;
 use Laravel\Dusk\Browser;
 use Symfony\Component\DomCrawler\Crawler;
+use Tests\DuskTestCase;
 
 test('example', function () {
     // $this->browse(function (Browser $browser) {
