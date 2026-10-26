@@ -1,21 +1,21 @@
 <header x-data="{ open: false }"
-    class="bg-gradient-to-b from-brand-orange to-brand-yamabuki border-b border-gray-100 relative z-50">
+    class="relative z-50 border-b border-gray-100 bg-gradient-to-b from-brand-orange to-brand-yamabuki">
     <!-- Overlay: ハンバーガーメニューopen時のグレーアウト -->
-    <div x-show="open" x-transition.opacity.300ms class="fixed inset-0 bg-black/40 z-40 pointer-events-auto"
+    <div x-show="open" x-transition.opacity.300ms class="pointer-events-auto fixed inset-0 z-40 bg-black/40"
         @click="open = false" style="display: none;">
     </div>
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-3 items-center h-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid h-20 grid-cols-3 items-center">
             <!-- Logo -->
-            <div class="shrink-0 flex items-center justify-start">
+            <div class="flex shrink-0 items-center justify-start">
                 <a href="{{ route('dashboard') }}">
-                    <x-application-logo class="block h-20 w-auto object-contain fill-current text-gray-800" />
+                    <x-application-logo class="block h-20 w-auto fill-current object-contain text-gray-800" />
                 </a>
             </div>
 
             <!-- Title -->
-            <div class="h-full flex items-center justify-center">
+            <div class="flex h-full items-center justify-center">
                 @isset($header)
                     {{ $header }}
                 @else
@@ -25,10 +25,10 @@
 
             <!-- Hamburger Box -->
             <div :style="open ? 'transform: translateX(-3rem)' : ''"
-                class="justify-self-end flex items-center h-3/5 aspect-square bg-white rounded-md shadow-sm transition-transform duration-300 z-50">
+                class="z-50 flex aspect-square h-3/5 items-center justify-self-end rounded-md bg-white shadow-sm transition-transform duration-300">
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center w-full rounded-md text-black focus:outline-none">
-                    <div class="flex flex-col items-center w-full">
+                    class="inline-flex w-full items-center justify-center rounded-md text-black focus:outline-none">
+                    <div class="flex w-full flex-col items-center">
                         <svg class="h-16 w-full" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -49,17 +49,17 @@
         x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
         x-transition:leave-end="translate-x-full"
-        class="fixed top-0 right-0 w-[25rem] h-full bg-white border-l border-gray-200 z-50 shadow-xl"
+        class="fixed right-0 top-0 z-50 h-full w-[25rem] border-l border-gray-200 bg-white shadow-xl"
         style="display: none;">
 
-        <div class="pt-3 pb-3 space-y-1 text-center bg-brand-dark text-white">
-            <p class="mx-4 my-4 text-3xl border-b-2 border-white tracking-tighter">
+        <div class="space-y-1 bg-brand-dark pb-3 pt-3 text-center text-white">
+            <p class="mx-4 my-4 border-b-2 border-white text-3xl tracking-tighter">
                 {{ Auth::user()->name }}
             </p>
         </div>
 
         @if (Auth::user()->isAdmin())
-            <div class="pb-1 border-t border-gray-200">
+            <div class="border-t border-gray-200 pb-1">
                 {{-- TODO:ルート追加後リンクを修正 --}}
                 <x-menu-item :href="route('profile.edit')" :showBottomBorder="true">
                     {{ __('ユーザー管理') }}
@@ -73,7 +73,7 @@
                 <x-menu-item :href="route('profile.edit')" :showBottomBorder="true">
                     {{ __('英魂管理') }}
                 </x-menu-item>
-                <form method="POST" action="{{ route('logout') }}" class="flex justify-center items-center mt-5">
+                <form method="POST" action="{{ route('logout') }}" class="mt-5 flex items-center justify-center">
                     @csrf
                     <x-action-button :type="'submit'" :variant="'logout'">
                         {{ __('ログアウト') }}
@@ -81,8 +81,8 @@
                 </form>
             </div>
         @elseif (Auth::user()->isGeneral())
-            <div class="pb-1 border-t border-gray-200">
-                <p class="text-2xl font-medium my-1 mx-1">&#9654;&nbsp;データリスト</p>
+            <div class="border-t border-gray-200 pb-1">
+                <p class="mx-1 my-1 text-2xl font-medium">&#9654;&nbsp;データリスト</p>
                 {{-- TODO:ルート追加後リンクを修正 --}}
                 <x-menu-item :href="route('profile.edit')">
                     {{ __('武将') }}
@@ -93,7 +93,7 @@
                 <x-menu-item :href="route('profile.edit')" :showBottomBorder="true">
                     {{ __('英魂（購入）') }}
                 </x-menu-item>
-                <p class="text-2xl font-medium my-1 mx-1">&#9654;&nbsp;戦器/英魂（強化・整理）</p>
+                <p class="mx-1 my-1 text-2xl font-medium">&#9654;&nbsp;戦器/英魂（強化・整理）</p>
                 {{-- TODO:ルート追加後リンクを修正 --}}
                 <x-menu-item :href="route('profile.edit')">
                     {{ __('戦器強化・整理') }}
@@ -102,14 +102,14 @@
                     {{ __('英魂強化・整理') }}
                 </x-menu-item>
                 <a href="{{ route('profile.edit') }}"
-                    class="font-medium my-3 mx-1 block w-full text-start text-xl font-medium text-black hover:text-gray-800 hover:bg-gray-50 focus:outline-none focus:text-gray-800 focus:bg-gray-50 transition duration-150 ease-in-out">
+                    class="mx-1 my-3 block w-full text-start text-xl font-medium font-medium text-black transition duration-150 ease-in-out hover:bg-gray-50 hover:text-gray-800 focus:bg-gray-50 focus:text-gray-800 focus:outline-none">
                     &#9654;&nbsp;大判購入</a>
                 <div class="mx-2 border-t-2 border-gray-400"></div>
                 <a href="{{ route('profile.edit') }}"
-                    class="font-medium my-3 mx-1 block w-full text-start text-xl font-medium text-black hover:text-gray-800 hover:bg-gray-50 focus:outline-none focus:text-gray-800 focus:bg-gray-50 transition duration-150 ease-in-out">
+                    class="mx-1 my-3 block w-full text-start text-xl font-medium font-medium text-black transition duration-150 ease-in-out hover:bg-gray-50 hover:text-gray-800 focus:bg-gray-50 focus:text-gray-800 focus:outline-none">
                     &#9654;&nbsp;ユーザー情報</a>
                 <div class="mx-2 border-t-2 border-gray-400"></div>
-                <form method="POST" action="{{ route('logout') }}" class="flex justify-center items-center mt-5">
+                <form method="POST" action="{{ route('logout') }}" class="mt-5 flex items-center justify-center">
                     @csrf
                     <x-action-button :type="'submit'" :variant="'logout'">
                         {{ __('ログアウト') }}
@@ -117,13 +117,13 @@
                 </form>
             </div>
         @else
-            <div class="pb-1 border-t border-gray-200">
-                <p class="text-2xl font-medium my-1 mx-1">&#9654;&nbsp;データリスト</p>
+            <div class="border-t border-gray-200 pb-1">
+                <p class="mx-1 my-1 text-2xl font-medium">&#9654;&nbsp;データリスト</p>
                 {{-- TODO:ルート追加後リンクを修正 --}}
                 <x-menu-item :href="route('profile.edit')" :showBottomBorder="true">
                     {{ __('武将') }}
                 </x-menu-item>
-                <form method="POST" action="{{ route('login') }}" class="flex justify-center items-center mt-5">
+                <form method="POST" action="{{ route('login') }}" class="mt-5 flex items-center justify-center">
                     @csrf
                     <x-action-button :type="'submit'" :variant="'action'">
                         {{ __('ログイン') }}

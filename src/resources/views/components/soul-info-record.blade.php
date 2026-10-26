@@ -1,22 +1,22 @@
 <div onclick="showHeirloomDetail(1)"
     onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); showHeirloomDetail(1); }"
     role="button" tabindex="0"
-    class="flex w-full cursor-pointer text-black font-bold py-1 hover:brightness-110 transition-all border-b-2 border-black">
-    <div class="w-2/12 flex justify-start items-center">
+    class="flex w-full cursor-pointer border-b-2 border-black py-1 font-bold text-black transition-all hover:brightness-110">
+    <div class="flex w-2/12 items-center justify-start">
         <img src="{{ asset('images/souls/images/7a750bf32e7c8d689810d300a46cce66.png') }}" alt=""
-            class="block h-24 ml-4">
+            class="ml-4 block h-24">
     </div>
-    <div class="w-6/12 flex justify-start items-center">
+    <div class="flex w-6/12 items-center justify-start">
         <img class="block h-10" src="{{ asset('images/rarities/N.png') }}" alt="rarity">
         <p class="pl-2 text-2xl">R宝物用英魂</p>
     </div>
-    <div class="w-2/12 flex justify-center items-center">
+    <div class="flex w-2/12 items-center justify-center">
         <div
-            class="flex items-center justify-center px-2 mt-1 rounded-xl bg-brand-heirloom-record-inventory text-base text-white h-10">
+            class="mt-1 flex h-10 items-center justify-center rounded-xl bg-brand-heirloom-record-inventory px-2 text-base text-white">
             <p>所持数&times;30</p>
         </div>
     </div>
-    <div class="w-2/12 flex justify-center items-center">
+    <div class="flex w-2/12 items-center justify-center">
         <img src="{{ asset('images/balance.png') }}" alt="" class="h-10">
         <p class="pl-2 text-base">&times;5000</p>
     </div>

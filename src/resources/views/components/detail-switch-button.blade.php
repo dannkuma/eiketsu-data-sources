@@ -3,10 +3,10 @@
     $radius = $direction === 'prev' ? 'rounded-l-lg' : 'rounded-r-lg';
 @endphp
 
-<div class="bg-brand-detail-switch-button {{ $radius }}">
+<div class="{{ $radius }} bg-brand-detail-switch-button">
     <form method="GET" action="{{ $link }}">
         <button type="submit"
-            class="btn-pushable h-[52rem] w-20 text-white text-4xl {{ $radius }} active:opacity-65">
+            class="btn-pushable {{ $radius }} h-[52rem] w-20 text-4xl text-white active:opacity-65">
             {!! $direction === 'prev' ? '&Lt;' : '&Gt;' !!}
         </button>
     </form>

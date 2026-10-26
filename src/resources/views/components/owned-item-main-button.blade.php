@@ -1,4 +1,4 @@
 <button type="button"
-    class="w-[32%] bg-brand-owned-heirloom-button-white text-black font-extrabold text-xl py-4 px-4 btn-pushable">
+    class="btn-pushable w-[32%] bg-brand-owned-heirloom-button-white px-4 py-4 text-xl font-extrabold text-black">
     {{ $slot }}
 </button>

@@ -1,13 +1,13 @@
 @props(['title'])
 
-<div class="flex justify-between items-center py-2">
+<div class="flex items-center justify-between py-2">
     <div class="flex-1"></div>
     <div
-        class="flex justify-center items-center mx-auto w-[26rem] text-2xl text-white border-solid border-brand-detail-title-border border rounded-md px-8 py-2">
+        class="mx-auto flex w-[26rem] items-center justify-center rounded-md border border-solid border-brand-detail-title-border px-8 py-2 text-2xl text-white">
         {{ $title }}
     </div>
-    <div class="flex-1 flex justify-end">
+    <div class="flex flex-1 justify-end">
         <button
-            class="bg-black text-3xl text-white border-solid border-white border rounded-md px-1 btn-pushable">&times;</button>
+            class="btn-pushable rounded-md border border-solid border-white bg-black px-1 text-3xl text-white">&times;</button>
     </div>
 </div>

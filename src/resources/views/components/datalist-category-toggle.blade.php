@@ -6,27 +6,27 @@
     $isHeirloom = $type === 'heirloom';
     $isSoul = $type === 'soul';
 @endphp
-<div class="flex justify-center items-center py-4">
-    <div class="flex justify-around items-center w-3/4">
+<div class="flex items-center justify-center py-4">
+    <div class="flex w-3/4 items-center justify-around">
         <button
-            class="w-32 flex justify-start items-center btn-pushable border-brand-datalist-category-border border-2 {{ $isGeneral ? $selected : '' }}"
+            class="btn-pushable {{ $isGeneral ? $selected : '' }} flex w-32 items-center justify-start border-2 border-brand-datalist-category-border"
             {{ $isGeneral ? 'disabled' : '' }}>
             <span class="w-2/3 text-2xl">武将</span>
-            <img class="block w-1/3 h-9 mr-4" src="{{ asset('images/datalist_categories/general.png') }}"
+            <img class="mr-4 block h-9 w-1/3" src="{{ asset('images/datalist_categories/general.png') }}"
                 alt="datalistCategoryGeneral">
         </button>
         <button
-            class="w-32 flex justify-start items-center btn-pushable border-brand-datalist-category-border border-2 {{ $isHeirloom ? $selected : '' }}"
+            class="btn-pushable {{ $isHeirloom ? $selected : '' }} flex w-32 items-center justify-start border-2 border-brand-datalist-category-border"
             {{ $isHeirloom ? 'disabled' : '' }}>
             <span class="w-2/3 text-2xl">戦器</span>
-            <img class="block w-1/3 h-9 mr-4" src="{{ asset('images/datalist_categories/heirloom.png') }}"
+            <img class="mr-4 block h-9 w-1/3" src="{{ asset('images/datalist_categories/heirloom.png') }}"
                 alt="datalistCategoryHeirloom">
         </button>
         <button
-            class="w-32 flex justify-start items-center btn-pushable border-brand-datalist-category-border border-2 {{ $isSoul ? $selected : '' }}"
+            class="btn-pushable {{ $isSoul ? $selected : '' }} flex w-32 items-center justify-start border-2 border-brand-datalist-category-border"
             {{ $isSoul ? 'disabled' : '' }}>
             <span class="w-2/3 text-2xl">英魂</span>
-            <img class="block w-1/3 h-9 mr-4" src="{{ asset('images/datalist_categories/soul.png') }}"
+            <img class="mr-4 block h-9 w-1/3" src="{{ asset('images/datalist_categories/soul.png') }}"
                 alt="datalistCategorySoul">
         </button>
     </div>
