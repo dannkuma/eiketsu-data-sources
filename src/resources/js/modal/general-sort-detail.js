@@ -222,7 +222,10 @@ function setSortCond(button) {
 /** ソート条件を昇順に切り替える **/
 function changeCondAsc(button) {
     const record = button.closest(".sort-cond-record");
-    record.dataset.sortCondId = record.dataset.sortCondId.replace(/_(asc|desc)$/, "_asc");
+    record.dataset.sortCondId = record.dataset.sortCondId.replace(
+        /_(asc|desc)$/,
+        "_asc",
+    );
     const descButton = button.previousElementSibling;
     descButton.classList.remove(
         "pointer-events-none",
@@ -239,7 +242,10 @@ function changeCondAsc(button) {
 /** ソート条件を降順に切り替える **/
 function changeCondDesc(button) {
     const record = button.closest(".sort-cond-record");
-    record.dataset.sortCondId = record.dataset.sortCondId.replace(/_(asc|desc)$/, "_desc");
+    record.dataset.sortCondId = record.dataset.sortCondId.replace(
+        /_(asc|desc)$/,
+        "_desc",
+    );
     const ascButton = button.nextElementSibling;
     ascButton.classList.remove(
         "pointer-events-none",
@@ -461,21 +467,26 @@ function generateDownButton() {
 
 /** ソート条件をリセットする **/
 function resetSort() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const form = document.getElementById("general-sort-detail-form");
+    const selects = form.querySelectorAll("select");
+    selects.forEach((select) => {
+        if (select.name === "power_max" || select.name === "intelligence_max") {
+            select.value = "12";
+        } else {
+            select.selectedIndex = 0;
+        }
+    });
+    const textInputs = form.querySelectorAll('input[type="text"]');
+    textInputs.forEach((input) => {
+        input.value = "";
+    });
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach((checkbox) => {
         checkbox.checked = false;
     });
-    const toggleOrRadios = document.querySelectorAll(
-        'input[type="radio"][value="or"]',
-    );
-    toggleOrRadios.forEach((radio) => {
-        radio.checked = true;
-    });
-    const toggleAndRadios = document.querySelectorAll(
-        'input[type="radio"][value="and"]',
-    );
-    toggleAndRadios.forEach((radio) => {
-        radio.checked = false;
+    const radios = form.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio) => {
+        radio.checked = radio.value === "or";
     });
     removeAllSortCond();
 }
